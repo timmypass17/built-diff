@@ -50,6 +50,8 @@ class WorkoutDao: WorkoutDaoProtocol {
             workout.addToExercises(exercise)
         }
         
+        print("timmy")
+        workout.printPrettyString()
         return workout
     }
     

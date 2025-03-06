@@ -34,7 +34,7 @@ class CoreDataStack {
         // To ensure that changes saved in a background or child context are automatically reflected in the main contex
         // - This reduces the need for manually merging changes after saving the child or background context.
         let context = persistentContainer.viewContext
-        context.automaticallyMergesChangesFromParent = true
+        context.automaticallyMergesChangesFromParent = true // important for watchos and app sync
         return context // only use on main queue of your app
         // designed to be thread-safe for use on the main queue. It's primarily used for operations that interact with the UI, such as fetching data to display in views or updating UI-bound objects.
     }()
@@ -56,6 +56,7 @@ class CoreDataStack {
     // Child Context: A child context is a context that has a parent context
     // Use a child context for operations that you might want to discard or modify before committing them to the parent context (like editing a record temporarily)
     func newChildContext() -> NSManagedObjectContext {
+        print("newChildContext")
         let childContext = NSManagedObjectContext(.privateQueue) // only access it through the perform(_:) and the performAndWait(_:) methods
         childContext.parent = mainContext
         return childContext

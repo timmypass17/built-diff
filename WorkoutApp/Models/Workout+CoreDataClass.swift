@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@Observable
 @objc(Workout)
 public class Workout: NSManagedObject {
 
