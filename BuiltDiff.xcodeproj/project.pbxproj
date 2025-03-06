@@ -20,6 +20,7 @@
 		3253BD1E2D37335B003F5A4A /* WorkoutDaoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3253BD1D2D37335B003F5A4A /* WorkoutDaoProtocol.swift */; };
 		3258997A2B88503D00C78FED /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325899792B88503D00C78FED /* ThemeTableViewController.swift */; };
 		325FC5D52B747E8C0023C02D /* EmptyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325FC5D42B747E8C0023C02D /* EmptyLabel.swift */; };
+		3264C9112D754E2D001A87E8 /* BuiltDiffWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3264C8EE2D754E29001A87E8 /* BuiltDiffWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		327181EA2D2B08F200DDA1F3 /* ExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327181E92D2B08F200DDA1F3 /* ExerciseData.swift */; };
 		327181EC2D2B1C4900DDA1F3 /* CreateTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327181EB2D2B1C4900DDA1F3 /* CreateTemplateViewController.swift */; };
 		327181EE2D2C484900DDA1F3 /* EditTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327181ED2D2C484900DDA1F3 /* EditTemplateViewController.swift */; };
@@ -66,9 +67,47 @@
 		32E051D92B7ED1FA0093EE4B /* ExerciseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E051D82B7ED1FA0093EE4B /* ExerciseHeaderView.swift */; };
 		32E3A1962B894FC3001FD86B /* AccentColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3A1952B894FC3001FD86B /* AccentColorTableViewController.swift */; };
 		32E3A1982B8C0865001FD86B /* PrivacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3A1972B8C0865001FD86B /* PrivacyTableViewController.swift */; };
+		32EEE75C2D75536B003B5B28 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8461F2B5F06260046F0D2 /* Exercise+CoreDataClass.swift */; };
+		32EEE75D2D75536B003B5B28 /* ExerciseSet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D846222B5F06260046F0D2 /* ExerciseSet+CoreDataProperties.swift */; };
+		32EEE75E2D75536B003B5B28 /* Template+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF978F2D20CCA70004FA47 /* Template+CoreDataProperties.swift */; };
+		32EEE75F2D75536B003B5B28 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8461E2B5F06260046F0D2 /* Workout+CoreDataProperties.swift */; };
+		32EEE7602D75536B003B5B28 /* ExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327181E92D2B08F200DDA1F3 /* ExerciseData.swift */; };
+		32EEE7612D75536B003B5B28 /* TemplateExercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF97842D20C71C0004FA47 /* TemplateExercise+CoreDataClass.swift */; };
+		32EEE7622D75536B003B5B28 /* TemplateExercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF97852D20C71C0004FA47 /* TemplateExercise+CoreDataProperties.swift */; };
+		32EEE7632D75536B003B5B28 /* Template+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF978E2D20CCA70004FA47 /* Template+CoreDataClass.swift */; };
+		32EEE7642D75536B003B5B28 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8461D2B5F06260046F0D2 /* Workout+CoreDataClass.swift */; };
+		32EEE7652D75536B003B5B28 /* ExerciseSet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D846212B5F06260046F0D2 /* ExerciseSet+CoreDataClass.swift */; };
+		32EEE7662D75536B003B5B28 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D846202B5F06260046F0D2 /* Exercise+CoreDataProperties.swift */; };
+		32EEE79A2D75552C003B5B28 /* WorkoutDaoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3253BD1D2D37335B003F5A4A /* WorkoutDaoProtocol.swift */; };
+		32EEE79B2D75552C003B5B28 /* WorkoutDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3253BD1B2D3731F4003F5A4A /* WorkoutDao.swift */; };
+		32EEE79C2D75552C003B5B28 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF976E2D1CD06A0004FA47 /* CoreDataStack.swift */; };
+		32EEE79D2D75552C003B5B28 /* WorkoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8462B2B6305CF0046F0D2 /* WorkoutService.swift */; };
+		32EEE79E2D75552C003B5B28 /* exercises.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32D0A40A2D3B058300C9F803 /* exercises.txt */; };
+		32EEE79F2D75562E003B5B28 /* BuiltDiff.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32A293832B42073B00122166 /* BuiltDiff.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3264C8FE2D754E2D001A87E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A2936F2B42073B00122166 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3264C8ED2D754E29001A87E8;
+			remoteInfo = "BuiltDiffWatch Watch App";
+		};
+		3264C9082D754E2D001A87E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A2936F2B42073B00122166 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3264C8ED2D754E29001A87E8;
+			remoteInfo = "BuiltDiffWatch Watch App";
+		};
+		3264C90F2D754E2D001A87E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A2936F2B42073B00122166 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3264C8ED2D754E29001A87E8;
+			remoteInfo = "BuiltDiffWatch Watch App";
+		};
 		32D0A3FD2D384FEA00C9F803 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32A2936F2B42073B00122166 /* Project object */;
@@ -77,6 +116,20 @@
 			remoteInfo = BuiltDiff;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3264C9122D754E2D001A87E8 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				3264C9112D754E2D001A87E8 /* BuiltDiffWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		321F97042B740B5E00AB15B7 /* ProgressViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewCell.swift; sourceTree = "<group>"; };
@@ -92,6 +145,9 @@
 		3253BD1D2D37335B003F5A4A /* WorkoutDaoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDaoProtocol.swift; sourceTree = "<group>"; };
 		325899792B88503D00C78FED /* ThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewController.swift; sourceTree = "<group>"; };
 		325FC5D42B747E8C0023C02D /* EmptyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLabel.swift; sourceTree = "<group>"; };
+		3264C8EE2D754E29001A87E8 /* BuiltDiffWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BuiltDiffWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3264C8FD2D754E2D001A87E8 /* BuiltDiffWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BuiltDiffWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3264C9072D754E2D001A87E8 /* BuiltDiffWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BuiltDiffWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		327181E92D2B08F200DDA1F3 /* ExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseData.swift; sourceTree = "<group>"; };
 		327181EB2D2B1C4900DDA1F3 /* CreateTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTemplateViewController.swift; sourceTree = "<group>"; };
 		327181ED2D2C484900DDA1F3 /* EditTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTemplateViewController.swift; sourceTree = "<group>"; };
@@ -144,11 +200,47 @@
 		32E3A1972B8C0865001FD86B /* PrivacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		32111CAB2D7A3E3C00B6A842 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/ExerciseWrapper.swift,
+				Models/SetWrapper.swift,
+				Models/WorkoutWrapper.swift,
+			);
+			target = 32A293762B42073B00122166 /* BuiltDiff */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		3264C8EF2D754E29001A87E8 /* BuiltDiffWatch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (32111CAB2D7A3E3C00B6A842 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "BuiltDiffWatch Watch App"; sourceTree = "<group>"; };
+		3264C9002D754E2D001A87E8 /* BuiltDiffWatch Watch AppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "BuiltDiffWatch Watch AppTests"; sourceTree = "<group>"; };
+		3264C90A2D754E2D001A87E8 /* BuiltDiffWatch Watch AppUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "BuiltDiffWatch Watch AppUITests"; sourceTree = "<group>"; };
 		32D0A3FA2D384FEA00C9F803 /* BuiltDiffTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BuiltDiffTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3264C8EB2D754E29001A87E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3264C8FA2D754E2D001A87E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3264C9042D754E2D001A87E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32A293742B42073B00122166 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,6 +276,9 @@
 				32D0A4142D41D51F00C9F803 /* BuiltDiff.entitlements */,
 				32A293792B42073B00122166 /* WorkoutApp */,
 				32D0A3FA2D384FEA00C9F803 /* BuiltDiffTests */,
+				3264C8EF2D754E29001A87E8 /* BuiltDiffWatch Watch App */,
+				3264C9002D754E2D001A87E8 /* BuiltDiffWatch Watch AppTests */,
+				3264C90A2D754E2D001A87E8 /* BuiltDiffWatch Watch AppUITests */,
 				32A293782B42073B00122166 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -193,6 +288,9 @@
 			children = (
 				32A293772B42073B00122166 /* BuiltDiff.app */,
 				32D0A3F92D384FEA00C9F803 /* BuiltDiffTests.xctest */,
+				3264C8EE2D754E29001A87E8 /* BuiltDiffWatch Watch App.app */,
+				3264C8FD2D754E2D001A87E8 /* BuiltDiffWatch Watch AppTests.xctest */,
+				3264C9072D754E2D001A87E8 /* BuiltDiffWatch Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -295,6 +393,74 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3264C8ED2D754E29001A87E8 /* BuiltDiffWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3264C9192D754E2D001A87E8 /* Build configuration list for PBXNativeTarget "BuiltDiffWatch Watch App" */;
+			buildPhases = (
+				3264C8EA2D754E29001A87E8 /* Sources */,
+				3264C8EB2D754E29001A87E8 /* Frameworks */,
+				3264C8EC2D754E29001A87E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				3264C8EF2D754E29001A87E8 /* BuiltDiffWatch Watch App */,
+			);
+			name = "BuiltDiffWatch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "BuiltDiffWatch Watch App";
+			productReference = 3264C8EE2D754E29001A87E8 /* BuiltDiffWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3264C8FC2D754E2D001A87E8 /* BuiltDiffWatch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3264C91A2D754E2D001A87E8 /* Build configuration list for PBXNativeTarget "BuiltDiffWatch Watch AppTests" */;
+			buildPhases = (
+				3264C8F92D754E2D001A87E8 /* Sources */,
+				3264C8FA2D754E2D001A87E8 /* Frameworks */,
+				3264C8FB2D754E2D001A87E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3264C8FF2D754E2D001A87E8 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3264C9002D754E2D001A87E8 /* BuiltDiffWatch Watch AppTests */,
+			);
+			name = "BuiltDiffWatch Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "BuiltDiffWatch Watch AppTests";
+			productReference = 3264C8FD2D754E2D001A87E8 /* BuiltDiffWatch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3264C9062D754E2D001A87E8 /* BuiltDiffWatch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3264C91B2D754E2D001A87E8 /* Build configuration list for PBXNativeTarget "BuiltDiffWatch Watch AppUITests" */;
+			buildPhases = (
+				3264C9032D754E2D001A87E8 /* Sources */,
+				3264C9042D754E2D001A87E8 /* Frameworks */,
+				3264C9052D754E2D001A87E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3264C9092D754E2D001A87E8 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3264C90A2D754E2D001A87E8 /* BuiltDiffWatch Watch AppUITests */,
+			);
+			name = "BuiltDiffWatch Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "BuiltDiffWatch Watch AppUITests";
+			productReference = 3264C9072D754E2D001A87E8 /* BuiltDiffWatch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		32A293762B42073B00122166 /* BuiltDiff */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32A2938E2B42073C00122166 /* Build configuration list for PBXNativeTarget "BuiltDiff" */;
@@ -302,10 +468,12 @@
 				32A293732B42073B00122166 /* Sources */,
 				32A293742B42073B00122166 /* Frameworks */,
 				32A293752B42073B00122166 /* Resources */,
+				3264C9122D754E2D001A87E8 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3264C9102D754E2D001A87E8 /* PBXTargetDependency */,
 			);
 			name = BuiltDiff;
 			productName = WorkoutApp;
@@ -345,6 +513,17 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					3264C8ED2D754E29001A87E8 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					3264C8FC2D754E2D001A87E8 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 3264C8ED2D754E29001A87E8;
+					};
+					3264C9062D754E2D001A87E8 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 3264C8ED2D754E29001A87E8;
+					};
 					32A293762B42073B00122166 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -369,11 +548,36 @@
 			targets = (
 				32A293762B42073B00122166 /* BuiltDiff */,
 				32D0A3F82D384FEA00C9F803 /* BuiltDiffTests */,
+				3264C8ED2D754E29001A87E8 /* BuiltDiffWatch Watch App */,
+				3264C8FC2D754E2D001A87E8 /* BuiltDiffWatch Watch AppTests */,
+				3264C9062D754E2D001A87E8 /* BuiltDiffWatch Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3264C8EC2D754E29001A87E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32EEE79E2D75552C003B5B28 /* exercises.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3264C8FB2D754E2D001A87E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3264C9052D754E2D001A87E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32A293752B42073B00122166 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,6 +598,43 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3264C8EA2D754E29001A87E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32EEE79F2D75562E003B5B28 /* BuiltDiff.xcdatamodeld in Sources */,
+				32EEE75C2D75536B003B5B28 /* Exercise+CoreDataClass.swift in Sources */,
+				32EEE75D2D75536B003B5B28 /* ExerciseSet+CoreDataProperties.swift in Sources */,
+				32EEE75E2D75536B003B5B28 /* Template+CoreDataProperties.swift in Sources */,
+				32EEE75F2D75536B003B5B28 /* Workout+CoreDataProperties.swift in Sources */,
+				32EEE7602D75536B003B5B28 /* ExerciseData.swift in Sources */,
+				32EEE7612D75536B003B5B28 /* TemplateExercise+CoreDataClass.swift in Sources */,
+				32EEE7622D75536B003B5B28 /* TemplateExercise+CoreDataProperties.swift in Sources */,
+				32EEE7632D75536B003B5B28 /* Template+CoreDataClass.swift in Sources */,
+				32EEE7642D75536B003B5B28 /* Workout+CoreDataClass.swift in Sources */,
+				32EEE7652D75536B003B5B28 /* ExerciseSet+CoreDataClass.swift in Sources */,
+				32EEE7662D75536B003B5B28 /* Exercise+CoreDataProperties.swift in Sources */,
+				32EEE79A2D75552C003B5B28 /* WorkoutDaoProtocol.swift in Sources */,
+				32EEE79B2D75552C003B5B28 /* WorkoutDao.swift in Sources */,
+				32EEE79C2D75552C003B5B28 /* CoreDataStack.swift in Sources */,
+				32EEE79D2D75552C003B5B28 /* WorkoutService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3264C8F92D754E2D001A87E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3264C9032D754E2D001A87E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32A293732B42073B00122166 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,6 +708,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3264C8FF2D754E2D001A87E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3264C8ED2D754E29001A87E8 /* BuiltDiffWatch Watch App */;
+			targetProxy = 3264C8FE2D754E2D001A87E8 /* PBXContainerItemProxy */;
+		};
+		3264C9092D754E2D001A87E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3264C8ED2D754E29001A87E8 /* BuiltDiffWatch Watch App */;
+			targetProxy = 3264C9082D754E2D001A87E8 /* PBXContainerItemProxy */;
+		};
+		3264C9102D754E2D001A87E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3264C8ED2D754E29001A87E8 /* BuiltDiffWatch Watch App */;
+			targetProxy = 3264C90F2D754E2D001A87E8 /* PBXContainerItemProxy */;
+		};
 		32D0A3FE2D384FEA00C9F803 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 32A293762B42073B00122166 /* BuiltDiff */;
@@ -486,6 +742,150 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3264C9132D754E2D001A87E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BuiltDiffWatch Watch App/BuiltDiffWatch Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BuiltDiffWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 8KHAQ7W8KV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BuiltDiffWatch-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = BuiltDiffWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.example.builtdiff;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.builtdiff.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		3264C9142D754E2D001A87E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BuiltDiffWatch Watch App/BuiltDiffWatch Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BuiltDiffWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 8KHAQ7W8KV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BuiltDiffWatch-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = BuiltDiffWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.example.builtdiff;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.builtdiff.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		3264C9152D754E2D001A87E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8KHAQ7W8KV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.timmynguyen.BuiltDiffWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuiltDiffWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BuiltDiffWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		3264C9162D754E2D001A87E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8KHAQ7W8KV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.timmynguyen.BuiltDiffWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuiltDiffWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BuiltDiffWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		3264C9172D754E2D001A87E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8KHAQ7W8KV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.timmynguyen.BuiltDiffWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "BuiltDiffWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		3264C9182D754E2D001A87E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8KHAQ7W8KV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.timmynguyen.BuiltDiffWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "BuiltDiffWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
 		32A2938C2B42073C00122166 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -710,6 +1110,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3264C9192D754E2D001A87E8 /* Build configuration list for PBXNativeTarget "BuiltDiffWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3264C9132D754E2D001A87E8 /* Debug */,
+				3264C9142D754E2D001A87E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3264C91A2D754E2D001A87E8 /* Build configuration list for PBXNativeTarget "BuiltDiffWatch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3264C9152D754E2D001A87E8 /* Debug */,
+				3264C9162D754E2D001A87E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3264C91B2D754E2D001A87E8 /* Build configuration list for PBXNativeTarget "BuiltDiffWatch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3264C9172D754E2D001A87E8 /* Debug */,
+				3264C9182D754E2D001A87E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32A293722B42073B00122166 /* Build configuration list for PBXProject "BuiltDiff" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

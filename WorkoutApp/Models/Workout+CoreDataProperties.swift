@@ -19,13 +19,22 @@ extension Workout {
 
     @NSManaged public var createdAt_: Date?
     @NSManaged private var title_: String?
-    @NSManaged public var index: Int16  // used to sort a list of workout
+    @NSManaged public var index: Int16  // used to sort a list of workout TODO: I don't think this is necessary. used createdAt to sort, not index
     @NSManaged public var exercises: NSSet? // Cloud Kit doesn't support ordered relationships
     
     // computed property (transient property works wierd with child-parent)
     @objc var createdMonthID : String? {
         guard let createdAt_ else { return nil }
         return Workout.monthID(from: createdAt_)
+    }
+    
+    var createdAt: Date {
+        get {
+            return createdAt_ ?? .distantPast
+        }
+        set {
+            createdAt_ = newValue
+        }
     }
     
     var title: String {
@@ -36,11 +45,41 @@ extension Workout {
             title_ = newValue
         }
     }
+    
+    // convenience - secondary inits. calls designated init (e.g. self.init(context:)). init faster/convient
+    convenience init(workoutWrapper: WorkoutWrapper, context: NSManagedObjectContext) {
+        self.init(context: context)
+        title = workoutWrapper.title
+        createdAt_ = workoutWrapper.createdAt
+        index = Int16(workoutWrapper.index)
+        
+        for (i, exerciseWrapper) in workoutWrapper.exercises.enumerated() {
+            let exercise = Exercise(context: context)
+            exercise.name = exerciseWrapper.name
+            exercise.index = Int16(i)
+            exercise.workout = self
+            
+            self.addToExercises(exercise)
+            for (j, setWrapper) in exerciseWrapper.sets.enumerated() {
+                let set = ExerciseSet(context: context)
+                set.weight = setWrapper.weight
+                set.reps = Int16(setWrapper.reps)
+                set.index = Int16(j)
+                set.isComplete = setWrapper.isComplete
+                set.exercise = exercise
+                exercise.addToExerciseSets(set)
+            }
+        }
+    }
 
     func getExercises() -> [Exercise] {
         return (exercises?.allObjects as? [Exercise] ?? []).sorted { $0.index < $1.index }
     }
     
+    var exercisesArray: [Exercise] {
+        return (exercises?.allObjects as? [Exercise] ?? []).sorted { $0.index < $1.index }
+    }
+
     func getExercise(at index: Int) -> Exercise {
         return getExercises()[index]
     }
@@ -121,31 +160,31 @@ extension Workout : Identifiable {
     }
     
     func getPrettyString() -> String {
-        return ""
-//        return "Workout(title: \"\(title)\", createdAt: \(createdAt_.formatted(date: .abbreviated, time: .omitted)))"
+//        return ""
+        return "Workout(title: \"\(title)\", createdAt: \(createdAt.formatted(date: .abbreviated, time: .omitted)))"
     }
 
-    class func copy(workout: Workout, with context: NSManagedObjectContext) -> Workout {
-        let workoutCopy = Workout(context: context)
-        workoutCopy.title = workout.title
-        workoutCopy.createdAt_ = workout.createdAt_
-        workoutCopy.index = workout.index
-        
-        for exercise in workout.getExercises() {
-            let exerciseCopy = Exercise(context: context)
-            exerciseCopy.name = exercise.name
-            exerciseCopy.workout = workoutCopy
-            workoutCopy.addToExercises(exerciseCopy)
-            for set in exercise.getExerciseSets() {
-                let setCopy = ExerciseSet(context: context)
-                setCopy.isComplete = set.isComplete
-                setCopy.weight = set.weight
-                setCopy.reps = set.reps
-                setCopy.exercise = exerciseCopy
-                exerciseCopy.addToExerciseSets(setCopy)
-            }
-        }
-        return workoutCopy
-    }
+//    class func copy(workout: Workout, with context: NSManagedObjectContext) -> Workout {
+//        let workoutCopy = Workout(context: context)
+//        workoutCopy.title = workout.title
+//        workoutCopy.createdAt_ = workout.createdAt_
+//        workoutCopy.index = workout.index
+//        
+//        for exercise in workout.getExercises() {
+//            let exerciseCopy = Exercise(context: context)
+//            exerciseCopy.name = exercise.name
+//            exerciseCopy.workout = workoutCopy
+//            workoutCopy.addToExercises(exerciseCopy)
+//            for set in exercise.getExerciseSets() {
+//                let setCopy = ExerciseSet(context: context)
+//                setCopy.isComplete = set.isComplete
+//                setCopy.weight = set.weight
+//                setCopy.reps = set.reps
+//                setCopy.exercise = exerciseCopy
+//                exerciseCopy.addToExerciseSets(setCopy)
+//            }
+//        }
+//        return workoutCopy
+//    }
 
 }
