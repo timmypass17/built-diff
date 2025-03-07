@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct BuiltDiffWatch_Watch_AppApp: App {
+    @WKApplicationDelegateAdaptor var appDelegate: AppDelegate
+
     var body: some Scene {
         WindowGroup {
             NavigationStack {

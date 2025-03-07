@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct SegmentedProgressView: View {
+    @Environment(AppState.self) private var appState
     let sets: [SetWrapper]
-    var selectedColor: Color = .blue
+//    var selectedColor: Color = .blue
     var unselectedColor: Color = Color.secondary.opacity(0.3)
     
     var body: some View {
         HStack(spacing: 2) {
             ForEach(0..<sets.count, id: \.self) { index in
                 Rectangle()
-                    .foregroundColor(sets[index].isComplete ? selectedColor : unselectedColor)
+                    .foregroundColor(sets[index].isComplete ? appState.color : unselectedColor)
             }
         }
         .frame(maxHeight: 8)
@@ -68,10 +69,10 @@ extension View {
     }
 }
 
-#Preview {
-    SegmentedProgressView(sets: [
-        SetWrapper(weight: 45, reps: 5, isComplete: true),
-        SetWrapper(weight: 45, reps: 5, isComplete: false),
-        SetWrapper(weight: 45, reps: 5, isComplete: false)
-    ])
-}
+//#Preview {
+//    SegmentedProgressView(sets: [
+//        SetWrapper(weight: 45, reps: 5, isComplete: true),
+//        SetWrapper(weight: 45, reps: 5, isComplete: false),
+//        SetWrapper(weight: 45, reps: 5, isComplete: false)
+//    ])
+//}

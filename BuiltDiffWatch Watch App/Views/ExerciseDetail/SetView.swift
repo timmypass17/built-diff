@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SetView: View {
+    @Environment(AppState.self) private var appState
     @Bindable var set: SetWrapper
 //    @Binding var selectedTab: Int
     var didTapNextButton: () -> Void
@@ -89,7 +90,7 @@ struct SetView: View {
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(set.isComplete ? Color.blue : Color(UIColor.darkGray))
+                                .fill(set.isComplete ? appState.color : Color(UIColor.darkGray))
                         )
                 }
                 .toggleStyle(.button)

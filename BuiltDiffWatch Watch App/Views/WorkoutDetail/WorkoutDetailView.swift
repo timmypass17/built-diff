@@ -12,6 +12,7 @@ import CoreData
 struct WorkoutDetailView: View {
     @Environment(\.childContext) private var childContext   // important: need environment to correctly show list of exercises
     @Environment(\.dismiss) private var dismiss
+    @Environment(AppState.self) private var appState
     @State private var showExitAlert = false
     @State private var showIncompleteAlert = false
     @State var workout: WorkoutWrapper
@@ -44,6 +45,7 @@ struct WorkoutDetailView: View {
         .navigationBarBackButtonHidden(true)
         .navigationDestination(for: ExerciseWrapper.self) { exercise in
             ExerciseDetailView(exercise: exercise)
+                .environment(appState)
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
