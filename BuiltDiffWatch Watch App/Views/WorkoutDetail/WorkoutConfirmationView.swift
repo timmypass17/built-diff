@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WorkoutConfirmationView: View {
+    @Environment(AppState.self) private var appState
     @Environment(\.dismiss) private var dismiss
     @Environment(\.childContext) private var childContext
     let workout: WorkoutWrapper
@@ -36,7 +37,7 @@ struct WorkoutConfirmationView: View {
     }
     
     func saveWorkout() {
-        _ = Workout(workoutWrapper: workout, context: CoreDataStack.shared.mainContext)
+        _ = Workout(workoutWrapper: workout, weightUnit: appState.weightUnit, context: CoreDataStack.shared.mainContext)
         CoreDataStack.shared.saveContext()
         isPresentingSuccessAlert = true
         dismiss()

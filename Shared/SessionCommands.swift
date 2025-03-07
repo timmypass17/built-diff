@@ -27,9 +27,8 @@ extension SessionCommands {
     // Update the app context if the session is activated, and update UI with the command status.
     //
     func updateAppContext(_ context: [String: Any]) {
-        print("[SessionCommands] updateAppContext")
         var commandStatus = CommandStatus(command: .updateAppContext, phrase: .updated)
-        commandStatus.timedColor = TimedColor(context)
+        commandStatus.userInfo = UserInfo(context)
         
         guard WCSession.default.activationState == .activated else {
             return handleSessionUnactivated(with: commandStatus)
@@ -40,7 +39,6 @@ extension SessionCommands {
             commandStatus.phrase = .failed
             commandStatus.errorMessage = error.localizedDescription
         }
-        print("[SessionCommands] postNotificationOnMainQueueAsync")
         postNotificationOnMainQueueAsync(name: .dataDidFlow, object: commandStatus)
     }
 

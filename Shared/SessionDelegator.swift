@@ -39,16 +39,15 @@ class SessionDelegator: NSObject, WCSessionDelegate {
     //
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
         var commandStatus = CommandStatus(command: .updateAppContext, phrase: .received)
-        commandStatus.timedColor = TimedColor(applicationContext)
+        commandStatus.userInfo = UserInfo(applicationContext)
         postNotificationOnMainQueueAsync(name: .dataDidFlow, object: commandStatus)
-        print("timmy didReceiveApplicationContext")
     }
     
     // Did receive a message, and the peer doesn't need a response.
     //
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         var commandStatus = CommandStatus(command: .sendMessage, phrase: .received)
-        commandStatus.timedColor = TimedColor(message)
+        commandStatus.userInfo = UserInfo(message)
         postNotificationOnMainQueueAsync(name: .dataDidFlow, object: commandStatus)
     }
     
@@ -63,7 +62,7 @@ class SessionDelegator: NSObject, WCSessionDelegate {
     //
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
         var commandStatus = CommandStatus(command: .sendMessageData, phrase: .received)
-        commandStatus.timedColor = TimedColor(messageData)
+        commandStatus.userInfo = UserInfo(messageData)
         postNotificationOnMainQueueAsync(name: .dataDidFlow, object: commandStatus)
     }
     
@@ -78,7 +77,7 @@ class SessionDelegator: NSObject, WCSessionDelegate {
     //
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
         var commandStatus = CommandStatus(command: .transferUserInfo, phrase: .received)
-        commandStatus.timedColor = TimedColor(userInfo)
+        commandStatus.userInfo = UserInfo(userInfo)
         
         guard let isComplicationInfo = userInfo[PayloadKey.isCurrentComplicationInfo] as? Bool,
               isComplicationInfo == true else {
@@ -95,8 +94,8 @@ class SessionDelegator: NSObject, WCSessionDelegate {
         }
         // Persist the data to the app group container.
         //
-        sharedUserDefaults.setValue(commandStatus.timedColor?.timeStamp, forKey: WidgetSupport.UserDefaultsKey.timestamp)
-        sharedUserDefaults.setValue(commandStatus.timedColor?.colorData, forKey: WidgetSupport.UserDefaultsKey.colorData)
+        sharedUserDefaults.setValue(commandStatus.userInfo?.timeStamp, forKey: WidgetSupport.UserDefaultsKey.timestamp)
+        sharedUserDefaults.setValue(commandStatus.userInfo?.colorData, forKey: WidgetSupport.UserDefaultsKey.colorData)
         
         // Reload the timeline of the widget, if necessary.
         //
@@ -118,7 +117,7 @@ class SessionDelegator: NSObject, WCSessionDelegate {
     //
     func session(_ session: WCSession, didFinish userInfoTransfer: WCSessionUserInfoTransfer, error: Error?) {
         var commandStatus = CommandStatus(command: .transferUserInfo, phrase: .finished)
-        commandStatus.timedColor = TimedColor(userInfoTransfer.userInfo)
+        commandStatus.userInfo = UserInfo(userInfoTransfer.userInfo)
         
         #if os(iOS)
         if userInfoTransfer.isCurrentComplicationInfo {
@@ -137,7 +136,7 @@ class SessionDelegator: NSObject, WCSessionDelegate {
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
         var commandStatus = CommandStatus(command: .transferFile, phrase: .received)
         commandStatus.file = file
-        commandStatus.timedColor = TimedColor(file.metadata!)
+        commandStatus.userInfo = UserInfo(file.metadata!)
         
         // The system removes WCSessionFile.fileURL once this method returns,
         // so dispatch to main queue synchronously instead of calling
@@ -159,7 +158,7 @@ class SessionDelegator: NSObject, WCSessionDelegate {
             return
         }
         commandStatus.fileTransfer = fileTransfer
-        commandStatus.timedColor = TimedColor(fileTransfer.file.metadata!)
+        commandStatus.userInfo = UserInfo(fileTransfer.file.metadata!)
 
         #if os(watchOS)
         Logger.shared.clearLogs()

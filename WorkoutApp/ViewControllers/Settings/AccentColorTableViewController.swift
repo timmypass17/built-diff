@@ -80,12 +80,11 @@ class AccentColorTableViewController: UITableViewController {
         
         let appContext: [String: Any] = [
             PayloadKey.timeStamp: timeString,
-            PayloadKey.colorData: colorData
+            PayloadKey.colorData: colorData,
+            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
         ]
         
         updateAppContext(appContext)
-        
-        print("timmy colorVC updateAppContext")
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -105,9 +104,9 @@ class AccentColorTableViewController: UITableViewController {
 //            return
 //        }
         
-        guard let timedColor = commandStatus.timedColor else { return }
-        
-        print("#\(commandStatus.command.rawValue)...\n\(commandStatus.phrase.rawValue) at \(timedColor.timeStamp)")
+        guard let userInfo = commandStatus.userInfo else { return }
+        // TODO: If watch updated, update iOS app here
+        print("#\(commandStatus.command.rawValue)...\n\(commandStatus.phrase.rawValue) at \(userInfo.timeStamp)\nColor: \(userInfo.color)\nWeight Type: \(userInfo.weightType.description)")
     }
 }
 
@@ -155,6 +154,21 @@ extension AccentColorTableViewController: CustomColorTableViewCellDelegate {
         NotificationCenter.default.post(name: AccentColor.valueChangedNotification, object: nil)
         delegate?.accentColorTableViewController(self, didSelectAccentColor: color, colorName: nil)
         tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+        
+        let data = try? NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
+        guard let colorData = data else { fatalError("Failed to archive a UIColor!") }
+                
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .medium
+        let timeString = dateFormatter.string(from: Date())
+        
+        let appContext: [String: Any] = [
+            PayloadKey.timeStamp: timeString,
+            PayloadKey.colorData: colorData,
+            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
+        ]
+        
+        updateAppContext(appContext)
     }
 }
 

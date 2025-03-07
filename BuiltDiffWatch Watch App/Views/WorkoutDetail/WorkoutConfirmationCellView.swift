@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WorkoutConfirmationCellView: View {
+    @Environment(AppState.self) private var appState
     let index: Int
     let set: SetWrapper
     
@@ -16,7 +17,7 @@ struct WorkoutConfirmationCellView: View {
             Text("\(index + 1)")
                 .foregroundStyle(.secondary)
             
-            Text("\(formatWeight(set.weight)) lbs")
+            Text("\(formatWeight(set.weight)) \(appState.weightUnit.rawValue)")
                 .fontWeight(.semibold)
             
             Spacer()

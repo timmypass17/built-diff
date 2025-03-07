@@ -11,21 +11,21 @@ protocol WeightTableViewControllerDelegate: AnyObject {
     func weightTableViewController(_ viewController: WeightTableViewController, didSelectWeightType weightType: WeightType)
 }
 
-enum WeightType: String, CaseIterable, Codable {
-    case lbs
-    case kg
-    
-    static let valueChangedNotification = NSNotification.Name("weightTypeChangedNotification")
-    
-    var description: String {
-        switch self {
-        case .lbs:
-            return "US/Imperial (lbs)"
-        case .kg:
-            return "Metric (kg)"
-        }
-    }
-}
+//enum WeightType: String, CaseIterable, Codable {
+//    case lbs
+//    case kg
+//    
+//    static let valueChangedNotification = NSNotification.Name("weightTypeChangedNotification")
+//    
+//    var description: String {
+//        switch self {
+//        case .lbs:
+//            return "US/Imperial (lbs)"
+//        case .kg:
+//            return "Metric (kg)"
+//        }
+//    }
+//}
 
 class WeightTableViewController: UITableViewController {
         
@@ -65,5 +65,25 @@ class WeightTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
         NotificationCenter.default.post(name: WeightType.valueChangedNotification, object: nil)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .medium
+        let timeString = dateFormatter.string(from: Date())
+        
+        let data = try? NSKeyedArchiver.archivedData(withRootObject: Settings.shared.selectedAccentColor, requiringSecureCoding: false)
+        guard let colorData = data else { fatalError("Failed to archive a UIColor!") }
+                
+        let appContext: [String: Any] = [
+            PayloadKey.timeStamp: timeString,
+            PayloadKey.colorData: colorData,
+            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
+        ]
+        
+        updateAppContext(appContext)
+        
     }
+}
+
+extension WeightTableViewController: TestDataProvider, SessionCommands {
+
 }

@@ -14,6 +14,7 @@ import UIKit
 struct PayloadKey {
     static let timeStamp = "timeStamp"
     static let colorData = "colorData"
+    static let weightType = "weightType"
     static let isCurrentComplicationInfo = "isCurrentComplicationInfo"
 }
 
@@ -71,7 +72,7 @@ extension TestDataProvider {
     //
     var messageData: Data {
         let data = try? NSKeyedArchiver.archivedData(withRootObject: timedColor(), requiringSecureCoding: false)
-        guard let timedColor = data else { fatalError("Failed to archive a timedColor dictionary!") }
+        guard let timedColor = data else { fatalError("Failed to archive a userInfo dictionary!") }
         return timedColor
     }
     

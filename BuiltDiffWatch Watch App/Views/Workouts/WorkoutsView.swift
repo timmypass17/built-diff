@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import WatchConnectivity
 
+// TODO: inital cloudkit sync takes up to 1 min
 struct WorkoutsView: View {
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Template.index, ascending: true)])
@@ -28,7 +29,7 @@ struct WorkoutsView: View {
             }
         }
         .navigationDestination(for: Template.self) { template in
-            WorkoutDetailView(workout: WorkoutWrapper(template: template))
+            WorkoutDetailView(workout: WorkoutWrapper(template: template, weightUnit: appState.weightUnit))
                 .environment(appState)
         }
         .onAppear() {
@@ -57,7 +58,6 @@ extension NotificationCenter {
  */
 extension WorkoutsView {
     private func dataDidFlow(_ notification: Notification) {
-        print("[WorkoutsView] dataDidFlow()")
         guard let commandStatus = notification.object as? CommandStatus else { return }
         /**
          If the data is from the current channel, update the color and timestamp.
@@ -72,12 +72,12 @@ extension WorkoutsView {
      Update the view with the initial session state.
      */
     private func updateWithInitialState() {
-        print("[WorkoutsView] updateWithInitialState()")
         if command == .updateAppContext {
-            let timedColor = WCSession.default.receivedApplicationContext
-            if !timedColor.isEmpty {
+            let userInfoDict: [String: Any] = WCSession.default.receivedApplicationContext   // most recent appContext
+            
+            if !userInfoDict.isEmpty {
                 var commandStatus = CommandStatus(command: command, phrase: .received)
-                commandStatus.timedColor = TimedColor(timedColor)
+                commandStatus.userInfo = UserInfo(userInfoDict)
                 updateUI(with: commandStatus)
             }
             return
@@ -89,9 +89,9 @@ extension WorkoutsView {
      There isn't a timed color when the app initially loads the interface.
      */
     private func updateUI(with commandStatus: CommandStatus, errorMessage: String? = nil) {
-        print("[WorkoutsView] updateUI()")
-        guard let timedColor = commandStatus.timedColor else { return }
-        appState.color = Color(uiColor: timedColor.color)
+        guard let userInfo = commandStatus.userInfo else { return }
+        appState.color = Color(uiColor: userInfo.color)
+        appState.weightUnit = userInfo.weightType
     }
 }
 

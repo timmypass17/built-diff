@@ -34,9 +34,10 @@ enum Phrase: String {
 
 // Wrap a timed color payload dictionary with a stronger type.
 //
-struct TimedColor {
+struct UserInfo {
     var timeStamp: String
     var colorData: Data
+    var weightType: WeightType
     
     var color: UIColor {
         let uiColor = try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [UIColor.self], from: colorData)
@@ -49,13 +50,18 @@ struct TimedColor {
         return [PayloadKey.timeStamp: timeStamp, PayloadKey.colorData: colorData]
     }
     
-    init(_ timedColor: [String: Any]) {
-        guard let timeStamp = timedColor[PayloadKey.timeStamp] as? String,
-            let colorData = timedColor[PayloadKey.colorData] as? Data else {
-                fatalError("Timed color dictionary doesn't have right keys!")
+    init(_ userInfo: [String: Any]) {
+        // TODO: May make values optional to be more flexible, incase I update this struct with additional values
+        guard let timeStamp = userInfo[PayloadKey.timeStamp] as? String,
+              let colorData = userInfo[PayloadKey.colorData] as? Data,
+              let weightTypeString = userInfo[PayloadKey.weightType] as? String,
+              let weightType = WeightType(rawValue: weightTypeString)
+        else  {
+            fatalError("Timed color dictionary doesn't have right keys!")
         }
         self.timeStamp = timeStamp
         self.colorData = colorData
+        self.weightType = weightType
     }
     
     init(_ timedColor: Data) {
@@ -67,12 +73,28 @@ struct TimedColor {
     }
 }
 
+enum WeightType: String, CaseIterable, Codable {
+    case lbs
+    case kg
+    
+    static let valueChangedNotification = NSNotification.Name("weightTypeChangedNotification")
+    
+    var description: String {
+        switch self {
+        case .lbs:
+            return "US/Imperial (lbs)"
+        case .kg:
+            return "Metric (kg)"
+        }
+    }
+}
+
 // Wrap the command's status to bridge the commands status and UI.
 //
 struct CommandStatus {
     var command: Command
     var phrase: Phrase
-    var timedColor: TimedColor?
+    var userInfo: UserInfo?
     var fileTransfer: WCSessionFileTransfer?
     var file: WCSessionFile?
     var userInfoTranser: WCSessionUserInfoTransfer?

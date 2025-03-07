@@ -47,7 +47,7 @@ extension Workout {
     }
     
     // convenience - secondary inits. calls designated init (e.g. self.init(context:)). init faster/convient
-    convenience init(workoutWrapper: WorkoutWrapper, context: NSManagedObjectContext) {
+    convenience init(workoutWrapper: WorkoutWrapper, weightUnit: WeightType, context: NSManagedObjectContext) {
         self.init(context: context)
         title = workoutWrapper.title
         createdAt_ = workoutWrapper.createdAt
@@ -62,7 +62,11 @@ extension Workout {
             self.addToExercises(exercise)
             for (j, setWrapper) in exerciseWrapper.sets.enumerated() {
                 let set = ExerciseSet(context: context)
-                set.weight = setWrapper.weight
+                if weightUnit == .lbs {
+                    set.weight = setWrapper.weight
+                } else if weightUnit == .kg {
+                    set.weight = setWrapper.weight.kgToLbs
+                }
                 set.reps = Int16(setWrapper.reps)
                 set.index = Int16(j)
                 set.isComplete = setWrapper.isComplete

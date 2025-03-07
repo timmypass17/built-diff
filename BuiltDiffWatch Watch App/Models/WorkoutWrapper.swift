@@ -23,7 +23,8 @@ class WorkoutWrapper {
         self.index = index
     }
     
-    init(template: Template) {
+    init(template: Template, weightUnit: WeightType) {
+        print("Creating WorkoutWrapper")
         title = template.title
         createdAt = .now
         exercises = []
@@ -39,9 +40,16 @@ class WorkoutWrapper {
                 let set: SetWrapper
                 if let previousExercise, previousExercise.getExerciseSets().count <= templateExercise.sets {
                     let previousSet = previousExercise.getExerciseSet(at: Int(i))
-                    set = SetWrapper(weight: previousSet.weight, reps: Int(templateExercise.reps), isComplete: false)
+                    let previousWeight: Double
+                    if weightUnit == .lbs {
+                        // note: weight has to match picker (round if needed)
+                        previousWeight = roundToNearest(previousSet.weight, increment: 2.5)
+                    } else {
+                        previousWeight = roundToNearest(previousSet.weight.lbsToKg, increment: 1.25)
+                    }
+                    set = SetWrapper(weight: previousWeight, reps: Int(templateExercise.reps), isComplete: false)
                 } else {
-                    set = SetWrapper(weight: 45, reps: Int(templateExercise.reps), isComplete: false)
+                    set = SetWrapper(weight: weightUnit == .lbs ? 45 : 20, reps: Int(templateExercise.reps), isComplete: false)
                 }
                 exercise.sets.append(set)
             }
@@ -66,6 +74,11 @@ class WorkoutWrapper {
             print("Error fetching previous workout: \(error.localizedDescription)")
         }
         return nil
+    }
+    
+    
+    private func roundToNearest(_ value: Double, increment: Double) -> Double {
+        return (value / increment).rounded() * increment
     }
 }
 
