@@ -30,3 +30,11 @@ extension ExerciseWrapper: Hashable {
         hasher.combine(id)
     }
 }
+
+extension ExerciseWrapper {
+    static let samples: [ExerciseWrapper] = [
+        ExerciseWrapper(name: "Bench Press", sets: SetWrapper.samples),
+        ExerciseWrapper(name: "Squat", sets: SetWrapper.samples),
+        ExerciseWrapper(name: "Deadlift", sets: SetWrapper.samples),
+    ]
+}

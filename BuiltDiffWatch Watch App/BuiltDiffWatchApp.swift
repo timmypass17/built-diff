@@ -10,17 +10,21 @@ import SwiftUI
 @main
 struct BuiltDiffWatch_Watch_AppApp: App {
     @WKApplicationDelegateAdaptor var appDelegate: AppDelegate
-    @State private var navigationPath = NavigationPath() // New navigation path
+    @State var appState = AppState()
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $navigationPath) {
-                WorkoutsView(navigationPath: $navigationPath)
-                    .navigationTitle("Workout")
-                    .navigationBarTitleDisplayMode(.inline)
+            NavigationStack(path: $appState.navigationPath) {
+                WorkoutsView(workoutsViewModel: WorkoutsViewModel())
+                    .onAppear() {
+                        appState.updateWithInitialState()
+                    }
+                    .onReceive(NotificationCenter.default.dataDidFlowPublisher) { notification in
+                        appState.dataDidFlow(notification)
+                    }
+                    .environment(\.managedObjectContext, CoreDataStack.shared.mainContext)
+                    .environment(appState)
             }
-            .environment(\.managedObjectContext, CoreDataStack.shared.mainContext)
-
         }
     }
 }

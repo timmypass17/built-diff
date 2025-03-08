@@ -10,15 +10,11 @@ import SwiftUI
 struct WorkoutReviewView: View {
     @Environment(AppState.self) private var appState
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.childContext) private var childContext
-    let workout: WorkoutWrapper
-    @Binding var isPresentingSuccessAlert: Bool
-    @State var isPresentingConfirmationSheet = false
-    @Binding var navigationPath: NavigationPath  // Add binding
+    @State var workoutReviewViewModel: WorkoutReviewViewModel
 
     var body: some View {
         List {
-            ForEach(workout.exercises) { exercise in
+            ForEach(workoutReviewViewModel.workout.exercises) { exercise in
                 Section(exercise.name) {
                     ForEach(Array(exercise.sets.enumerated()), id: \.offset) { index, set in
                         WorkoutConfirmationCellView(index: index, set: set)
@@ -28,39 +24,36 @@ struct WorkoutReviewView: View {
             
             Section {
                 Button {
-                    isPresentingConfirmationSheet.toggle()
+                    workoutReviewViewModel.isPresentingConfirmationSheet.toggle()
                 } label: {
                     Text("Finish Workout")
                 }
             }
         }
-        .navigationTitle(workout.title)
+        .navigationTitle(workoutReviewViewModel.workout.title)
         .navigationBarTitleDisplayMode(.inline)
-        .alert("Finish Workout?", isPresented: $isPresentingConfirmationSheet, actions: {
+        .alert("Finish Workout?", isPresented: $workoutReviewViewModel.isPresentingConfirmationSheet, actions: {
             Button("Save Workout") {
-                saveWorkout()
-                isPresentingSuccessAlert = true
+                workoutReviewViewModel.saveWorkout(weightType: appState.weightUnit)
             }
             Button("Cancel", role: .cancel) {}
         }, message: {
             Text("You can make changes later in app if needed.")
         })
-        .alert("Workout Saved!", isPresented: $isPresentingSuccessAlert, actions: {
+        .alert("Workout Saved!", isPresented: $workoutReviewViewModel.isPresentingSuccessAlert, actions: {
             Button("Got it!", role: .cancel) {
-                navigationPath.removeLast(navigationPath.count)
+                appState.navigationPath.removeLast(appState.navigationPath.count)
 
             }
         }, message: {
             Text("Your workout has been successfully recorded.")
         })
     }
-    
-    func saveWorkout() {
-        _ = Workout(workoutWrapper: workout, weightUnit: appState.weightUnit, context: CoreDataStack.shared.mainContext)
-        CoreDataStack.shared.saveContext()
-    }
 }
 
-//#Preview {
-//    WorkoutConfirmationView()
-//}
+#Preview {
+    NavigationStack {
+        WorkoutReviewView(workoutReviewViewModel: WorkoutReviewViewModel(workout: WorkoutWrapper.samples[0]))
+            .environment(AppState())
+    }
+}

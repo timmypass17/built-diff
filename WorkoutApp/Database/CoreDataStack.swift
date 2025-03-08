@@ -24,24 +24,16 @@ class CoreDataStack {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
-//        container.viewContext.automaticallyMergesChangesFromParent = true
-//        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return container
     }()
     
-    // Main context for use on the main thread
     lazy var mainContext: NSManagedObjectContext = {
-        // To ensure that changes saved in a background or child context are automatically reflected in the main contex
-        // - This reduces the need for manually merging changes after saving the child or background context.
         let context = persistentContainer.viewContext
         context.automaticallyMergesChangesFromParent = true // important for watchos and app sync
-        return context // only use on main queue of your app
-        // designed to be thread-safe for use on the main queue. It's primarily used for operations that interact with the UI, such as fetching data to display in views or updating UI-bound objects.
+        return context
     }()
     
-    // Save changes in the main context
     func saveContext() {
-        
         let context = mainContext
         if context.hasChanges {
             do {
@@ -56,7 +48,6 @@ class CoreDataStack {
     // Child Context: A child context is a context that has a parent context
     // Use a child context for operations that you might want to discard or modify before committing them to the parent context (like editing a record temporarily)
     func newChildContext() -> NSManagedObjectContext {
-        print("newChildContext")
         let childContext = NSManagedObjectContext(.privateQueue) // only access it through the perform(_:) and the performAndWait(_:) methods
         childContext.parent = mainContext
         return childContext
@@ -72,6 +63,85 @@ class CoreDataStack {
         // When you call backgroundContext.save(), the changes are immediately persisted to the persistent store.
         // You do not need to save the main context separately because the background context is not its child
     }
+}
+
+
+extension CoreDataStack {
+    
+    private convenience init(inMemory: Bool = false) {
+        self.init()
+        persistentContainer = NSPersistentCloudKitContainer(name: "BuiltDiff")
+        
+        // For in-memory stores (used in previews), point the store to /dev/null.
+        if inMemory {
+            persistentContainer.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+        }
+        
+        persistentContainer.loadPersistentStores { storeDescription, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+    }
+    
+    static let preview: CoreDataStack = {
+        let inMemoryStack = CoreDataStack(inMemory: true)
+        let context = inMemoryStack.mainContext
+        
+        // Create 3 sample Template objects.
+        for i in 0..<3 {
+            let template = Template(context: context)
+            template.title = "Template \(i)"
+            template.index = Int16(i)
+            
+            // For each Template, create 2 sample TemplateExercise objects.
+            for j in 0..<2 {
+                let exercise = TemplateExercise(context: context)
+                exercise.name = "Exercise \(j) for Template \(i)"
+                exercise.sets = Int16(3 + j)    // Example: 3, 4, etc.
+                exercise.reps = Int16(10 + j * 2) // Example: 10, 12, etc.
+                exercise.index = Int16(j)
+                exercise.template = template    // Set the relationship.
+                template.addToTemplateExercises_(exercise)
+            }
+        }
+        
+        // Create 2 sample Workout objects with related Exercises and ExerciseSets.
+        for i in 0..<2 {
+            let workout = Workout(context: context)
+            workout.title = "Workout \(i)"
+            workout.createdAt = Date().addingTimeInterval(-Double(i) * 3600) // staggered createdAt dates
+            workout.index = Int16(i)
+            
+            // For each Workout, create 2 sample Exercise objects.
+            for j in 0..<2 {
+                let exercise = Exercise(context: context)
+                exercise.name = "Exercise \(j) in Workout \(i)"
+                exercise.index = Int16(j)
+                exercise.workout = workout
+                workout.addToExercises(exercise)
+                
+                // For each Exercise, create 3 sample ExerciseSet objects.
+                for k in 0..<3 {
+                    let set = ExerciseSet(context: context)
+                    set.reps = Int16(8 + k)              // e.g., 8, 9, 10
+                    set.weight = Double(50 + k * 5)        // e.g., 50, 55, 60 lbs
+                    set.index = Int16(k)
+                    // For demonstration, mark only the last set as complete.
+                    set.isComplete = (k == 2)
+                    set.exercise = exercise
+                    exercise.addToExerciseSets(set)
+                }
+            }
+        }
+        
+        do {
+            try context.save()
+        } catch {
+            fatalError("Error saving preview context: \(error)")
+        }
+        return inMemoryStack
+    }()
 }
 
 // Core Data Notes:

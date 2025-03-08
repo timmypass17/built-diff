@@ -34,6 +34,8 @@ struct WorkoutCellView: View {
 
 #Preview {
     List {
+        WorkoutCellView(iconName: "p.circle.fill", title: "Pull Day", description: "7 Exercises", color: .blue)
         WorkoutCellView(iconName: "p.circle.fill", title: "Push Day", description: "5 Exercises", color: .blue)
+        WorkoutCellView(iconName: "l.circle.fill", title: "Leg Day", description: "4 Exercises", color: .blue)
     }
 }

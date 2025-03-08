@@ -91,3 +91,7 @@ extension WorkoutWrapper: Hashable {
         hasher.combine(id)
     }
 }
+
+extension WorkoutWrapper {
+    static let samples: [WorkoutWrapper] = [WorkoutWrapper(title: "Pull Day", createdAt: .now, exercises: ExerciseWrapper.samples, index: 0)]
+}
