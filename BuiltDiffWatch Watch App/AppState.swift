@@ -11,4 +11,5 @@ import SwiftUI
 @Observable class AppState {
     var color: Color = .blue
     var weightUnit: WeightType = .lbs
+//    var isPresentingSuccessAlert = false
 }

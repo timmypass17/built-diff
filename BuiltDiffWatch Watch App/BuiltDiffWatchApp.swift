@@ -10,11 +10,12 @@ import SwiftUI
 @main
 struct BuiltDiffWatch_Watch_AppApp: App {
     @WKApplicationDelegateAdaptor var appDelegate: AppDelegate
+    @State private var navigationPath = NavigationPath() // New navigation path
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                WorkoutsView()
+            NavigationStack(path: $navigationPath) {
+                WorkoutsView(navigationPath: $navigationPath)
                     .navigationTitle("Workout")
                     .navigationBarTitleDisplayMode(.inline)
             }

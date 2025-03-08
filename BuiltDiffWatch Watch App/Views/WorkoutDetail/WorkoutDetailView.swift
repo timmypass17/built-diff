@@ -18,6 +18,7 @@ struct WorkoutDetailView: View {
     @State var workout: WorkoutWrapper
     @State var isPresentingReviewSheet = false
     @State var isPresentingSuccessAlert = false
+    @Binding var navigationPath: NavigationPath  // Add binding
 
     var didFinishWorkout: Bool {
         workout.exercises.allSatisfy { $0.sets.allSatisfy { $0.isComplete } }
@@ -75,15 +76,12 @@ struct WorkoutDetailView: View {
             Text("You have unfinished sets.")
         })
         .fullScreenCover(isPresented: $isPresentingReviewSheet) {
-            WorkoutConfirmationView(workout: workout, isPresentingSuccessAlert: $isPresentingSuccessAlert)
+            WorkoutReviewView(
+                workout: workout,
+                isPresentingSuccessAlert: $isPresentingSuccessAlert,
+                navigationPath: $navigationPath
+            )
         }
-        .alert("Workout Saved!", isPresented: $isPresentingSuccessAlert, actions: {
-            Button("Got it", role: .cancel) {
-                dismiss()
-            }
-        }, message: {
-            Text("Your workout has been successfully recorded.")
-        })
     }
 }
 
