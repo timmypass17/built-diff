@@ -9,9 +9,10 @@ import SwiftUI
 
 struct WorkoutsEmptyView: View {
     @State var isPresentingMoreInfoSheet = false
+    var didTapAddWorkout: () -> ()
     
     var body: some View {
-        VStack {
+        ScrollView {
             Image(systemName: "dumbbell.fill")
                 .font(.largeTitle)
                 .foregroundColor(.gray)
@@ -21,9 +22,16 @@ struct WorkoutsEmptyView: View {
                 .font(.headline)
                 .foregroundColor(.secondary)
             
-            Text("Start adding workouts in the BuiltDiff app on your iPhone to see them here.")
+            Text("Create your first template and start your workouts here.")
                 .font(.footnote)
                 .foregroundColor(.secondary)
+            
+            Spacer()
+            
+            Button("Add Workout") {
+                didTapAddWorkout()
+            }
+            .controlSize(.regular)
         }
         .multilineTextAlignment(.center)
         .toolbar {
@@ -41,11 +49,10 @@ struct WorkoutsEmptyView: View {
                     Text("Q: Why am I not seeing any workouts?")
                     Text("""
                     There are a few possible reasons:
-                    1. No workouts have been added in the BuiltDiff iPhone app.
-                    2. Syncing with iCloud is still in progress (may take up to a minute for the first time).
-                    3. Your iPhone and Apple Watch are using different iCloud accounts (they must match to sync data).
-                    4. Background app refresh is disabled for the BuiltDiff app.
-                    5. Poor network connectivity on either your iPhone or Apple Watch.
+                    1. Syncing with iCloud is still in progress (may take up to a minute for the first time).
+                    2. Your iPhone and Apple Watch are using different iCloud accounts (they must match to sync data).
+                    3. Background app refresh is disabled for the BuiltDiff app (Go to Settings -> Apps -> BuiltDiff  -> Enable Background App Refresh.
+                    4. Poor network connectivity on either your iPhone or Apple Watch.
                     """)
                     .foregroundStyle(.secondary)
                     .font(.footnote)
@@ -56,6 +63,6 @@ struct WorkoutsEmptyView: View {
     }
 }
 
-#Preview {
-    WorkoutsEmptyView()
-}
+//#Preview {
+//    WorkoutsEmptyView()
+//}

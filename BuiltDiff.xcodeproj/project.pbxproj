@@ -224,6 +224,8 @@
 			membershipExceptions = (
 				Models/ExerciseWrapper.swift,
 				Models/SetWrapper.swift,
+				Models/TemplateExerciseWrapper.swift,
+				Models/TemplateWrapper.swift,
 				Models/WorkoutWrapper.swift,
 			);
 			target = 32A293762B42073B00122166 /* BuiltDiff */;

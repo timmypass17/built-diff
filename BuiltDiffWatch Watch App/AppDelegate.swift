@@ -69,7 +69,6 @@ class AppDelegate: NSObject, WKApplicationDelegate {
         //
         let date = Date(timeIntervalSinceNow: 1)
         WKApplication.shared().scheduleSnapshotRefresh(withPreferredDate: date, userInfo: nil) { error in
-            
             if let error = error {
                 print("scheduleSnapshotRefresh error: \(error)!")
             }

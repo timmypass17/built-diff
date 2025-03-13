@@ -17,27 +17,39 @@ struct WorkoutsView: View {
     
     var body: some View {
         Group {
-            if templates.isEmpty {
-                WorkoutsEmptyView()
+            if templates.count < 5 {
+                WorkoutsEmptyView {
+                    appState.navigationPath.append(TemplateWrapper(index: Int16(templates.count)))
+                }
             } else {
-                List(templates) { template in
-                    Button {
-                        appState.navigationPath.append(template)
-                    } label: {
-                        WorkoutCellView(
-                            iconName: "\(template.title.first?.lowercased() ?? "a").circle.fill",
-                            title: template.title,
-                            description: "\(template.templateExercises.count) exercises",
-                            color: appState.color
-                        )
+                List {
+                    ForEach(templates) { template in
+                        Button {
+                            appState.navigationPath.append(template)
+                        } label: {
+                            WorkoutCellView(
+                                iconName: "\(template.title.first?.lowercased() ?? "a").circle.fill",
+                                title: template.title,
+                                description: "\(template.templateExercises.count) exercises",
+                                color: appState.color
+                            )
+                        }
+                    }
+                    
+                    Button("Add Workout") {
+                        appState.navigationPath.append(TemplateWrapper(index: Int16(templates.count)))
                     }
                 }
+                .navigationTitle("Workout")
+                .navigationBarTitleDisplayMode(.inline)
             }
         }
-        .navigationTitle("Workout")
-        .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(for: Template.self) { template in
             WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(workout: WorkoutWrapper(template: template, weightUnit: appState.weightUnit)))
+                .environment(appState)
+        }
+        .navigationDestination(for: TemplateWrapper.self) { templateWrapper in
+            AddWorkoutView(addWorkoutViewModel: AddWorkoutViewModel(template: templateWrapper))
                 .environment(appState)
         }
     }
