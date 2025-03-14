@@ -38,10 +38,13 @@ import Foundation
     }
     
     func filteredSections(searchText: String) -> [Section] {
-        guard !searchText.isEmpty else { return sections }
+        let trimmedSearchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedSearchText.isEmpty else { return sections }
+        
         return sections.compactMap { section in
-            let filteredExercises = section.exercises.filter { $0.localizedCaseInsensitiveContains(searchText) }
+            let filteredExercises = section.exercises.filter { $0.localizedCaseInsensitiveContains(trimmedSearchText) }
             return filteredExercises.isEmpty ? nil : Section(letter: section.letter, exercises: filteredExercises)
         }
     }
+
 }
