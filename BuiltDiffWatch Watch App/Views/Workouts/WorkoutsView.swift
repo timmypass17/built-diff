@@ -46,14 +46,7 @@ struct WorkoutsView: View {
         }
         .navigationDestination(for: Template.self) { template in
             WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(template: template, weightUnit: appState.weightUnit)) { template in
-                // have to itneract with fetchrequest directly? Doesn't work well when fetching manually
-                CoreDataStack.shared.mainContext.delete(template)
-                CoreDataStack.shared.saveContext()
-                
-                for (i, temp) in templates.enumerated() {
-                    temp.index = Int16(i)
-                }
-                CoreDataStack.shared.saveContext()
+                deleteTemplate(template)
             }
             .environment(appState)
         }
@@ -61,6 +54,17 @@ struct WorkoutsView: View {
             AddWorkoutView(addWorkoutViewModel: AddWorkoutViewModel(template: templateWrapper))
                 .environment(appState)
         }
+    }
+    
+    func deleteTemplate(_ template: Template) {
+        // have to itneract with fetchrequest directly? Doesn't work well when fetching manually
+        CoreDataStack.shared.mainContext.delete(template)
+        CoreDataStack.shared.saveContext()
+        
+        for (i, temp) in templates.enumerated() {
+            temp.index = Int16(i)
+        }
+        CoreDataStack.shared.saveContext()
     }
 }
 

@@ -16,10 +16,4 @@ import Foundation
         print("WorkoutReviewViewModel init")
         self.workout = workout
     }
-    
-//    func saveWorkout(weightType: WeightType) {
-//        _ = Workout(workoutWrapper: workout, weightUnit: weightType, context: CoreDataStack.shared.mainContext)
-//        CoreDataStack.shared.saveContext()
-//        isPresentingSuccessAlert.toggle()
-//    }
 }

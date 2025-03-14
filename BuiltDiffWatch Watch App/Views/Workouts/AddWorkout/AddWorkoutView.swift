@@ -40,6 +40,17 @@ struct AddWorkoutView: View {
                 }
             }
         }
+        .navigationTitle("Create Workout")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    addWorkoutViewModel.isPresentingExitAlert.toggle()
+                } label: {
+                    Image(systemName: "chevron.left")
+                }
+            }
+        }
         .fullScreenCover(isPresented: $addWorkoutViewModel.isPresentingAddExerciseSheet) {
             AddExerciseView(addExerciseViewModel: AddExerciseViewModel(template: addWorkoutViewModel.template))
                 .environment(appState)
@@ -51,7 +62,15 @@ struct AddWorkoutView: View {
         }, message: {
             Text("Your workout template is ready! Start your workouts and track your sets and reps.")
         })
-        .navigationTitle("Create Workout")
+        .alert("Exit now?", isPresented: $addWorkoutViewModel.isPresentingExitAlert, actions: {
+            Button("Cancel", role: .cancel) {}
+            Button("Leave", role: .destructive) {
+                dismiss()
+            }
+        }, message: {
+            Text("Your workout template will be discarded.")
+        })
+        
     }
 }
 

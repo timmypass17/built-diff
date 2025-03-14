@@ -42,7 +42,7 @@ struct WorkoutDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
-                    workoutDetailViewModel.showExitAlert.toggle()
+                    workoutDetailViewModel.isPresentingExitAlert.toggle()
                 } label: {
                     Image(systemName: "chevron.left")
                 }
@@ -50,7 +50,6 @@ struct WorkoutDetailView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    // TODO: Show cover with delete button, edit?, review
                     workoutDetailViewModel.isPresentingOptionsSheet.toggle()
                 } label: {
                     Image(systemName: "ellipsis")
@@ -72,7 +71,7 @@ struct WorkoutDetailView: View {
         }, message: {
             Text("Your workout has been successfully recorded.")
         })
-        .alert("Exit now?", isPresented: $workoutDetailViewModel.showExitAlert, actions: {
+        .alert("Exit now?", isPresented: $workoutDetailViewModel.isPresentingExitAlert, actions: {
             Button("Cancel", role: .cancel) {}
             Button("Leave", role: .destructive) {
                 dismiss()

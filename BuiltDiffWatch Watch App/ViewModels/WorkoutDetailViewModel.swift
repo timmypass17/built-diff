@@ -10,8 +10,7 @@ import Foundation
 @Observable class WorkoutDetailViewModel {
     var workout: WorkoutWrapper
     var template: Template
-    var showExitAlert = false
-    var showIncompleteAlert = false
+    var isPresentingExitAlert = false
     var isPresentingSuccessAlert = false
     var isPresentingConfirmationSheet = false
     var isPresentingOptionsSheet = false
@@ -24,12 +23,7 @@ import Foundation
         workout = WorkoutWrapper(template: template, weightUnit: weightUnit)
         self.template = template
     }
-    
-//    init(workout: WorkoutWrapper) {
-//        print("WorkoutDetailViewModel init")
-//        self.workout = workout
-//    }
-//    
+
     func saveWorkout(weightType: WeightType) {
         _ = Workout(workoutWrapper: workout, weightUnit: weightType, context: CoreDataStack.shared.mainContext)
         CoreDataStack.shared.saveContext()

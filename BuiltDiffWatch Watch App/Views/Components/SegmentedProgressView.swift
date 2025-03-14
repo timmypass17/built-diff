@@ -10,7 +10,6 @@ import SwiftUI
 struct SegmentedProgressView: View {
     @Environment(AppState.self) private var appState
     let sets: [SetWrapper]
-//    var selectedColor: Color = .blue
     var unselectedColor: Color = Color.secondary.opacity(0.3)
     
     var body: some View {
@@ -54,7 +53,7 @@ struct Shimmer: ViewModifier {
             .onAppear {
                 withAnimation(
                     Animation.linear(duration: 1.5)
-                        .delay(2)
+                        .delay(1.5)
                         .repeatForever(autoreverses: false)
                 ) {
                     phase = 200

@@ -11,6 +11,7 @@ import Foundation
     var template: TemplateWrapper
     var isPresentingAddExerciseSheet = false
     var isPresentingSuccessAlert = false
+    var isPresentingExitAlert = false
     
     init(template: TemplateWrapper) {
         self.template = template

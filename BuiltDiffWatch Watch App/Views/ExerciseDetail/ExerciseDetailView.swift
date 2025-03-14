@@ -8,40 +8,8 @@
 import SwiftUI
 import UIKit
 
-
-//struct ExerciseDetailView: View {
-//    let exercise: ExerciseWrapper
-//    
-//    var body: some View {
-//        List {
-//            ForEach(Array(exercise.sets.enumerated()), id: \.offset) { index, set in
-//                HStack(spacing: 16) {
-//                    Text("\(index + 1)")
-//                        .foregroundStyle(.secondary)
-//                    
-//                    Text("\(formatWeight(set.weight)) lbs")
-//                        .fontWeight(.semibold)
-//                    
-//                    Spacer()
-//                    
-//                    Text("x\(set.reps)")
-//                        .foregroundStyle(.secondary)
-//                }
-//                .padding(.horizontal)
-//            }
-//        }
-//        .swipeActions(edge: .leading, content: {
-//            Text("Hello")
-//        })
-//        .navigationTitle(exercise.name)
-//        .navigationBarTitleDisplayMode(.inline)
-//    }
-//}
-
 struct ExerciseDetailView: View {
     @Bindable var exercise: ExerciseWrapper
-    @State private var weight: Double = 45
-    @State private var reps = 5
     @State private var selectedTab = 0
 
     var body: some View {

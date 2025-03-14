@@ -34,7 +34,6 @@ struct SetView: View {
                         ForEach(weightsRange, id: \.self) { number in
                             Text(formatWeight(number))
                                 .font(.title3)
-                            //                                        .foregroundStyle(exerciseSet.isComplete ? Color.primary : Color.secondary)
                                 .tag(number)
                         }
                     }
@@ -46,7 +45,7 @@ struct SetView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.secondary, lineWidth: 1)
                     )
-                    .disabled(set.isComplete)
+//                    .disabled(set.isComplete)
                     .frame(height: 60)
                 }
                 
@@ -58,7 +57,6 @@ struct SetView: View {
                         ForEach((0..<100).reversed(), id: \.self) { number in
                             Text("\(number)")
                                 .font(.title3)
-                            //                                        .foregroundStyle(exerciseSet.isComplete ? Color.primary : Color.secondary)
                                 .tag(number)
                         }
                     }
@@ -70,7 +68,7 @@ struct SetView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(.secondary, lineWidth: 1)
                     )
-                    .disabled(set.isComplete)
+//                    .disabled(set.isComplete)
                     .frame(height: 60)
                 }
             }

@@ -12,4 +12,5 @@ import SwiftUICore
 @Observable class WorkoutsViewModel {
     var isPresentingMoreInfoSheet = false
     var isPresentingAddWorkoutSheet = false
+    
 }
