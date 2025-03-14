@@ -10,22 +10,15 @@ import CoreData
 
 // healthkit - active energy, workout effort score,workouts,
 struct WorkoutDetailView: View {
-    @Environment(\.childContext) private var childContext   // important: need environment to correctly show list of exercises
     @Environment(\.dismiss) private var dismiss
-    @State private var showExitAlert = false
-    @State private var showIncompleteAlert = false
-    @State var workout: WorkoutWrapper
-    @State var isPresentingReviewSheet = false
-    @State var isPresentingSuccessAlert = false
-
-    var didFinishWorkout: Bool {
-        workout.exercises.allSatisfy { $0.sets.allSatisfy { $0.isComplete } }
-    }
+    @Environment(AppState.self) private var appState
+    @State var workoutDetailViewModel: WorkoutDetailViewModel
+    var didDeleteTemplate: (Template) -> ()
 
     var body: some View {
         List {
             Section {
-                ForEach(workout.exercises, id: \.name) { exercise in
+                ForEach(workoutDetailViewModel.workout.exercises) { exercise in
                     NavigationLink(value: exercise) {
                         ExerciseCellView(exercise: exercise)
                     }
@@ -33,28 +26,52 @@ struct WorkoutDetailView: View {
             }
             
             Section {
-                Button("Review") {
-                    isPresentingReviewSheet.toggle()
+                Button("Finish") {
+                    workoutDetailViewModel.isPresentingConfirmationSheet.toggle()
                 }
-                .foregroundColor(.white.opacity(didFinishWorkout ? 1 : 0.6))
+                .foregroundColor(.white.opacity(workoutDetailViewModel.didFinishWorkout ? 1 : 0.6))
             }
 
         }
-        .navigationTitle(workout.title)
+        .navigationTitle(workoutDetailViewModel.workout.title)
         .navigationBarBackButtonHidden(true)
         .navigationDestination(for: ExerciseWrapper.self) { exercise in
             ExerciseDetailView(exercise: exercise)
+                .environment(appState)
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
-                    showExitAlert = true
+                    workoutDetailViewModel.isPresentingExitAlert.toggle()
                 } label: {
                     Image(systemName: "chevron.left")
                 }
             }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    workoutDetailViewModel.isPresentingOptionsSheet.toggle()
+                } label: {
+                    Image(systemName: "ellipsis")
+                }
+            }
         }
-        .alert("Exit now?", isPresented: $showExitAlert, actions: {
+        .alert("Finish Workout?", isPresented: $workoutDetailViewModel.isPresentingConfirmationSheet, actions: {
+            Button("Save Workout") {
+                workoutDetailViewModel.saveWorkout(weightType: appState.weightUnit)
+            }
+            Button("Cancel", role: .cancel) {}
+        }, message: {
+            Text("You can make changes later in app if needed.")
+        })
+        .alert("Workout Saved!", isPresented: $workoutDetailViewModel.isPresentingSuccessAlert, actions: {
+            Button("Got it!", role: .cancel) {
+                appState.navigationPath.removeLast(appState.navigationPath.count)
+            }
+        }, message: {
+            Text("Your workout has been successfully recorded.")
+        })
+        .alert("Exit now?", isPresented: $workoutDetailViewModel.isPresentingExitAlert, actions: {
             Button("Cancel", role: .cancel) {}
             Button("Leave", role: .destructive) {
                 dismiss()
@@ -62,44 +79,20 @@ struct WorkoutDetailView: View {
         }, message: {
             Text("Your workout progress will be lost.")
         })
-        .alert("Finish Workout?", isPresented: $showIncompleteAlert, actions: {
-            Button("Cancel", role: .cancel) {}
-            
-            NavigationLink(value: workout) {
-                Text("Continue")
-            }
-            .tint(.blue)
-        }, message: {
-            Text("You have unfinished sets.")
-        })
-        .fullScreenCover(isPresented: $isPresentingReviewSheet) {
-            WorkoutConfirmationView(workout: workout, isPresentingSuccessAlert: $isPresentingSuccessAlert)
-        }
-        .alert("Workout Saved!", isPresented: $isPresentingSuccessAlert, actions: {
-            Button("Got it", role: .cancel) {
-                dismiss()
-            }
-        }, message: {
-            Text("Your workout has been successfully recorded.")
-        })
-    }
-}
-
-struct ChildContextKey: EnvironmentKey {
-    static let defaultValue: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-}
-
-extension EnvironmentValues {
-    var childContext: NSManagedObjectContext {
-        get {
-            return self[ChildContextKey.self]
-        }
-        set {
-            self[ChildContextKey.self] = newValue
+        .fullScreenCover(isPresented: $workoutDetailViewModel.isPresentingOptionsSheet) {
+            WorkoutDetailOptionsView(workoutDetailOptionsViewModel: WorkoutDetailOptionsViewModel(
+                workout: workoutDetailViewModel.workout,
+                template: workoutDetailViewModel.template)) { template in
+                    didDeleteTemplate(template)
+                }
         }
     }
 }
 
+//
 //#Preview {
-//    WorkoutDetailView(template: <#Template#>)
+//    NavigationStack {
+//        WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(workout: WorkoutWrapper.samples[0]))
+//            .environment(AppState())
+//    }
 //}

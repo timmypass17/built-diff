@@ -23,6 +23,11 @@ class AccentColorTableViewController: UITableViewController {
 
         navigationItem.title = "Accent Color"
         navigationItem.largeTitleDisplayMode = .never
+        
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(type(of: self).dataDidFlow(_:)),
+            name: .dataDidFlow, object: nil
+        )
     }
 
     // MARK: - Table view data source
@@ -65,10 +70,43 @@ class AccentColorTableViewController: UITableViewController {
         NotificationCenter.default.post(name: AccentColor.valueChangedNotification, object: nil)
         delegate?.accentColorTableViewController(self, didSelectAccentColor: selectedColor.color, colorName: selectedColor.rawValue.capitalized)
         tableView.reloadData()
+        
+        let data = try? NSKeyedArchiver.archivedData(withRootObject: selectedColor.color, requiringSecureCoding: false)
+        guard let colorData = data else { fatalError("Failed to archive a UIColor!") }
+                
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .medium
+        let timeString = dateFormatter.string(from: Date())
+        
+        let appContext: [String: Any] = [
+            PayloadKey.timeStamp: timeString,
+            PayloadKey.colorData: colorData,
+            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
+        ]
+        
+        updateAppContext(appContext)
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return indexPath.section == 0 ? nil : indexPath
+    }
+    
+    @objc
+    func dataDidFlow(_ notification: Notification) {
+        guard let commandStatus = notification.object as? CommandStatus else { return }
+        
+//        defer { noteLabel.isHidden = logView.text.isEmpty ? false: true }
+//        
+//        // If an error occurs, show the error message and return.
+//        //
+//        if let errorMessage = commandStatus.errorMessage {
+//            log("! \(commandStatus.command.rawValue)...\(errorMessage)")
+//            return
+//        }
+        
+        guard let userInfo = commandStatus.userInfo else { return }
+        // TODO: If watch updated, update iOS app here
+        print("#\(commandStatus.command.rawValue)...\n\(commandStatus.phrase.rawValue) at \(userInfo.timeStamp)\nColor: \(userInfo.color)\nWeight Type: \(userInfo.weightType.description)")
     }
 }
 
@@ -116,6 +154,24 @@ extension AccentColorTableViewController: CustomColorTableViewCellDelegate {
         NotificationCenter.default.post(name: AccentColor.valueChangedNotification, object: nil)
         delegate?.accentColorTableViewController(self, didSelectAccentColor: color, colorName: nil)
         tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+        
+        let data = try? NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
+        guard let colorData = data else { fatalError("Failed to archive a UIColor!") }
+                
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .medium
+        let timeString = dateFormatter.string(from: Date())
+        
+        let appContext: [String: Any] = [
+            PayloadKey.timeStamp: timeString,
+            PayloadKey.colorData: colorData,
+            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
+        ]
+        
+        updateAppContext(appContext)
     }
 }
 
+extension AccentColorTableViewController: TestDataProvider, SessionCommands {
+
+}

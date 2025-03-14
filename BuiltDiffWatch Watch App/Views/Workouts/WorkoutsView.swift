@@ -6,30 +6,75 @@
 //
 
 import SwiftUI
+import Combine
+import WatchConnectivity
 
 struct WorkoutsView: View {
-    @Environment(\.managedObjectContext) private var context
+    @Environment(AppState.self) private var appState
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Template.index, ascending: true)])
     private var templates: FetchedResults<Template>
+    @State var workoutsViewModel: WorkoutsViewModel
     
     var body: some View {
-        List(templates) { template in
-            NavigationLink(value: template) {
-                WorkoutCellView(
-                    iconName: "\(template.title.first?.lowercased() ?? "a").circle.fill",
-                    title: template.title,
-                    description: "\(template.templateExercises.count) exercises"
-                )
+        Group {
+            if templates.isEmpty {
+                WorkoutsEmptyView {
+                    appState.navigationPath.append(TemplateWrapper(index: Int16(templates.count)))
+                }
+            } else {
+                List {
+                    ForEach(templates) { template in
+                        Button {
+                            appState.navigationPath.append(template)
+                        } label: {
+                            WorkoutCellView(
+                                iconName: "\(template.title.first?.lowercased() ?? "a").circle.fill",
+                                title: template.title,
+                                description: "\(template.templateExercises.count) exercises",
+                                color: appState.color
+                            )
+                        }
+                    }
+                    
+                    Button("Add Workout") {
+                        appState.navigationPath.append(TemplateWrapper(index: Int16(templates.count)))
+                    }
+                }
+                .navigationTitle("Workout")
+                .navigationBarTitleDisplayMode(.inline)
             }
         }
         .navigationDestination(for: Template.self) { template in
-            WorkoutDetailView(workout: WorkoutWrapper(template: template))
+            WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(template: template, weightUnit: appState.weightUnit)) { template in
+                deleteTemplate(template)
+            }
+            .environment(appState)
         }
+        .navigationDestination(for: TemplateWrapper.self) { templateWrapper in
+            AddWorkoutView(addWorkoutViewModel: AddWorkoutViewModel(template: templateWrapper))
+                .environment(appState)
+        }
+    }
+    
+    func deleteTemplate(_ template: Template) {
+        // have to itneract with fetchrequest directly? Doesn't work well when fetching manually
+        CoreDataStack.shared.mainContext.delete(template)
+        CoreDataStack.shared.saveContext()
+        
+        for (i, temp) in templates.enumerated() {
+            temp.index = Int16(i)
+        }
+        CoreDataStack.shared.saveContext()
     }
 }
 
+
 #Preview {
-    WorkoutsView()
+    NavigationStack {
+        WorkoutsView(workoutsViewModel: WorkoutsViewModel())
+            .environment(AppState())
+            .environment(\.managedObjectContext, CoreDataStack.preview.mainContext)
+    }
 }
 
 // FAQ: Detail view created each time for each list eagerly.

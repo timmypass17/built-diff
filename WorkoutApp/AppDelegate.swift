@@ -7,12 +7,19 @@
 
 import UIKit
 import CoreData
+import WatchConnectivity
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private lazy var sessionDelegator: SessionDelegator = {
+        return SessionDelegator()
+    }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        WCSession.default.delegate = sessionDelegator
+        WCSession.default.activate()
         return true
     }
 

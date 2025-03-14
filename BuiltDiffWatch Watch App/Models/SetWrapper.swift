@@ -22,3 +22,11 @@ class SetWrapper {
 }
 
 extension SetWrapper: Identifiable {}
+
+extension SetWrapper {
+    static let samples: [SetWrapper] = [
+        SetWrapper(weight: 45, reps: 12, isComplete: true),
+        SetWrapper(weight: 135, reps: 5, isComplete: false),
+        SetWrapper(weight: 225, reps: 5, isComplete: false)
+    ]
+}

@@ -195,7 +195,6 @@ extension Double {
     }
     
     var lbsToKg: Double {
-        // lbs -> kg
         return self * 0.45359237
     }
     

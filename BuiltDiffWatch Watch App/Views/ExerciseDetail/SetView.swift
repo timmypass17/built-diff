@@ -8,23 +8,32 @@
 import SwiftUI
 
 struct SetView: View {
+    @Environment(AppState.self) private var appState
     @Bindable var set: SetWrapper
-//    @Binding var selectedTab: Int
     var didTapNextButton: () -> Void
     var didTapPreviousButton: () -> Void
+    
+    var weightsRange: Array<Double> {
+        if appState.weightUnit == .lbs {
+            let weightsInLbs = Array(stride(from: 1000.0, through: 0.0, by: -2.5))
+            return weightsInLbs
+        } else {
+            let weightsInKg = Array(stride(from: 450.0, through: 0.0, by: -1.25))
+            return weightsInKg
+        }
+    }
     
     var body: some View {
         VStack(spacing: 8) {
             HStack {
                 VStack {
-                    Text("Lbs".uppercased())
+                    Text("\(appState.weightUnit.rawValue)".uppercased())
                         .fontWeight(.semibold)
                     
                     Picker("Select a weight", selection: $set.weight) {
-                        ForEach(Array(stride(from: 1000.0, through: 0.0, by: -2.5)), id: \.self) { number in
+                        ForEach(weightsRange, id: \.self) { number in
                             Text(formatWeight(number))
                                 .font(.title3)
-                            //                                        .foregroundStyle(exerciseSet.isComplete ? Color.primary : Color.secondary)
                                 .tag(number)
                         }
                     }
@@ -36,7 +45,7 @@ struct SetView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.secondary, lineWidth: 1)
                     )
-                    .disabled(set.isComplete)
+//                    .disabled(set.isComplete)
                     .frame(height: 60)
                 }
                 
@@ -48,7 +57,6 @@ struct SetView: View {
                         ForEach((0..<100).reversed(), id: \.self) { number in
                             Text("\(number)")
                                 .font(.title3)
-                            //                                        .foregroundStyle(exerciseSet.isComplete ? Color.primary : Color.secondary)
                                 .tag(number)
                         }
                     }
@@ -60,7 +68,7 @@ struct SetView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(.secondary, lineWidth: 1)
                     )
-                    .disabled(set.isComplete)
+//                    .disabled(set.isComplete)
                     .frame(height: 60)
                 }
             }
@@ -89,7 +97,7 @@ struct SetView: View {
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(set.isComplete ? Color.blue : Color(UIColor.darkGray))
+                                .fill(set.isComplete ? appState.color : Color(UIColor.darkGray))
                         )
                 }
                 .toggleStyle(.button)
@@ -111,6 +119,7 @@ struct SetView: View {
             }
         }
     }
+
 }
 
 #Preview {

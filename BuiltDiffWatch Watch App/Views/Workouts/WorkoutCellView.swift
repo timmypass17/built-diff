@@ -11,6 +11,7 @@ struct WorkoutCellView: View {
     let iconName: String
     let title: String
     let description: String
+    let color: Color
     
     var body: some View {
         HStack(spacing: 12) {
@@ -18,7 +19,7 @@ struct WorkoutCellView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 30, height: 30)
-                .foregroundStyle(.white, .blue)
+                .foregroundStyle(.white, color)
             
             VStack(alignment: .leading) {
                 Text(title)
@@ -33,6 +34,8 @@ struct WorkoutCellView: View {
 
 #Preview {
     List {
-        WorkoutCellView(iconName: "p.circle.fill", title: "Push Day", description: "5 Exercises")
+        WorkoutCellView(iconName: "p.circle.fill", title: "Pull Day", description: "7 Exercises", color: .blue)
+        WorkoutCellView(iconName: "p.circle.fill", title: "Push Day", description: "5 Exercises", color: .blue)
+        WorkoutCellView(iconName: "l.circle.fill", title: "Leg Day", description: "4 Exercises", color: .blue)
     }
 }

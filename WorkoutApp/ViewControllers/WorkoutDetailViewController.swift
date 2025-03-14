@@ -187,7 +187,12 @@ extension WorkoutDetailViewController: WorkoutDetailTableViewCellDelegate {
         } else if let previousSet = set.previousSet {
             currentWeightInLbs = previousSet.weight
         } else {
-            currentWeightInLbs = Double(cell.weightTextField.placeholder ?? "0") ?? 0
+            let weightPlaceHolder = Double(cell.weightTextField.placeholder ?? "0") ?? 0
+            if Settings.shared.weightUnit == .lbs {
+                currentWeightInLbs = weightPlaceHolder
+            } else {
+                currentWeightInLbs = weightPlaceHolder.kgToLbs
+            }
         }
         
         // Convert weight to kg (if needed)
@@ -196,7 +201,6 @@ extension WorkoutDetailViewController: WorkoutDetailTableViewCellDelegate {
         let incrementedWeight = min(currentWeight + Settings.shared.weightIncrement, Double.greatestFiniteMagnitude)
         // Convert incremented weight back to lbs (if needed). note: Don't store kg weight value
         set.weight = Settings.shared.weightUnit == .lbs ? incrementedWeight : incrementedWeight.kgToLbs
-        
         cell.weightTextField.text = Settings.shared.weightUnit == .lbs ? set.weight.lbsString : set.weight.kgString
     }
     
@@ -212,7 +216,12 @@ extension WorkoutDetailViewController: WorkoutDetailTableViewCellDelegate {
         } else if let previousSet = set.previousSet {
             currentWeightInLbs = previousSet.weight
         } else {
-            currentWeightInLbs = Double(cell.weightTextField.placeholder ?? "0") ?? 0
+            let weightPlaceHolder = Double(cell.weightTextField.placeholder ?? "0") ?? 0
+            if Settings.shared.weightUnit == .lbs {
+                currentWeightInLbs = weightPlaceHolder
+            } else {
+                currentWeightInLbs = weightPlaceHolder.kgToLbs
+            }
         }
         
         let currentWeight = Settings.shared.weightUnit == .lbs ? currentWeightInLbs : currentWeightInLbs.lbsToKg
