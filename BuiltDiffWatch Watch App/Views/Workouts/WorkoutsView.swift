@@ -17,7 +17,7 @@ struct WorkoutsView: View {
     
     var body: some View {
         Group {
-            if templates.count < 5 {
+            if templates.isEmpty {
                 WorkoutsEmptyView {
                     appState.navigationPath.append(TemplateWrapper(index: Int16(templates.count)))
                 }
@@ -45,7 +45,7 @@ struct WorkoutsView: View {
             }
         }
         .navigationDestination(for: Template.self) { template in
-            WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(workout: WorkoutWrapper(template: template, weightUnit: appState.weightUnit)))
+            WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(template: template, weightUnit: appState.weightUnit))
                 .environment(appState)
         }
         .navigationDestination(for: TemplateWrapper.self) { templateWrapper in

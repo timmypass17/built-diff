@@ -25,8 +25,8 @@ struct WorkoutDetailView: View {
             }
             
             Section {
-                Button("Review") {
-                    workoutDetailViewModel.isPresentingReviewSheet.toggle()
+                Button("Finish") {
+                    workoutDetailViewModel.isPresentingConfirmationSheet.toggle()
                 }
                 .foregroundColor(.white.opacity(workoutDetailViewModel.didFinishWorkout ? 1 : 0.6))
             }
@@ -46,7 +46,31 @@ struct WorkoutDetailView: View {
                     Image(systemName: "chevron.left")
                 }
             }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    // TODO: Show cover with delete button, edit?, review
+                    workoutDetailViewModel.isPresentingOptionsSheet.toggle()
+                } label: {
+                    Image(systemName: "ellipsis")
+                }
+            }
         }
+        .alert("Finish Workout?", isPresented: $workoutDetailViewModel.isPresentingConfirmationSheet, actions: {
+            Button("Save Workout") {
+                workoutDetailViewModel.saveWorkout(weightType: appState.weightUnit)
+            }
+            Button("Cancel", role: .cancel) {}
+        }, message: {
+            Text("You can make changes later in app if needed.")
+        })
+        .alert("Workout Saved!", isPresented: $workoutDetailViewModel.isPresentingSuccessAlert, actions: {
+            Button("Got it!", role: .cancel) {
+                appState.navigationPath.removeLast(appState.navigationPath.count)
+            }
+        }, message: {
+            Text("Your workout has been successfully recorded.")
+        })
         .alert("Exit now?", isPresented: $workoutDetailViewModel.showExitAlert, actions: {
             Button("Cancel", role: .cancel) {}
             Button("Leave", role: .destructive) {
@@ -55,18 +79,18 @@ struct WorkoutDetailView: View {
         }, message: {
             Text("Your workout progress will be lost.")
         })
-        .fullScreenCover(isPresented: $workoutDetailViewModel.isPresentingReviewSheet) {
-            WorkoutReviewView(
-                workoutReviewViewModel: WorkoutReviewViewModel(workout: workoutDetailViewModel.workout)
-            )
+        .fullScreenCover(isPresented: $workoutDetailViewModel.isPresentingOptionsSheet) {
+            WorkoutDetailOptionsView(workoutDetailOptionsViewModel: WorkoutDetailOptionsViewModel(
+                workout: workoutDetailViewModel.workout,
+                template: workoutDetailViewModel.template))
         }
     }
 }
 
-
-#Preview {
-    NavigationStack {
-        WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(workout: WorkoutWrapper.samples[0]))
-            .environment(AppState())
-    }
-}
+//
+//#Preview {
+//    NavigationStack {
+//        WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(workout: WorkoutWrapper.samples[0]))
+//            .environment(AppState())
+//    }
+//}
