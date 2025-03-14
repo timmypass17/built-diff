@@ -22,6 +22,7 @@ import Foundation
     init(template: Template, weightUnit: WeightType) {
         workout = WorkoutWrapper(template: template, weightUnit: weightUnit)
         self.template = template
+        
     }
 
     func saveWorkout(weightType: WeightType) {

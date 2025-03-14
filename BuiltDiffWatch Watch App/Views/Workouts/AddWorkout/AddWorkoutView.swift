@@ -16,6 +16,7 @@ struct AddWorkoutView: View {
         List {
             Section("Title") {
                 TextField("Workout Title", text: $addWorkoutViewModel.template.title, prompt: Text("Push Day"))
+                    .autocorrectionDisabled(true)
             }
             
             Section("Exercises") {
@@ -27,6 +28,7 @@ struct AddWorkoutView: View {
                         Spacer()
                         Text("\(exercise.sets)x\(exercise.reps)")
                             .foregroundStyle(.secondary)
+                        
                     }
                 }
                 Button("Add Exercise") {

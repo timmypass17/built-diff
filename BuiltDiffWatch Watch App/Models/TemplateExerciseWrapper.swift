@@ -36,3 +36,17 @@ extension TemplateExerciseWrapper: Hashable {
 extension TemplateExerciseWrapper: Identifiable {
     
 }
+
+extension TemplateExerciseWrapper: CustomStringConvertible {
+    var description: String {
+        return """
+        TemplateExerciseWrapper(
+            id: \(id),
+            name: "\(name)",
+            sets: \(sets),
+            reps: \(reps),
+            index: \(index)
+        )
+        """
+    }
+}

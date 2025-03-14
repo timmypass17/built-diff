@@ -18,6 +18,8 @@ import Foundation
     }
     
     func saveTemplate() {
+        print("timmy")
+        print(template)
         _ = Template(templateWrapper: template, context: CoreDataStack.shared.mainContext)
         CoreDataStack.shared.saveContext()
         isPresentingSuccessAlert.toggle()

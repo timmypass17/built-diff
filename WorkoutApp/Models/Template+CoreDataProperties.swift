@@ -43,7 +43,7 @@ extension Template {
             templateExercise.name = exerciseWrapper.name
             templateExercise.sets = Int16(exerciseWrapper.sets)
             templateExercise.reps = Int16(exerciseWrapper.reps)
-            templateExercise.index = Int16(exerciseWrapper.index)
+            templateExercise.index = Int16(i)
             templateExercise.template = self
             addToTemplateExercises_(templateExercise)
         }

@@ -29,3 +29,19 @@ extension TemplateWrapper: Hashable {
         hasher.combine(id)
     }
 }
+
+extension TemplateWrapper: CustomStringConvertible {
+    var description: String {
+        let exercisesDescription = templateExercises.map { $0.description }.joined(separator: ",\n    ")
+        return """
+        TemplateWrapper(
+            id: \(id),
+            title: "\(title)",
+            index: \(index),
+            templateExercises: [
+                \(exercisesDescription)
+            ]
+        )
+        """
+    }
+}

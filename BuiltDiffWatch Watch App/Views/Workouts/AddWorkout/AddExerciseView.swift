@@ -29,6 +29,7 @@ struct AddExerciseView: View {
             }
         }
         .searchable(text: $addExerciseViewModel.searchText, prompt: "Search Exercises")
+        .autocorrectionDisabled(true)
         .navigationTitle("Add Exercise")
         .fullScreenCover(item: $addExerciseViewModel.selectedExercise) { exercise in
             AddSetsRepsView(exercise: exercise) { _ in
