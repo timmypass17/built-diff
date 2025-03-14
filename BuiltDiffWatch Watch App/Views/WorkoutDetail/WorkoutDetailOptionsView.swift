@@ -10,6 +10,7 @@ import SwiftUI
 struct WorkoutDetailOptionsView: View {
     @Environment(AppState.self) private var appState
     @State var workoutDetailOptionsViewModel: WorkoutDetailOptionsViewModel
+    var didDeleteTemplate: (Template) -> ()
     
     var body: some View {
         List {
@@ -27,10 +28,8 @@ struct WorkoutDetailOptionsView: View {
         .alert("Delete Workout Template?", isPresented: $workoutDetailOptionsViewModel.isPresentingDeleteAlert, actions: {
             Button("Cancel", role: .cancel) {}
             Button("Delete", role: .destructive) {
-                Task {
-                    await workoutDetailOptionsViewModel.deleteTemplate()
-                    workoutDetailOptionsViewModel.isPresentingDeleteSuccessAlert.toggle()
-                }
+                didDeleteTemplate(workoutDetailOptionsViewModel.template)
+                workoutDetailOptionsViewModel.isPresentingDeleteSuccessAlert.toggle()
             }
         }, message: {
             Text("This action is permanent and cannot be undone.")

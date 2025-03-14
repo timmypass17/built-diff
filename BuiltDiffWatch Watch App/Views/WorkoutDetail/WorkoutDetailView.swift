@@ -13,6 +13,7 @@ struct WorkoutDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
     @State var workoutDetailViewModel: WorkoutDetailViewModel
+    var didDeleteTemplate: (Template) -> ()
 
     var body: some View {
         List {
@@ -82,7 +83,9 @@ struct WorkoutDetailView: View {
         .fullScreenCover(isPresented: $workoutDetailViewModel.isPresentingOptionsSheet) {
             WorkoutDetailOptionsView(workoutDetailOptionsViewModel: WorkoutDetailOptionsViewModel(
                 workout: workoutDetailViewModel.workout,
-                template: workoutDetailViewModel.template))
+                template: workoutDetailViewModel.template)) { template in
+                    didDeleteTemplate(template)
+                }
         }
     }
 }

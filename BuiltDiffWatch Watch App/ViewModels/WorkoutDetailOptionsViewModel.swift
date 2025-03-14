@@ -19,18 +19,4 @@ import Foundation
         self.workout = workout
         self.template = template
     }
-    
-    func deleteTemplate() async {
-        do {
-            try await workoutService.deleteTemplate(template)
-            let templates: [Template] = try await workoutService.fetchTemplates()
-            
-            for (i, temp) in templates.enumerated() {
-                temp.index = Int16(i)
-            }
-            CoreDataStack.shared.saveContext()
-        } catch {
-            print("Failed to delete template: \(error)")
-        }
-    }
 }

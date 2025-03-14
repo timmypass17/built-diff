@@ -45,8 +45,17 @@ struct WorkoutsView: View {
             }
         }
         .navigationDestination(for: Template.self) { template in
-            WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(template: template, weightUnit: appState.weightUnit))
-                .environment(appState)
+            WorkoutDetailView(workoutDetailViewModel: WorkoutDetailViewModel(template: template, weightUnit: appState.weightUnit)) { template in
+                // have to itneract with fetchrequest directly? Doesn't work well when fetching manually
+                CoreDataStack.shared.mainContext.delete(template)
+                CoreDataStack.shared.saveContext()
+                
+                for (i, temp) in templates.enumerated() {
+                    temp.index = Int16(i)
+                }
+                CoreDataStack.shared.saveContext()
+            }
+            .environment(appState)
         }
         .navigationDestination(for: TemplateWrapper.self) { templateWrapper in
             AddWorkoutView(addWorkoutViewModel: AddWorkoutViewModel(template: templateWrapper))
