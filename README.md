@@ -16,6 +16,14 @@ An iOS workout tracker to track lifting sets and reps.
     <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource122/v4/55/e0/c2/55e0c2b2-2b29-5838-1968-540b55643074/3d316c6f-764b-48f4-ad48-8c1e57185848_settings.jpeg/400x800bb.png" alt="Settings" width="200" style="margin-right: 10px;">
 </div>
 
+## watchOS Screenshots
+<div style="display: flex; overflow-x: auto; margin-top: 20px;">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/55/c4/ff/55c4ff74-43e5-d57c-1150-3fe20dd00956/home.png/400x800bb.png" alt="Home" width="200" style="margin-right: 20px;">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/89/52/18/89521859-5dc1-6dd2-598e-b37a96615115/workout.png/400x800bb.png" alt="Workout" width="200" style="margin-right: 20px;">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/67/95/9f/67959f15-bc89-622b-0dbb-75729aa250a8/exercise.png/400x800bb.png" alt="Set" width="200" style="margin-right: 20px;">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c0/82/51/c0825179-0b49-4654-6e74-0e4d7f5f0679/listView.png/400x800bb.png" alt="List View" width="200" style="margin-right: 20px;">
+</div>
+
 ## Features
 - Create your own workout
 - Keyboard overlay for efficient logging of weights and reps
