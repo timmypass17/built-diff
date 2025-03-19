@@ -39,3 +39,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+// TODO: Make week view. No need to expand, just show 7 days static, make header, uikit?
+// sucode swiftui exanded calendar

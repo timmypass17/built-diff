@@ -33,6 +33,8 @@ class LogViewController: UIViewController {
         return view
     }()
     
+    var weekHeaderView: WeekHeaderView?
+    
     var logs: [Date: [Workout]] = [:]
     var monthYears: [Date] {
         return logs.keys.sorted(by: >)
@@ -65,14 +67,14 @@ class LogViewController: UIViewController {
         navigationItem.title = "Log"
         tableView.register(LogViewCell.self, forCellReuseIdentifier: LogViewCell.reuseIdentifier)
         tableView.register(LogSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: LogSectionHeaderView.reuseIdentifier)
-
+        
         NotificationCenter.default.addObserver(tableView,
             selector: #selector(UITableView.reloadData),
             name: WeightType.valueChangedNotification, object: nil)
 
         tableView.dataSource = self
         tableView.delegate = self
-        
+
         view.addSubview(tableView)
         view.addSubview(contentUnavailableView)
 
@@ -107,6 +109,10 @@ class LogViewController: UIViewController {
             // `fatalError(_:file:line:)` during development.
             fatalError("Failed to perform fetch: \(error.localizedDescription)")
         }
+        
+        weekHeaderView = WeekHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
+        weekHeaderView?.workoutService = workoutService
+        tableView.tableHeaderView = weekHeaderView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -211,6 +217,7 @@ extension LogViewController: NSFetchedResultsControllerDelegate {
         tableView.endUpdates()
         updateSectionHeaders()
         contentUnavailableView.isHidden = !(controller.fetchedObjects?.isEmpty ?? true)
+        weekHeaderView?.update()
     }
     
     func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>,
