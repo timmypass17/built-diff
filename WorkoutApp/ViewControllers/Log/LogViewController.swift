@@ -113,6 +113,10 @@ class LogViewController: UIViewController {
         weekHeaderView = WeekHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
         weekHeaderView?.workoutService = workoutService
         tableView.tableHeaderView = weekHeaderView
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateWeekHeaderView),
+                                               name: AccentColor.valueChangedNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +126,10 @@ class LogViewController: UIViewController {
         }
         Settings.shared.logBadgeValue = 0
         NotificationCenter.default.post(name: Settings.logBadgeValueChangedNotification, object: nil)
+    }
+    
+    @objc func updateWeekHeaderView() {
+        weekHeaderView?.update()
     }
     
     func showDeleteAlert(at indexPath: IndexPath) {

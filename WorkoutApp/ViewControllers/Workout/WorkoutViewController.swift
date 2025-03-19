@@ -111,10 +111,6 @@ class WorkoutViewController: UIViewController {
         }
     }
     
-    func updateUI() {
-        tableView.reloadData()
-    }
-    
     private func didTapAddButton() -> UIAction {
         return UIAction { _ in
             let createWorkoutViewController = CreateTemplateViewController(workoutService: self.workoutService)

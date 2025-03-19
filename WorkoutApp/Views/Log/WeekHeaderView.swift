@@ -165,16 +165,20 @@ class DayView: UIView {
 //            circleBackgroundView.layer.borderWidth = 3
 //            circleBackgroundView.layer.borderColor = Settings.shared.selectedAccentColor.cgColor
             circleBackgroundView.backgroundColor = Settings.shared.selectedAccentColor
-//            circleBackgroundView.alpha = isToday ? 1 : 0.8
+            valueLabel.textColor = .white
+//            circleBackgroundView.alpha = 0.9
         } else if isToday {
             circleBackgroundView.layer.borderWidth = 3
             circleBackgroundView.layer.borderColor = Settings.shared.selectedAccentColor.cgColor
+            circleBackgroundView.alpha = 0.9
             circleBackgroundView.backgroundColor = .clear
+            valueLabel.textColor = .label
         } else {
             // Default background for other days
             circleBackgroundView.layer.borderWidth = 3
-            circleBackgroundView.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+            circleBackgroundView.layer.borderColor = UIColor.secondarySystemFill.cgColor
             circleBackgroundView.backgroundColor = .clear
+            valueLabel.textColor = .label
         }
     }
 }
