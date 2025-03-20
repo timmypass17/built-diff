@@ -32,6 +32,8 @@
 		32339BBE2D8B810F006B2FA0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 32339BBC2D8B810F006B2FA0 /* Localizable.xcstrings */; };
 		32339BC02D8BAFF4006B2FA0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32339BBF2D8BAFF4006B2FA0 /* Utility.swift */; };
 		32339BC12D8BB0B0006B2FA0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32339BBF2D8BAFF4006B2FA0 /* Utility.swift */; };
+		32339BC42D8C8B48006B2FA0 /* exercises.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32339BC32D8C8B48006B2FA0 /* exercises.txt */; };
+		32339BC52D8C8B48006B2FA0 /* exercises.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32339BC32D8C8B48006B2FA0 /* exercises.txt */; };
 		324C37422B76EC7F0098B5E6 /* ProgressDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C37412B76EC7F0098B5E6 /* ProgressDetailView.swift */; };
 		3253BD1C2D3731F4003F5A4A /* WorkoutDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3253BD1B2D3731F4003F5A4A /* WorkoutDao.swift */; };
 		3253BD1E2D37335B003F5A4A /* WorkoutDaoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3253BD1D2D37335B003F5A4A /* WorkoutDaoProtocol.swift */; };
@@ -69,7 +71,6 @@
 		32BF97992D2204D50004FA47 /* EditExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF97982D2204D50004FA47 /* EditExerciseDetailViewController.swift */; };
 		32BF979B2D2205DD0004FA47 /* AddExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF979A2D2205DD0004FA47 /* AddExerciseDetailViewController.swift */; };
 		32C53AB82D641F5300BF1A41 /* CustomColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C53AB72D641F5300BF1A41 /* CustomColorTableViewCell.swift */; };
-		32D0A40B2D3B058900C9F803 /* exercises.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32D0A40A2D3B058300C9F803 /* exercises.txt */; };
 		32D0A4112D41B4C600C9F803 /* SelectableSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0A4102D41B4C600C9F803 /* SelectableSettingsTableViewCell.swift */; };
 		32D0A4132D41B4FF00C9F803 /* ToggleableSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0A4122D41B4FF00C9F803 /* ToggleableSettingsTableViewCell.swift */; };
 		32D846232B5F06260046F0D2 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8461D2B5F06260046F0D2 /* Workout+CoreDataClass.swift */; };
@@ -99,7 +100,6 @@
 		32EEE79B2D75552C003B5B28 /* WorkoutDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3253BD1B2D3731F4003F5A4A /* WorkoutDao.swift */; };
 		32EEE79C2D75552C003B5B28 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF976E2D1CD06A0004FA47 /* CoreDataStack.swift */; };
 		32EEE79D2D75552C003B5B28 /* WorkoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8462B2B6305CF0046F0D2 /* WorkoutService.swift */; };
-		32EEE79E2D75552C003B5B28 /* exercises.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32D0A40A2D3B058300C9F803 /* exercises.txt */; };
 		32EEE79F2D75562E003B5B28 /* BuiltDiff.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32A293832B42073B00122166 /* BuiltDiff.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -166,6 +166,8 @@
 		32339A6E2D8B5E55006B2FA0 /* WeekHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekHeaderView.swift; sourceTree = "<group>"; };
 		32339BBC2D8B810F006B2FA0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		32339BBF2D8BAFF4006B2FA0 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		32339BC22D8C8B48006B2FA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/exercises.txt; sourceTree = "<group>"; };
+		32339BC62D8C8B5F006B2FA0 /* es-US */ = {isa = PBXFileReference; lastKnownFileType = text; name = "es-US"; path = "es-US.lproj/exercises.txt"; sourceTree = "<group>"; };
 		324C37412B76EC7F0098B5E6 /* ProgressDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailView.swift; sourceTree = "<group>"; };
 		3253BD1B2D3731F4003F5A4A /* WorkoutDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDao.swift; sourceTree = "<group>"; };
 		3253BD1D2D37335B003F5A4A /* WorkoutDaoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDaoProtocol.swift; sourceTree = "<group>"; };
@@ -208,7 +210,6 @@
 		32BF979A2D2205DD0004FA47 /* AddExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseDetailViewController.swift; sourceTree = "<group>"; };
 		32C53AB72D641F5300BF1A41 /* CustomColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorTableViewCell.swift; sourceTree = "<group>"; };
 		32D0A3F92D384FEA00C9F803 /* BuiltDiffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuiltDiffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		32D0A40A2D3B058300C9F803 /* exercises.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = exercises.txt; sourceTree = "<group>"; };
 		32D0A4102D41B4C600C9F803 /* SelectableSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		32D0A4122D41B4FF00C9F803 /* ToggleableSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleableSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		32D0A4142D41D51F00C9F803 /* BuiltDiff.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuiltDiff.entitlements; sourceTree = "<group>"; };
@@ -392,7 +393,7 @@
 		3253BD1A2D373042003F5A4A /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				32D0A40A2D3B058300C9F803 /* exercises.txt */,
+				32339BC32D8C8B48006B2FA0 /* exercises.txt */,
 				32D8462B2B6305CF0046F0D2 /* WorkoutService.swift */,
 				32BF976E2D1CD06A0004FA47 /* CoreDataStack.swift */,
 				3253BD1B2D3731F4003F5A4A /* WorkoutDao.swift */,
@@ -670,7 +671,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32EEE79E2D75552C003B5B28 /* exercises.txt in Resources */,
+				32339BC52D8C8B48006B2FA0 /* exercises.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,7 +694,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32A2938A2B42073C00122166 /* LaunchScreen.storyboard in Resources */,
-				32D0A40B2D3B058900C9F803 /* exercises.txt in Resources */,
+				32339BC42D8C8B48006B2FA0 /* exercises.txt in Resources */,
 				32339BBE2D8B810F006B2FA0 /* Localizable.xcstrings in Resources */,
 				32A293872B42073C00122166 /* Assets.xcassets in Resources */,
 			);
@@ -858,6 +859,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		32339BC32D8C8B48006B2FA0 /* exercises.txt */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32339BC22D8C8B48006B2FA0 /* en */,
+				32339BC62D8C8B5F006B2FA0 /* es-US */,
+			);
+			name = exercises.txt;
+			sourceTree = "<group>";
+		};
 		32A293882B42073C00122166 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

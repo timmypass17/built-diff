@@ -64,7 +64,7 @@ class ExercisesTableViewController: UIViewController {
         
         // Search bar
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search Exercises"
+        searchController.searchBar.placeholder = "Search Exercises".localized
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         

@@ -181,6 +181,7 @@ class WorkoutDao: WorkoutDaoProtocol {
     }
     
     func loadExercises(from fileName: String) -> [String] {
+        // Does load correct exercise.txt based on user's localization
         guard let url = Bundle.main.url(forResource: fileName, withExtension: "txt"),
               let content = try? String(contentsOf: url) else { return [] }
         

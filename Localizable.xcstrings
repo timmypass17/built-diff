@@ -190,7 +190,7 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Best: %1$@ %2$@"
           }
         },
@@ -426,12 +426,6 @@
     },
     "Latest: %@ %@" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Latest: %1$@ %2$@"
-          }
-        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -534,12 +528,6 @@
     "PREVIOUS" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PREVIOUS"
-          }
-        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -631,12 +619,6 @@
     "REPS" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "REPS"
-          }
-        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,15 +627,20 @@
         }
       }
     },
+    "Search Exercises" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar ejercicios"
+          }
+        }
+      }
+    },
     "SET" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SET"
-          }
-        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
