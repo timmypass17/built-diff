@@ -52,7 +52,7 @@ class WorkoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Workout"
+        navigationItem.title = "Workout".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.dataSource = self
         tableView.delegate = self
@@ -111,10 +111,6 @@ class WorkoutViewController: UIViewController {
         }
     }
     
-    func updateUI() {
-        tableView.reloadData()
-    }
-    
     private func didTapAddButton() -> UIAction {
         return UIAction { _ in
             let createWorkoutViewController = CreateTemplateViewController(workoutService: self.workoutService)
@@ -127,10 +123,10 @@ class WorkoutViewController: UIViewController {
     func showDeleteAlert(indexPath: IndexPath) {
         let templateToRemove = fetchedResultsController.object(at: indexPath)
         
-        let alert = UIAlertController(title: "Delete Template?", message: "Are you sure you want to delete \"\(templateToRemove.title)\"", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Delete Template?".localized, message: "Are you sure you want to delete \"\(templateToRemove.title)\"".localized, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: "Remove".localized, style: .destructive) { [weak self] _ in
             guard let self else { return }
             // Remove object
             var templates = fetchedResultsController.fetchedObjects!
@@ -152,7 +148,7 @@ class WorkoutViewController: UIViewController {
     }
     
     func didTapEditWorkoutButton(at indexPath: IndexPath) -> UIAction {
-        return UIAction(title: "Edit Workout", image: UIImage(systemName: "square.and.pencil")) { _ in
+        return UIAction(title: "Edit Workout".localized, image: UIImage(systemName: "square.and.pencil")) { _ in
             let template = self.fetchedResultsController.object(at: indexPath)
             let editTemplateViewController = EditTemplateViewController(template: template, workoutService: self.workoutService)
             editTemplateViewController.delegate = self
@@ -214,7 +210,7 @@ extension WorkoutViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
-            let deleteAction = UIAction(title: "Delete Workout", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
+            let deleteAction = UIAction(title: "Delete Workout".localized, image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
                 self.showDeleteAlert(indexPath: indexPath)
             }
             return UIMenu(title: "", children: [self.didTapEditWorkoutButton(at: indexPath), deleteAction])

@@ -34,7 +34,7 @@ class WeightTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "WeightTypeCell")
-        navigationItem.title = "Weight Unit"
+        navigationItem.title = "Weight Unit".localized
         navigationItem.largeTitleDisplayMode = .never
     }
 
@@ -52,7 +52,7 @@ class WeightTableViewController: UITableViewController {
         let weightType = WeightType.allCases[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeightTypeCell", for: indexPath)
         var config = cell.defaultContentConfiguration()
-        config.text = weightType.description
+        config.text = weightType.fullDescription
         cell.contentConfiguration = config
         cell.accessoryType = Settings.shared.weightUnit == weightType ? .checkmark : .none
         return cell
@@ -76,7 +76,7 @@ class WeightTableViewController: UITableViewController {
         let appContext: [String: Any] = [
             PayloadKey.timeStamp: timeString,
             PayloadKey.colorData: colorData,
-            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
+            PayloadKey.weightType: Settings.shared.weightUnit.shortDescription
         ]
         
         updateAppContext(appContext)

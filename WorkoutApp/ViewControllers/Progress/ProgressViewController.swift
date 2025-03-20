@@ -44,7 +44,7 @@ class ProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Progress"
+        navigationItem.title = "Progress".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.delegate = self
         tableView.dataSource = self
@@ -109,25 +109,24 @@ class ProgressViewController: UIViewController {
     
     func setupSortMenu() {
         let menuItems: [UIAction] = [
-                UIAction(title: "Alphabetical (A-Z)", image: UIImage(systemName: "a.square.fill")) { _ in
-                    print("alpha")
-                    self.exerciseData.sort { $0.name < $1.name }
-                    self.tableView.reloadData()
-                    Settings.shared.sortingPreference = .alphabetically
-                },
-                UIAction(title: "Weight", image: UIImage(systemName: "scalemass.fill")) { _ in
-                    self.exerciseData.sort { $0.bestLift > $1.bestLift }
-                    self.tableView.reloadData()
-                    Settings.shared.sortingPreference = .weight
-                },
-                UIAction(title: "Recently Updated", image: UIImage(systemName: "clock")) { _ in
-                    self.exerciseData.sort { $0.lastUpdated > $1.lastUpdated }
-                    self.tableView.reloadData()
-                    Settings.shared.sortingPreference = .recent
+            UIAction(title: "Alphabetical (A-Z)".localized, image: UIImage(systemName: "a.square.fill")) { _ in
+                self.exerciseData.sort { $0.name < $1.name }
+                self.tableView.reloadData()
+                Settings.shared.sortingPreference = .alphabetically
+            },
+            UIAction(title: "Weight".localized, image: UIImage(systemName: "scalemass.fill")) { _ in
+                self.exerciseData.sort { $0.bestLift > $1.bestLift }
+                self.tableView.reloadData()
+                Settings.shared.sortingPreference = .weight
+            },
+            UIAction(title: "Recently Updated".localized, image: UIImage(systemName: "clock")) { _ in
+                self.exerciseData.sort { $0.lastUpdated > $1.lastUpdated }
+                self.tableView.reloadData()
+                Settings.shared.sortingPreference = .recent
                 }
         ]
 
-        let sortMenu = UIMenu(title: "Sort By", image: nil, identifier: nil, options: [], children: menuItems)
+        let sortMenu = UIMenu(title: "Sort By".localized, image: nil, identifier: nil, options: [], children: menuItems)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease"), menu: sortMenu)
     }
@@ -157,7 +156,7 @@ extension ProgressViewController: UITableViewDataSource {
 extension ProgressViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return exerciseData.isEmpty ? nil : "Exercises"
+        return exerciseData.isEmpty ? nil : "Exercises".localized
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -27,7 +27,7 @@ class EditTemplateViewController: TemplateViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Edit Workout"
+        navigationItem.title = "Edit Workout".localized
         navigationItem.rightBarButtonItems?.insert(UIBarButtonItem(systemItem: .save, primaryAction: didTapSaveButton()), at: 0)
         updateSaveButton()
     }

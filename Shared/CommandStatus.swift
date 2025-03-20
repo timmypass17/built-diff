@@ -79,12 +79,21 @@ enum WeightType: String, CaseIterable, Codable {
     
     static let valueChangedNotification = NSNotification.Name("weightTypeChangedNotification")
     
-    var description: String {
+    var shortDescription: String {
         switch self {
         case .lbs:
-            return "US/Imperial (lbs)"
+            return "lbs".localized
         case .kg:
-            return "Metric (kg)"
+            return "kg".localized
+        }
+    }
+    
+    var fullDescription: String {
+        switch self {
+        case .lbs:
+            return "US/Imperial (lbs)".localized
+        case .kg:
+            return "Metric (kg)".localized
         }
     }
 }

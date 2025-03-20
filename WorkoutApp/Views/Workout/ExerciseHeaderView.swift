@@ -57,7 +57,7 @@ class ExerciseHeaderView: UIView {
     
     var setLabel: UILabel = {
         let label = UILabel()
-        label.text = "SET"
+        label.text = "SET".localized
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.textColor = .secondaryLabel
@@ -66,7 +66,7 @@ class ExerciseHeaderView: UIView {
     
     var previousLabel: UILabel = {
         let label = UILabel()
-        label.text = "PREVIOUS"
+        label.text = "PREVIOUS".localized
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.textColor = .secondaryLabel
@@ -75,7 +75,7 @@ class ExerciseHeaderView: UIView {
     
     var weightLabel: UILabel = {
         let label = UILabel()
-        label.text = Settings.shared.weightUnit.rawValue.uppercased()
+        label.text = Settings.shared.weightUnit.shortDescription.uppercased()
         label.textAlignment = .center
         label.textColor = .secondaryLabel
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
@@ -84,7 +84,7 @@ class ExerciseHeaderView: UIView {
     
     var repsLabel: UILabel = {
         let label = UILabel()
-        label.text = "REPS"
+        label.text = "REPS".localized
         label.textAlignment = .center
         label.textColor = .secondaryLabel
         label.font = UIFont.preferredFont(forTextStyle: .footnote)

@@ -16,7 +16,7 @@ class CustomColorTableViewCell: UITableViewCell {
     
     let label: UILabel = {
         let label = UILabel()
-        label.text = "Custom"
+        label.text = "Custom".localized
         return label
     }()
     

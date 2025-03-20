@@ -88,7 +88,7 @@ struct ProgressHeaderView: View {
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(personalRecordWeight)
                     .font(.title)
-                Text("\(weightUnit.rawValue)")
+                Text("\(weightUnit.shortDescription)")
                     .foregroundColor(.secondary)
             }
             
@@ -150,7 +150,7 @@ struct ProgressDetailViewCell: View {
         VStack(spacing: 0) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("\(exercise.weightString) \(weightUnit.rawValue)")
+                    Text("\(exercise.weightString) \(weightUnit.shortDescription)")
                         .font(.headline)
                     
                     //"60lbs 3x5 Sep 20, 2023"
@@ -174,21 +174,21 @@ struct ProgressDetailViewCell: View {
                     Group {
                         if difference > 0 {
                             // More weight
-                            Text("+\(formatWeight(difference)) \(weightUnit.rawValue)")
+                            Text("+\(formatWeight(difference)) \(weightUnit.shortDescription)")
                                 .foregroundStyle(.white)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 2)
                                 .background(Color(Settings.shared.selectedAccentColor), in: RoundedRectangle(cornerRadius: 4))
                         } else if difference < 0 {
                             // Less weight
-                            Text("\(formatWeight(difference)) \(weightUnit.rawValue)")
+                            Text("\(formatWeight(difference)) \(weightUnit.shortDescription)")
                                 .foregroundStyle(colorScheme == .dark ? .white : .secondary)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 2)
                                 .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 4))
                         } else {
                             // No weight gain
-                            Text("+0 \(weightUnit.rawValue)")
+                            Text("+0 \(weightUnit.shortDescription)")
                                 .foregroundStyle(.white)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 2)

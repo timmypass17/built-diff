@@ -17,7 +17,7 @@ class TemplateTitleTableViewCell: UITableViewCell {
     
     var titleTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Push Day"
+        textField.placeholder = "Push Day".localized
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

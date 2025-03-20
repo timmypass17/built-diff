@@ -31,7 +31,7 @@ struct ProgressViewCell: View {
                 
                 VStack(alignment: .leading) {
                     
-                    Text("Best: \(Settings.shared.weightUnit == .lbs ? recentData.bestLift.lbsString : recentData.bestLift.kgString) \(Settings.shared.weightUnit.rawValue)")
+                    Text("Best: \(Settings.shared.weightUnit == .lbs ? recentData.bestLift.lbsString : recentData.bestLift.kgString) \(Settings.shared.weightUnit.shortDescription)")
                         .font(.subheadline)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 2)
@@ -39,7 +39,7 @@ struct ProgressViewCell: View {
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                     
                     HStack(alignment: .firstTextBaseline) {
-                        Text("Latest: \(Settings.shared.weightUnit == .lbs ? recentData.latestLift.lbsString : recentData.latestLift.kgString) \(Settings.shared.weightUnit.rawValue)")
+                        Text("Latest: \(Settings.shared.weightUnit == .lbs ? recentData.latestLift.lbsString : recentData.latestLift.kgString) \(Settings.shared.weightUnit.shortDescription)")
                             .foregroundColor(.secondary)
                             .font(.caption)
                     }
@@ -114,7 +114,7 @@ struct HighestWeightView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Best: \(highestWeight) \(weightUnit.rawValue)")
+            Text("Best: \(highestWeight) \(weightUnit.shortDescription)")
                 .font(.subheadline)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 2)
@@ -122,7 +122,7 @@ struct HighestWeightView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 4))
             
             HStack(alignment: .firstTextBaseline) {
-                Text("Latest: \(latestSet.weightString) \(weightUnit.rawValue)")
+                Text("Latest: \(latestSet.weightString) \(weightUnit.shortDescription)")
                     .foregroundColor(.secondary)
                     .font(.caption)
             }
