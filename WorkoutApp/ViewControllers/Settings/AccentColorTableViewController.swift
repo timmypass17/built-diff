@@ -21,7 +21,7 @@ class AccentColorTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ColorCell")
         tableView.register(CustomColorTableViewCell.self, forCellReuseIdentifier: CustomColorTableViewCell.reuseIdentifier)
 
-        navigationItem.title = "Accent Color"
+        navigationItem.title = "Accent Color".localized
         navigationItem.largeTitleDisplayMode = .never
         
         NotificationCenter.default.addObserver(
@@ -56,7 +56,7 @@ class AccentColorTableViewController: UITableViewController {
         let color = colors[indexPath.row]
         
         var content = cell.defaultContentConfiguration()
-        content.text = color.rawValue.capitalized
+        content.text = color.description
         cell.contentConfiguration = content
         cell.accessoryType = color == Settings.shared.accentColor ? .checkmark : .none
         return cell
@@ -81,7 +81,7 @@ class AccentColorTableViewController: UITableViewController {
         let appContext: [String: Any] = [
             PayloadKey.timeStamp: timeString,
             PayloadKey.colorData: colorData,
-            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
+            PayloadKey.weightType: Settings.shared.weightUnit.shortDescription
         ]
         
         updateAppContext(appContext)
@@ -106,7 +106,7 @@ class AccentColorTableViewController: UITableViewController {
         
         guard let userInfo = commandStatus.userInfo else { return }
         // TODO: If watch updated, update iOS app here
-        print("#\(commandStatus.command.rawValue)...\n\(commandStatus.phrase.rawValue) at \(userInfo.timeStamp)\nColor: \(userInfo.color)\nWeight Type: \(userInfo.weightType.description)")
+        print("#\(commandStatus.command.rawValue)...\n\(commandStatus.phrase.rawValue) at \(userInfo.timeStamp)\nColor: \(userInfo.color)\nWeight Type: \(userInfo.weightType.fullDescription)")
     }
 }
 
@@ -144,6 +144,37 @@ enum AccentColor: String, CaseIterable, Codable {
             return .white
         }
     }
+    
+    var description: String {
+        switch self {
+        case .blue:
+            return "blue".localized
+        case .red:
+            return "red".localized
+        case .orange:
+            return "orange".localized
+        case .yellow:
+            return "yellow".localized
+        case .green:
+            return "green".localized
+        case .purple:
+            return "purple".localized
+        case .pink:
+            return "pink".localized
+        case .mint:
+            return "mint".localized
+        case .cyan:
+            return "cyan".localized
+        case .teal:
+            return "teal".localized
+        case .indigo:
+            return "indigo".localized
+        case .brown:
+            return "brown".localized
+        case .white:
+            return "white".localized
+        }
+    }
 }
 
 extension AccentColorTableViewController: CustomColorTableViewCellDelegate {
@@ -165,7 +196,7 @@ extension AccentColorTableViewController: CustomColorTableViewCellDelegate {
         let appContext: [String: Any] = [
             PayloadKey.timeStamp: timeString,
             PayloadKey.colorData: colorData,
-            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
+            PayloadKey.weightType: Settings.shared.weightUnit.shortDescription
         ]
         
         updateAppContext(appContext)

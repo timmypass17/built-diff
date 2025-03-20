@@ -17,7 +17,7 @@ struct WorkoutConfirmationCellView: View {
             Text("\(index + 1)")
                 .foregroundStyle(.secondary)
             
-            Text("\(formatWeight(set.weight)) \(appState.weightUnit.rawValue)")
+            Text("\(formatWeight(set.weight)) \(appState.weightUnit.shortDescription)")
                 .fontWeight(.semibold)
             
             Spacer()

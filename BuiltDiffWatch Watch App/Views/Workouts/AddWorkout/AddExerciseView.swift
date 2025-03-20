@@ -30,7 +30,7 @@ struct AddExerciseView: View {
         }
         .searchable(text: $addExerciseViewModel.searchText, prompt: "Search Exercises")
         .autocorrectionDisabled(true)
-        .navigationTitle("Add Exercise")
+        .navigationTitle("Add Exercise".localized)
         .fullScreenCover(item: $addExerciseViewModel.selectedExercise) { exercise in
             AddSetsRepsView(exercise: exercise) { _ in
                 // TODO: did add exercise

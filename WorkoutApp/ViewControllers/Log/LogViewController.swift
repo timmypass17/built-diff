@@ -64,7 +64,7 @@ class LogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Log"
+        navigationItem.title = "Log".localized
         tableView.register(LogViewCell.self, forCellReuseIdentifier: LogViewCell.reuseIdentifier)
         tableView.register(LogSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: LogSectionHeaderView.reuseIdentifier)
         
@@ -135,10 +135,10 @@ class LogViewController: UIViewController {
     func showDeleteAlert(at indexPath: IndexPath) {
         let logToRemove = fetchedResultsController.object(at: indexPath)
         
-        let alert = UIAlertController(title: "Delete Log?", message: "Are you sure you want to delete \"\(logToRemove.title)\"", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Delete Log?".localized, message: "Are you sure you want to delete \"%@\"".localized(logToRemove.title), preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: "Remove".localized, style: .destructive) { [weak self] _ in
             guard let self else { return }
             deleteLog(at: indexPath)
         })

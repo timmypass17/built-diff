@@ -39,19 +39,71 @@ class SettingsTableViewController: UIViewController {
     }
     
     var sections = [
-        Section(title: "General",
-                data: [Model(image: UIImage(systemName: "dumbbell.fill")!, text: "Weight Units", secondary: Settings.shared.weightUnit.description, backgroundColor: Settings.shared.selectedAccentColor),
-                       Model(image: UIImage(systemName: "alarm.fill")!, text: "Show Timer", backgroundColor: Settings.shared.selectedAccentColor, isOn: Settings.shared.showTimer),
-                       Model(image: UIImage(systemName: "iphone.radiowaves.left.and.right")!, text: "Haptic Feedback", backgroundColor: Settings.shared.selectedAccentColor, isOn: Settings.shared.enableHaptic),
-                      ]),
-        Section(title: "Appearance",
-                data: [Model(image: UIImage(systemName: "moon.stars.fill")!, text: "Theme", secondary: Settings.shared.theme.description, backgroundColor: .systemIndigo),
-                       Model(image: UIImage(systemName: "paintpalette.fill")!, text: "Accent Color", secondary: Settings.shared.accentColor?.rawValue.capitalized ?? "Custom", backgroundColor: .systemOrange)]),
-        Section(title: "Help & Support",
-                data: [Model(image: UIImage(systemName: "mail.fill")!, text: "Contact Us", backgroundColor: .systemGreen),
-                       Model(image: UIImage(systemName: "ladybug.fill")!, text: "Bug Report", backgroundColor: .systemRed)]),
-        Section(title: "Privacy",
-                data: [Model(image: UIImage(systemName: "hand.raised.fill")!, text: "Privacy Policy", backgroundColor: .systemGray)])
+        Section(
+            title: "General".localized,
+            data: [
+                Model(
+                    image: UIImage(systemName: "dumbbell.fill")!,
+                    text: "Weight Units".localized,
+                    secondary: Settings.shared.weightUnit.fullDescription,
+                    backgroundColor: Settings.shared.selectedAccentColor
+                ),
+                Model(
+                    image: UIImage(systemName: "alarm.fill")!,
+                    text: "Show Timer".localized,
+                    backgroundColor: Settings.shared.selectedAccentColor,
+                    isOn: Settings.shared.showTimer
+                ),
+                Model(
+                    image: UIImage(systemName: "iphone.radiowaves.left.and.right")!,
+                    text: "Haptic Feedback".localized,
+                    backgroundColor: Settings.shared.selectedAccentColor,
+                    isOn: Settings.shared.enableHaptic
+                ),
+            ]
+        ),
+        Section(
+            title: "Appearance".localized,
+            data: [
+                Model(
+                    image: UIImage(systemName: "moon.stars.fill")!,
+                    text: "Theme".localized,
+                    secondary: Settings.shared.theme.description,
+                    backgroundColor: .systemIndigo
+                ),
+                Model(
+                    image: UIImage(systemName: "paintpalette.fill")!,
+                    text: "Accent Color".localized,
+                    secondary: Settings.shared.accentColor?.rawValue.capitalized ?? "Custom".localized,
+                    backgroundColor: .systemOrange
+                )
+            ]
+        ),
+        Section(
+            title: "Help & Support".localized,
+            data: [
+                Model(
+                    image: UIImage(systemName: "mail.fill")!,
+                    text: "Contact Us".localized,
+                    backgroundColor: .systemGreen
+                ),
+                Model(
+                    image: UIImage(systemName: "ladybug.fill")!,
+                    text: "Bug Report".localized,
+                    backgroundColor: .systemRed
+                )
+            ]
+        ),
+        Section(
+            title: "Privacy".localized,
+            data: [
+                Model(
+                    image: UIImage(systemName: "hand.raised.fill")!,
+                    text: "Privacy Policy".localized,
+                    backgroundColor: .systemGray
+                )
+            ]
+        )
     ]
 
     static let weightIndexPath = IndexPath(row: 0, section: 0)
@@ -68,7 +120,7 @@ class SettingsTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Settings"
+        navigationItem.title = "Settings".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.dataSource = self
         tableView.delegate = self
@@ -193,7 +245,7 @@ extension SettingsTableViewController: UITableViewDelegate {
 extension SettingsTableViewController: WeightTableViewControllerDelegate {
     func weightTableViewController(_ viewController: WeightTableViewController, didSelectWeightType weightType: WeightType) {
         let weightIndexPath = SettingsTableViewController.weightIndexPath
-        sections[weightIndexPath.section].data[weightIndexPath.row].secondary = weightType.description
+        sections[weightIndexPath.section].data[weightIndexPath.row].secondary = weightType.fullDescription
         tableView.reloadRows(at: [weightIndexPath], with: .automatic)
     }
 }
@@ -212,7 +264,7 @@ extension SettingsTableViewController: AccentColorTableViewControllerDelegate {
         for j in 0..<sections[0].data.count {
             sections[0].data[j].backgroundColor = color
         }
-        sections[colorIndexPath.section].data[colorIndexPath.row].secondary = colorName ?? "Custom"
+        sections[colorIndexPath.section].data[colorIndexPath.row].secondary = colorName ?? "Custom".localized
         
         tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         tableView.reloadRows(at: [colorIndexPath], with: .automatic)
@@ -229,11 +281,11 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
     
     func showMailErrorAlert() {
         let alert = UIAlertController(
-            title: "No Email Account Found",
-            message: "There is no email account associated to this device. If you have any questions, please feel free to reach out to us at \(email)",
+            title: "No Email Account Found".localized,
+            message: "There is no email account associated to this device. If you have any questions, please feel free to reach out to us at %@".localized(email),
             preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in }))
+        alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { _ in }))
         self.present(alert, animated: true, completion: nil)
     }
 }

@@ -46,7 +46,7 @@ class ExercisesTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Exercises"
+        navigationItem.title = "Exercises".localized
         
         exercises = workoutService.loadExercises(from: "exercises")
         let groupedDictionary = Dictionary(grouping: exercises, by: { String($0.prefix(1)) })
@@ -60,7 +60,7 @@ class ExercisesTableViewController: UIViewController {
 
         // Top bar buttons
         navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: didTapCancelButton())
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Custom", primaryAction: didTapCustomButton())
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Custom".localized, primaryAction: didTapCustomButton())
         
         // Search bar
         searchController.searchResultsUpdater = self
@@ -91,10 +91,10 @@ class ExercisesTableViewController: UIViewController {
     }
     
     func showNewExerciseAlert() {
-        let alert = UIAlertController(title: "Add Exercise", message: "Enter exercise name below", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add Exercise".localized, message: "Enter exercise name below".localized, preferredStyle: .alert)
         
         alert.addTextField { textField in
-            textField.placeholder = "Ex. Bench Press"
+            textField.placeholder = "Ex. Bench Press".localized
             textField.autocapitalizationType = .sentences
             let textChangedAction = UIAction { _ in
                 alert.actions[1].isEnabled = textField.text!.count > 0
@@ -103,8 +103,8 @@ class ExercisesTableViewController: UIViewController {
         }
         
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: "Done".localized, style: .default, handler: { _ in
             guard let exercise = alert.textFields?[0].text else { return }
             self.presentAddExerciseViewController(exerciseName: exercise)
         }))

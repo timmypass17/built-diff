@@ -115,7 +115,7 @@ class LogViewCell: UITableViewCell {
                     weightString = bestSet.weight.kgString
                 }                
                 
-                return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exercise.name) - \(weightString) \(Settings.shared.weightUnit.rawValue)"
+                return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exercise.name) - \(weightString) \(Settings.shared.weightUnit.shortDescription)"
             }
             .joined(separator: "\n")
     }

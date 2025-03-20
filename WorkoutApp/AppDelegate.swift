@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         WCSession.default.delegate = sessionDelegator
         WCSession.default.activate()
+        print(keyWords)
         return true
     }
 
@@ -39,5 +39,224 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-// TODO: Make week view. No need to expand, just show 7 days static, make header, uikit?
 // sucode swiftui exanded calendar
+
+var words = """
+    "-" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@ %@" : {
+
+    },
+    "%lld %@" : {
+
+    },
+    "%lld Workouts" : {
+
+    },
+    "%lldx%d %@ at %@" : {
+
+    },
+    "+%@ %@" : {
+
+    },
+    "+0 %@" : {
+
+    },
+    "Accent Color" : {
+
+    },
+    "Add Exercise" : {
+
+    },
+    "Alphabetical (A-Z)" : {
+
+    },
+    "Appearance" : {
+
+    },
+    "Are you sure you want to delete \"%@\"" : {
+
+    },
+    "Automatic" : {
+
+    },
+    "Best: %@ %@" : {
+
+    },
+    "blue" : {
+
+    },
+    "brown" : {
+
+    },
+    "Bug Report" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Contact Us" : {
+
+    },
+    "Create Workout" : {
+
+    },
+    "Custom" : {
+
+    },
+    "cyan" : {
+
+    },
+    "Dark" : {
+
+    },
+    "Data Privacy" : {
+
+    },
+    "Date" : {
+
+    },
+    "Delete Template?" : {
+
+    },
+    "Delete Workout" : {
+
+    },
+    "Edit Workout" : {
+
+    },
+    "Exercises" : {
+
+    },
+    "General" : {
+
+    },
+    "green" : {
+
+    },
+    "Haptic Feedback" : {
+
+    },
+    "Help & Support" : {
+
+    },
+    "indigo" : {
+
+    },
+    "Latest: %@ %@" : {
+
+    },
+    "Light" : {
+
+    },
+    "Log" : {
+
+    },
+    "Metric (kg)" : {
+
+    },
+    "mint" : {
+
+    },
+    "No Email Account Found" : {
+
+    },
+    "OK" : {
+
+    },
+    "orange" : {
+
+    },
+    "pink" : {
+
+    },
+    "Position" : {
+
+    },
+    "Privacy" : {
+
+    },
+    "Privacy Policy" : {
+
+    },
+    "Progress" : {
+
+    },
+    "purple" : {
+
+    },
+    "Push Day" : {
+
+    },
+    "Recently Updated" : {
+
+    },
+    "red" : {
+
+    },
+    "Remove" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Show Timer" : {
+
+    },
+    "Sort By" : {
+
+    },
+    "teal" : {
+
+    },
+    "Theme" : {
+
+    },
+    "There is no email account associated to this device. If you have any questions, please feel free to reach out to us at %@" : {
+
+    },
+    "Time" : {
+
+    },
+    "Title" : {
+
+    },
+    "Updated: %@" : {
+
+    },
+    "US/Imperial (lbs)" : {
+
+    },
+    "Weight" : {
+
+    },
+    "Weight Unit" : {
+
+    },
+    "Weight Units" : {
+
+    },
+    "white" : {
+
+    },
+    "Workout" : {
+
+    },
+    "yellow" : {
+
+    }
+"""
+
+var keyWords: String {
+    words.replacingOccurrences(of: " : {", with: "")
+        .replacingOccurrences(of: "   \"", with: "")
+        .replacingOccurrences(of: "\"\n\n    },", with: "")
+        .replacingOccurrences(of: "\"\n\n    }", with: "")
+}
+
+
+//Translate the following list of strings for an iOS application into {LANGUAGE}. Provide the result with the english word followed by a "-" and then the {LANGUAGE} equaivalent.

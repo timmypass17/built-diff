@@ -1,0 +1,838 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "-" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "-"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "%@" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "%lld %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld %2$@"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "%lld Workouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Workout"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld Workouts"
+                }
+              }
+            }
+          }
+        },
+        "es-US" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Entrenamiento"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Entrenamientos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lldx%d %@ at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lldx%2$d %3$@ at %4$@"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lldx%2$d %3$@ en %4$@"
+          }
+        }
+      }
+    },
+    "+%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "+%1$@ %2$@"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "+0 %@" : {
+      "shouldTranslate" : false
+    },
+    "Accent Color" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Color de acento"
+          }
+        }
+      }
+    },
+    "Add Exercise" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir ejercicio"
+          }
+        }
+      }
+    },
+    "Add Set" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir serie"
+          }
+        }
+      }
+    },
+    "Alphabetical (A-Z)" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alfabético (A-Z)"
+          }
+        }
+      }
+    },
+    "Appearance" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apariencia"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete \"%@\"" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Estás seguro de que deseas eliminar \"%@\"?"
+          }
+        }
+      }
+    },
+    "Automatic" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automático"
+          }
+        }
+      }
+    },
+    "Best: %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Best: %1$@ %2$@"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mejor: %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "blue" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "azul"
+          }
+        }
+      }
+    },
+    "brown" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "marrón"
+          }
+        }
+      }
+    },
+    "Bug Report" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informe de error"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
+    },
+    "Contact Us" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contáctanos"
+          }
+        }
+      }
+    },
+    "Create Workout" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear Entrenamiento"
+          }
+        }
+      }
+    },
+    "Custom" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizado"
+          }
+        }
+      }
+    },
+    "cyan" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cian"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscuro"
+          }
+        }
+      }
+    },
+    "Data Privacy" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacidad de datos"
+          }
+        }
+      }
+    },
+    "Date" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fecha"
+          }
+        }
+      }
+    },
+    "Delete Log?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Eliminar registro?"
+          }
+        }
+      }
+    },
+    "Delete Template?" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Eliminar plantilla?"
+          }
+        }
+      }
+    },
+    "Delete Workout" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar Entrenamiento"
+          }
+        }
+      }
+    },
+    "Edit Workout" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar Entrenamiento"
+          }
+        }
+      }
+    },
+    "Exercises" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ejercicios"
+          }
+        }
+      }
+    },
+    "Finish" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminar"
+          }
+        }
+      }
+    },
+    "General" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        }
+      }
+    },
+    "green" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "verde"
+          }
+        }
+      }
+    },
+    "Haptic Feedback" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retroalimentación háptica"
+          }
+        }
+      }
+    },
+    "Help & Support" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayuda y soporte"
+          }
+        }
+      }
+    },
+    "indigo" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "índigo"
+          }
+        }
+      }
+    },
+    "Latest: %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest: %1$@ %2$@"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último: %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "Light" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro"
+          }
+        }
+      }
+    },
+    "Log" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registro"
+          }
+        }
+      }
+    },
+    "Metric (kg)" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Métrico (kg)"
+          }
+        }
+      }
+    },
+    "mint" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "menta"
+          }
+        }
+      }
+    },
+    "No Email Account Found" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se encontró una cuenta de correo electrónico"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "comment" : "Default action",
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "orange" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "naranja"
+          }
+        }
+      }
+    },
+    "pink" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rosa"
+          }
+        }
+      }
+    },
+    "Position" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posición"
+          }
+        }
+      }
+    },
+    "PREVIOUS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PREVIOUS"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANTERIOR"
+          }
+        }
+      }
+    },
+    "Privacy" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacidad"
+          }
+        }
+      }
+    },
+    "Privacy Policy" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Política de privacidad"
+          }
+        }
+      }
+    },
+    "Progress" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progreso"
+          }
+        }
+      }
+    },
+    "purple" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "morado"
+          }
+        }
+      }
+    },
+    "Push Day" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Día de empuje"
+          }
+        }
+      }
+    },
+    "Recently Updated" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizado recientemente"
+          }
+        }
+      }
+    },
+    "red" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rojo"
+          }
+        }
+      }
+    },
+    "Remove" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        }
+      }
+    },
+    "REPS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "REPS"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "REPS"
+          }
+        }
+      }
+    },
+    "SET" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SET"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SERIE"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        }
+      }
+    },
+    "Show Timer" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar temporizador"
+          }
+        }
+      }
+    },
+    "Sort By" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar por"
+          }
+        }
+      }
+    },
+    "teal" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "verde azulado"
+          }
+        }
+      }
+    },
+    "Theme" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
+          }
+        }
+      }
+    },
+    "There is no email account associated to this device. If you have any questions, please feel free to reach out to us at %@" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay ninguna cuenta de correo electrónico asociada a este dispositivo. Si tienes alguna pregunta, no dudes en contactarnos en %@"
+          }
+        }
+      }
+    },
+    "Time" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo"
+          }
+        }
+      }
+    },
+    "Title" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Título"
+          }
+        }
+      }
+    },
+    "Updated: %@" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizado: %@"
+          }
+        }
+      }
+    },
+    "US/Imperial (lbs)" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US/Imperial (lbs)"
+          }
+        }
+      }
+    },
+    "Weight" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peso"
+          }
+        }
+      }
+    },
+    "Weight Unit" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidad de peso"
+          }
+        }
+      }
+    },
+    "Weight Units" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidades de peso"
+          }
+        }
+      }
+    },
+    "white" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "blanco"
+          }
+        }
+      }
+    },
+    "Workout" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrenamiento"
+          }
+        }
+      }
+    },
+    "yellow" : {
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "amarillo"
+          }
+        }
+      }
+    },
+    "Your workout data is locally stored on your device, ensuring complete privacy. No one else can access or view your data, guaranteeing the confidentiality of your personal fitness data." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus datos de entrenamiento se almacenan localmente en tu dispositivo, garantizando total privacidad. Nadie más puede acceder ni ver tus datos, asegurando la confidencialidad de tu información de fitness personal."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

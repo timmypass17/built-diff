@@ -120,9 +120,9 @@ extension TemplateViewController: UITableViewDataSource {
         guard let section = Section(rawValue: section) else { return nil }
         switch section {
         case .title:
-            return "Title"
+            return "Title".localized
         case .exercises:
-            return "Exercises"
+            return "Exercises".localized
         }
     }
 }

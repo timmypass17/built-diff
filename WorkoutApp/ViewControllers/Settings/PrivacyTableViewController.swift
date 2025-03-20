@@ -9,12 +9,12 @@ import UIKit
 
 class PrivacyTableViewController: UITableViewController {
 
-    var privacyText = "Your workout data is locally stored on your device, ensuring complete privacy. No one else can access or view your data, guaranteeing the confidentiality of your personal fitness data."
+    var privacyText = "Your workout data is locally stored on your device, ensuring complete privacy. No one else can access or view your data, guaranteeing the confidentiality of your personal fitness data.".localized
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PrivacyCell")
-        navigationItem.title = "Privacy Policy"
+        navigationItem.title = "Privacy Policy".localized
         navigationItem.largeTitleDisplayMode = .never
     }
 
@@ -37,7 +37,7 @@ class PrivacyTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Data Privacy"
+        return "Data Privacy".localized
     }
 
 }
