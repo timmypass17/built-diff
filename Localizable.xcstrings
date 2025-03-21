@@ -85,6 +85,54 @@
               }
             }
           }
+        },
+        "pt-BR" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Treinos"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Treinos"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "\"%lld тренировки\""
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "\"%lld тренировок\""
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "\"%lld тренировка\""
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "\"%lld тренировок\""
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -106,6 +154,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lldx%2$d %3$@ en %4$@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldx%d %@ em %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldx%d %@ на %@"
           }
         }
       }
@@ -137,6 +197,18 @@
             "state" : "translated",
             "value" : "Color de acento"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cor de Destaque"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвет акцента"
+          }
         }
       }
     },
@@ -152,6 +224,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Añadir ejercicio"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar Exercício"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить упражнение"
           }
         }
       }
@@ -169,6 +253,18 @@
             "state" : "translated",
             "value" : "Añadir serie"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar Série"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить подход"
+          }
         }
       }
     },
@@ -184,6 +280,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alfabético (A-Z)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alfabético (A-Z)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алфавитный (А-Я)"
           }
         }
       }
@@ -201,6 +309,18 @@
             "state" : "translated",
             "value" : "Apariencia"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aparência"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Внешний вид"
+          }
         }
       }
     },
@@ -217,6 +337,18 @@
             "state" : "translated",
             "value" : "¿Estás seguro de que deseas eliminar \"%@\"?"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tem certeza de que deseja excluir %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите удалить %@"
+          }
         }
       }
     },
@@ -232,6 +364,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automático"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automático"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматически"
           }
         }
       }
@@ -255,6 +399,18 @@
             "state" : "translated",
             "value" : "Mejor: %1$@ %2$@"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Melhor: %@ %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лучшее: %@ %@"
+          }
         }
       }
     },
@@ -270,6 +426,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "azul"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "azul"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "синий"
           }
         }
       }
@@ -287,6 +455,18 @@
             "state" : "translated",
             "value" : "marrón"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "marrom"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "коричневый"
+          }
         }
       }
     },
@@ -302,6 +482,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Informe de error"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relatório de Erro"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчет об ошибке"
           }
         }
       }
@@ -319,6 +511,18 @@
             "state" : "translated",
             "value" : "Cancelar"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
         }
       }
     },
@@ -334,6 +538,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contáctanos"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contate-nos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Связаться с нами"
           }
         }
       }
@@ -351,6 +567,18 @@
             "state" : "translated",
             "value" : "Crear Entrenamiento"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criar Treino"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать тренировку"
+          }
         }
       }
     },
@@ -366,6 +594,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Personalizado"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользовательский"
           }
         }
       }
@@ -383,6 +623,18 @@
             "state" : "translated",
             "value" : "cian"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ciano"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "циановый"
+          }
         }
       }
     },
@@ -398,6 +650,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oscuro"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escuro"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темный"
           }
         }
       }
@@ -415,6 +679,18 @@
             "state" : "translated",
             "value" : "Privacidad de datos"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacidade de Dados"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфиденциальность данных"
+          }
         }
       }
     },
@@ -430,6 +706,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fecha"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата"
           }
         }
       }
@@ -448,6 +736,18 @@
             "state" : "translated",
             "value" : "¿Eliminar registro?"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir Registro?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить журнал?"
+          }
         }
       }
     },
@@ -463,6 +763,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¿Eliminar plantilla?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir Modelo?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить шаблон?"
           }
         }
       }
@@ -480,6 +792,18 @@
             "state" : "translated",
             "value" : "Eliminar Entrenamiento"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir Treino"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить тренировку"
+          }
         }
       }
     },
@@ -496,6 +820,18 @@
             "state" : "translated",
             "value" : "Editar Entrenamiento"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar Treino"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать тренировку"
+          }
         }
       }
     },
@@ -511,6 +847,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ejercicios"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exercícios"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Упражнения"
           }
         }
       }
@@ -529,6 +877,18 @@
             "state" : "translated",
             "value" : "Terminar"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concluir"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завершить"
+          }
         }
       }
     },
@@ -544,6 +904,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "General"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geral"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общее"
           }
         }
       }
@@ -561,6 +933,18 @@
             "state" : "translated",
             "value" : "verde"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "verde"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "зеленый"
+          }
         }
       }
     },
@@ -576,6 +960,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retroalimentación háptica"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback Tátil"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тактильная отдача"
           }
         }
       }
@@ -593,6 +989,18 @@
             "state" : "translated",
             "value" : "Ayuda y soporte"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajuda e Suporte"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Помощь и поддержка"
+          }
         }
       }
     },
@@ -608,6 +1016,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "índigo"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "índigo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "индиго"
           }
         }
       }
@@ -625,6 +1045,18 @@
             "state" : "translated",
             "value" : "Último: %1$@ %2$@"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais Recente: %@ %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последнее: %@ %@"
+          }
         }
       }
     },
@@ -640,6 +1072,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claro"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлый"
           }
         }
       }
@@ -657,6 +1101,18 @@
             "state" : "translated",
             "value" : "Registro"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registro"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Журнал"
+          }
         }
       }
     },
@@ -672,6 +1128,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Métrico (kg)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Métrico (kg)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Метрическая (кг)"
           }
         }
       }
@@ -689,6 +1157,18 @@
             "state" : "translated",
             "value" : "menta"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "menta"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "мятный"
+          }
         }
       }
     },
@@ -705,6 +1185,18 @@
             "state" : "translated",
             "value" : "No se encontró una cuenta de correo electrónico"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhuma Conta de Email Encontrada"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аккаунт электронной почты не найден"
+          }
         }
       }
     },
@@ -718,6 +1210,18 @@
           }
         },
         "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -738,6 +1242,18 @@
             "state" : "translated",
             "value" : "naranja"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "laranja"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "оранжевый"
+          }
         }
       }
     },
@@ -754,6 +1270,18 @@
             "state" : "translated",
             "value" : "rosa"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rosa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "розовый"
+          }
         }
       }
     },
@@ -769,6 +1297,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Posición"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posição"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позиция"
           }
         }
       }
@@ -787,6 +1327,18 @@
             "state" : "translated",
             "value" : "ANTERIOR"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ANTERIOR"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ПРЕДЫДУЩИЙ"
+          }
         }
       }
     },
@@ -802,6 +1354,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Privacidad"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacidade"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфиденциальность"
           }
         }
       }
@@ -819,6 +1383,18 @@
             "state" : "translated",
             "value" : "Política de privacidad"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Política de Privacidade"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Политика конфиденциальности"
+          }
         }
       }
     },
@@ -834,6 +1410,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Progreso"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progresso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прогресс"
           }
         }
       }
@@ -851,6 +1439,18 @@
             "state" : "translated",
             "value" : "morado"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "roxo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "фиолетовый"
+          }
         }
       }
     },
@@ -866,6 +1466,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Día de empuje"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dia de empurrar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " День жима"
           }
         }
       }
@@ -883,6 +1495,18 @@
             "state" : "translated",
             "value" : "Actualizado recientemente"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atualizado Recentemente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавно обновлено"
+          }
         }
       }
     },
@@ -899,6 +1523,18 @@
             "state" : "translated",
             "value" : "rojo"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "vermelho"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "красный"
+          }
         }
       }
     },
@@ -914,6 +1550,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eliminar"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remover"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
           }
         }
       }
@@ -932,6 +1580,18 @@
             "state" : "translated",
             "value" : "REPS"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "REPS"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ПОВТ"
+          }
         }
       }
     },
@@ -948,6 +1608,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar ejercicios"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesquisar Exercícios"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск упражнений"
           }
         }
       }
@@ -966,6 +1638,18 @@
             "state" : "translated",
             "value" : "SERIE"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SÉRIE"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ПОДХОД"
+          }
         }
       }
     },
@@ -981,6 +1665,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajustes"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurações"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
           }
         }
       }
@@ -998,6 +1694,18 @@
             "state" : "translated",
             "value" : "Mostrar temporizador"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar Cronômetro"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать таймер"
+          }
         }
       }
     },
@@ -1013,6 +1721,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ordenar por"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar Por"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировать по"
           }
         }
       }
@@ -1030,6 +1750,18 @@
             "state" : "translated",
             "value" : "verde azulado"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "verde-azulado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "бирюзовый"
+          }
         }
       }
     },
@@ -1045,6 +1777,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tema"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
           }
         }
       }
@@ -1062,6 +1806,18 @@
             "state" : "translated",
             "value" : "No hay ninguna cuenta de correo electrónico asociada a este dispositivo. Si tienes alguna pregunta, no dudes en contactarnos en %@"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não há nenhuma conta de email associada a este dispositivo. Se tiver alguma dúvida, sinta-se à vontade para entrar em contato conosco em %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На этом устройстве не связан аккаунт электронной почты. Если у вас есть вопросы, пожалуйста, свяжитесь с нами по адресу %@"
+          }
         }
       }
     },
@@ -1077,6 +1833,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiempo"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время"
           }
         }
       }
@@ -1094,6 +1862,18 @@
             "state" : "translated",
             "value" : "Título"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Título"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название"
+          }
         }
       }
     },
@@ -1109,6 +1889,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Actualizado: %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atualizado: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновлено: %@"
           }
         }
       }
@@ -1126,6 +1918,18 @@
             "state" : "translated",
             "value" : "US/Imperial (lbs)"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US/Imperial (lbs)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "США/Имперская (фунты)"
+          }
         }
       }
     },
@@ -1141,6 +1945,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Peso"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вес"
           }
         }
       }
@@ -1158,6 +1974,18 @@
             "state" : "translated",
             "value" : "Unidad de peso"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidade de Peso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единица измерения веса"
+          }
         }
       }
     },
@@ -1173,6 +2001,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unidades de peso"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidades de Peso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единицы измерения веса"
           }
         }
       }
@@ -1190,6 +2030,18 @@
             "state" : "translated",
             "value" : "blanco"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "branco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "белый"
+          }
         }
       }
     },
@@ -1205,6 +2057,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entrenamiento"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Treino"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировка"
           }
         }
       }
@@ -1222,6 +2086,18 @@
             "state" : "translated",
             "value" : "amarillo"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "amarelo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "желтый"
+          }
         }
       }
     },
@@ -1238,6 +2114,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tus datos de entrenamiento se almacenan localmente en tu dispositivo, garantizando total privacidad. Nadie más puede acceder ni ver tus datos, asegurando la confidencialidad de tu información de fitness personal."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seus dados de treino são armazenados localmente no seu dispositivo, garantindo total privacidade. Ninguém mais pode acessar ou visualizar seus dados, assegurando a confidencialidade dos seus dados pessoais de fitness."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Данные вашей тренировки хранятся локально на вашем устройстве, что обеспечивает полную конфиденциальность. Никто другой не может получить доступ к вашим данным или просматривать их, гарантируя сохранность вашей личной фитнес-информации."
           }
         }
       }

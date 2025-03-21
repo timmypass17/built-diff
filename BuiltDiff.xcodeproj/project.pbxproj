@@ -169,6 +169,8 @@
 		32339BC22D8C8B48006B2FA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/exercises.txt; sourceTree = "<group>"; };
 		32339BC62D8C8B5F006B2FA0 /* es-US */ = {isa = PBXFileReference; lastKnownFileType = text; name = "es-US"; path = "es-US.lproj/exercises.txt"; sourceTree = "<group>"; };
 		32339C752D8D1B5C006B2FA0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text; name = de; path = de.lproj/exercises.txt; sourceTree = "<group>"; };
+		32339C762D8D1E41006B2FA0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text; name = ru; path = ru.lproj/exercises.txt; sourceTree = "<group>"; };
+		32339C772D8D21E5006B2FA0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text; name = "pt-BR"; path = "pt-BR.lproj/exercises.txt"; sourceTree = "<group>"; };
 		324C37412B76EC7F0098B5E6 /* ProgressDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailView.swift; sourceTree = "<group>"; };
 		3253BD1B2D3731F4003F5A4A /* WorkoutDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDao.swift; sourceTree = "<group>"; };
 		3253BD1D2D37335B003F5A4A /* WorkoutDaoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDaoProtocol.swift; sourceTree = "<group>"; };
@@ -653,6 +655,8 @@
 				Base,
 				"es-US",
 				de,
+				ru,
+				"pt-BR",
 			);
 			mainGroup = 32A2936E2B42073B00122166;
 			productRefGroup = 32A293782B42073B00122166 /* Products */;
@@ -867,6 +871,8 @@
 				32339BC22D8C8B48006B2FA0 /* en */,
 				32339BC62D8C8B5F006B2FA0 /* es-US */,
 				32339C752D8D1B5C006B2FA0 /* de */,
+				32339C762D8D1E41006B2FA0 /* ru */,
+				32339C772D8D21E5006B2FA0 /* pt-BR */,
 			);
 			name = exercises.txt;
 			sourceTree = "<group>";
