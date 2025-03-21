@@ -74,7 +74,7 @@ class SettingsTableViewController: UIViewController {
                 Model(
                     image: UIImage(systemName: "paintpalette.fill")!,
                     text: "Accent Color".localized,
-                    secondary: Settings.shared.accentColor?.rawValue.capitalized ?? "Custom".localized,
+                    secondary: Settings.shared.accentColor?.description.capitalized ?? "Custom".localized,
                     backgroundColor: .systemOrange
                 )
             ]

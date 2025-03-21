@@ -30,7 +30,7 @@ class SelectableSettingsTableViewCell: SettingsTableViewCell {
     
     override func update(with model: SettingsTableViewController.Model) {
         super.update(with: model)
-        secondaryLabel.text = model.secondary
+        secondaryLabel.text = model.secondary?.lowercased().localized.localizedCapitalized
         accessoryType = .disclosureIndicator
     }
     

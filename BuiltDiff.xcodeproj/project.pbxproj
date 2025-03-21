@@ -168,6 +168,11 @@
 		32339BBF2D8BAFF4006B2FA0 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		32339BC22D8C8B48006B2FA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/exercises.txt; sourceTree = "<group>"; };
 		32339BC62D8C8B5F006B2FA0 /* es-US */ = {isa = PBXFileReference; lastKnownFileType = text; name = "es-US"; path = "es-US.lproj/exercises.txt"; sourceTree = "<group>"; };
+		32339C752D8D1B5C006B2FA0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text; name = de; path = de.lproj/exercises.txt; sourceTree = "<group>"; };
+		32339C762D8D1E41006B2FA0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text; name = ru; path = ru.lproj/exercises.txt; sourceTree = "<group>"; };
+		32339C772D8D21E5006B2FA0 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text; name = "pt-BR"; path = "pt-BR.lproj/exercises.txt"; sourceTree = "<group>"; };
+		32339C782D8D25BB006B2FA0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text; name = fr; path = fr.lproj/exercises.txt; sourceTree = "<group>"; };
+		32339C792D8D282A006B2FA0 /* it */ = {isa = PBXFileReference; lastKnownFileType = text; name = it; path = it.lproj/exercises.txt; sourceTree = "<group>"; };
 		324C37412B76EC7F0098B5E6 /* ProgressDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailView.swift; sourceTree = "<group>"; };
 		3253BD1B2D3731F4003F5A4A /* WorkoutDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDao.swift; sourceTree = "<group>"; };
 		3253BD1D2D37335B003F5A4A /* WorkoutDaoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDaoProtocol.swift; sourceTree = "<group>"; };
@@ -225,6 +230,11 @@
 		32E051D82B7ED1FA0093EE4B /* ExerciseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHeaderView.swift; sourceTree = "<group>"; };
 		32E3A1952B894FC3001FD86B /* AccentColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorTableViewController.swift; sourceTree = "<group>"; };
 		32E3A1972B8C0865001FD86B /* PrivacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewController.swift; sourceTree = "<group>"; };
+		32F9CE342D8DD13700C6E904 /* id */ = {isa = PBXFileReference; lastKnownFileType = text; name = id; path = id.lproj/exercises.txt; sourceTree = "<group>"; };
+		32F9CE352D8DD30200C6E904 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text; name = hi; path = hi.lproj/exercises.txt; sourceTree = "<group>"; };
+		32F9CE362D8DD63100C6E904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/exercises.txt"; sourceTree = "<group>"; };
+		32F9CE372D8DDE4300C6E904 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text; name = ko; path = ko.lproj/exercises.txt; sourceTree = "<group>"; };
+		32F9CE382D8DE08F00C6E904 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text; name = ja; path = ja.lproj/exercises.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -651,6 +661,16 @@
 				en,
 				Base,
 				"es-US",
+				de,
+				ru,
+				"pt-BR",
+				fr,
+				it,
+				id,
+				hi,
+				"zh-Hans",
+				ko,
+				ja,
 			);
 			mainGroup = 32A2936E2B42073B00122166;
 			productRefGroup = 32A293782B42073B00122166 /* Products */;
@@ -864,6 +884,16 @@
 			children = (
 				32339BC22D8C8B48006B2FA0 /* en */,
 				32339BC62D8C8B5F006B2FA0 /* es-US */,
+				32339C752D8D1B5C006B2FA0 /* de */,
+				32339C762D8D1E41006B2FA0 /* ru */,
+				32339C772D8D21E5006B2FA0 /* pt-BR */,
+				32339C782D8D25BB006B2FA0 /* fr */,
+				32339C792D8D282A006B2FA0 /* it */,
+				32F9CE342D8DD13700C6E904 /* id */,
+				32F9CE352D8DD30200C6E904 /* hi */,
+				32F9CE362D8DD63100C6E904 /* zh-Hans */,
+				32F9CE372D8DDE4300C6E904 /* ko */,
+				32F9CE382D8DE08F00C6E904 /* ja */,
 			);
 			name = exercises.txt;
 			sourceTree = "<group>";
