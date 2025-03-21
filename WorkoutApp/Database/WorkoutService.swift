@@ -33,9 +33,9 @@ class WorkoutService {
         }
     }
     
-    func fetchLogs() async -> [Workout] {
+    func fetchLogs(from startDate: Date? = nil, to endDate: Date? = nil) async -> [Workout] {
         do {
-            return try await workoutDao.fetchLogs()
+            return try await workoutDao.fetchLogs(from: startDate, to: endDate)
         } catch {
             return []
         }

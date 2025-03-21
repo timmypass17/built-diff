@@ -27,7 +27,7 @@ struct SetView: View {
         VStack(spacing: 8) {
             HStack {
                 VStack {
-                    Text("\(appState.weightUnit.rawValue)".uppercased())
+                    Text("\(appState.weightUnit.shortDescription)".uppercased())
                         .fontWeight(.semibold)
                     
                     Picker("Select a weight", selection: $set.weight) {

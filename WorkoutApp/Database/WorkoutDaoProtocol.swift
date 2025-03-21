@@ -12,7 +12,7 @@ protocol WorkoutDaoProtocol {
     func createTemplate(childContext: NSManagedObjectContext) -> Template
     func createWorkout(template: Template, childContext: NSManagedObjectContext) -> Workout
     func fetchTemplates() async throws -> [Template]
-    func fetchLogs() async throws -> [Workout]
+    func fetchLogs(from startDate: Date?, to endDate: Date?) async throws -> [Workout]
     func fetchExerciseNames() async throws -> [String]
     func fetchExerciseSets(exerciseName: String, limit: Int?, ascending: Bool) async throws -> [ExerciseSet]
     func fetchPR(exerciseName: String) async throws -> Double

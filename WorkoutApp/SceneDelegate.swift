@@ -44,10 +44,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         logViewController.delegate = progressViewController
         logViewController.progressDelegate = progressViewController
         
-        workoutViewController.tabBarItem = UITabBarItem(title: "Workout", image: UIImage(systemName: "dumbbell.fill"), tag: 0)
-        logViewController.tabBarItem = UITabBarItem(title: "Log", image: UIImage(systemName: "calendar"), tag: 0)
-        progressViewController.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: "chart.bar.fill"), tag: 0)
-        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gearshape.fill"), tag: 0)
+        workoutViewController.tabBarItem = UITabBarItem(title: "Workout".localized, image: UIImage(systemName: "dumbbell.fill"), tag: 0)
+        logViewController.tabBarItem = UITabBarItem(title: "Log".localized, image: UIImage(systemName: "calendar"), tag: 0)
+        progressViewController.tabBarItem = UITabBarItem(title: "Progress".localized, image: UIImage(systemName: "chart.bar.fill"), tag: 0)
+        settingsViewController.tabBarItem = UITabBarItem(title: "Settings".localized, image: UIImage(systemName: "gearshape.fill"), tag: 0)
         
         progressViewController.loadViewIfNeeded()
 
