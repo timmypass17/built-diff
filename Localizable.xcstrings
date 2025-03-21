@@ -2,25 +2,9 @@
   "sourceLanguage" : "en",
   "strings" : {
     "-" : {
-      "localizations" : {
-        "es-US" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "-"
-          }
-        }
-      },
       "shouldTranslate" : false
     },
     "%@" : {
-      "localizations" : {
-        "es-US" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        }
-      },
       "shouldTranslate" : false
     },
     "%@ %@" : {
@@ -48,6 +32,24 @@
     "%lld Workouts" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Trainingseinheit"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Trainingseinheiten"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "variations" : {
             "plural" : {
@@ -88,6 +90,12 @@
     },
     "%lldx%d %@ at %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldx%d %@ bei %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -118,6 +126,12 @@
     },
     "Accent Color" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akzentfarbe"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -128,6 +142,12 @@
     },
     "Add Exercise" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übung hinzufügen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +158,12 @@
     },
     "Add Set" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satz hinzufügen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -148,6 +174,12 @@
     },
     "Alphabetical (A-Z)" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabetisch (A-Z)"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -158,6 +190,12 @@
     },
     "Appearance" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erscheinungsbild"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -168,6 +206,12 @@
     },
     "Are you sure you want to delete \"%@\"" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchten Sie %@ wirklich löschen?"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -178,6 +222,12 @@
     },
     "Automatic" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisch"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -188,6 +238,12 @@
     },
     "Best: %@ %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beste: %@ %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,6 +260,12 @@
     },
     "blue" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "blau"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -214,6 +276,12 @@
     },
     "brown" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "braun"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -224,6 +292,12 @@
     },
     "Bug Report" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehlerbericht"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -234,6 +308,12 @@
     },
     "Cancel" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -244,6 +324,12 @@
     },
     "Contact Us" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontaktieren Sie uns"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -254,6 +340,12 @@
     },
     "Create Workout" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout erstellen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -264,6 +356,12 @@
     },
     "Custom" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benutzerdefiniert"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -274,6 +372,12 @@
     },
     "cyan" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cyan"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -284,6 +388,12 @@
     },
     "Dark" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -294,6 +404,12 @@
     },
     "Data Privacy" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutz"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -304,6 +420,12 @@
     },
     "Date" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -315,6 +437,12 @@
     "Delete Log?" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokoll löschen?"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -325,6 +453,12 @@
     },
     "Delete Template?" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorlage löschen?"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -335,6 +469,12 @@
     },
     "Delete Workout" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout löschen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -345,6 +485,12 @@
     },
     "Edit Workout" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout bearbeiten"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -355,6 +501,12 @@
     },
     "Exercises" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übungen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -366,6 +518,12 @@
     "Finish" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beenden"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -376,6 +534,12 @@
     },
     "General" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allgemein"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -386,6 +550,12 @@
     },
     "green" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "grün"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -396,6 +566,12 @@
     },
     "Haptic Feedback" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haptisches Feedback"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -406,6 +582,12 @@
     },
     "Help & Support" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfe & Support"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -416,6 +598,12 @@
     },
     "indigo" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "indigo"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -426,6 +614,12 @@
     },
     "Latest: %@ %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neueste: %@ %@"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -436,6 +630,12 @@
     },
     "Light" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -446,6 +646,12 @@
     },
     "Log" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokoll"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -456,6 +662,12 @@
     },
     "Metric (kg)" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metrisch (kg)"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -466,6 +678,12 @@
     },
     "mint" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mint"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -476,6 +694,12 @@
     },
     "No Email Account Found" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein E-Mail-Konto gefunden"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -487,6 +711,12 @@
     "OK" : {
       "comment" : "Default action",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -497,6 +727,12 @@
     },
     "orange" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "orange"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +743,12 @@
     },
     "pink" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rosa"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -517,6 +759,12 @@
     },
     "Position" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Position"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -528,6 +776,12 @@
     "PREVIOUS" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VORHERIG"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -538,6 +792,12 @@
     },
     "Privacy" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privatsphäre"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -548,6 +808,12 @@
     },
     "Privacy Policy" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutzrichtlinie"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -558,6 +824,12 @@
     },
     "Progress" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortschritt"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -568,6 +840,12 @@
     },
     "purple" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lila"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -578,6 +856,12 @@
     },
     "Push Day" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push-Tag"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -588,6 +872,12 @@
     },
     "Recently Updated" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kürzlich aktualisiert"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -598,6 +888,12 @@
     },
     "red" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rot"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -608,6 +904,12 @@
     },
     "Remove" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entfernen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -619,6 +921,12 @@
     "REPS" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WDH"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -630,6 +938,12 @@
     "Search Exercises" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übungen suchen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -641,6 +955,12 @@
     "SET" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SATZ"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -651,6 +971,12 @@
     },
     "Settings" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -661,6 +987,12 @@
     },
     "Show Timer" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer anzeigen"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -671,6 +1003,12 @@
     },
     "Sort By" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortieren nach"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -681,6 +1019,12 @@
     },
     "teal" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "blaugrün"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -691,6 +1035,12 @@
     },
     "Theme" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thema"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -701,6 +1051,12 @@
     },
     "There is no email account associated to this device. If you have any questions, please feel free to reach out to us at %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es ist kein E-Mail-Konto mit diesem Gerät verknüpft. Falls Sie Fragen haben, können Sie uns gerne unter %@ kontaktieren."
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -711,6 +1067,12 @@
     },
     "Time" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -721,6 +1083,12 @@
     },
     "Title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -731,6 +1099,12 @@
     },
     "Updated: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualisiert: %@"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -741,6 +1115,12 @@
     },
     "US/Imperial (lbs)" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US/Imperial (lbs)"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -751,6 +1131,12 @@
     },
     "Weight" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewicht"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -761,6 +1147,12 @@
     },
     "Weight Unit" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewichtseinheit"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -771,6 +1163,12 @@
     },
     "Weight Units" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewichtseinheiten"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -781,6 +1179,12 @@
     },
     "white" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "weiß"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -791,6 +1195,12 @@
     },
     "Workout" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -801,6 +1211,12 @@
     },
     "yellow" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "gelb"
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
@@ -812,6 +1228,12 @@
     "Your workout data is locally stored on your device, ensuring complete privacy. No one else can access or view your data, guaranteeing the confidentiality of your personal fitness data." : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ihre Workout-Daten werden lokal auf Ihrem Gerät gespeichert, was vollständige Privatsphäre gewährleistet. Niemand sonst kann auf Ihre Daten zugreifen oder sie einsehen, wodurch die Vertraulichkeit Ihrer persönlichen Fitnessdaten garantiert wird."
+          }
+        },
         "es-US" : {
           "stringUnit" : {
             "state" : "translated",
