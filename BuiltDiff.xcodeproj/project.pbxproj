@@ -230,6 +230,11 @@
 		32E051D82B7ED1FA0093EE4B /* ExerciseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHeaderView.swift; sourceTree = "<group>"; };
 		32E3A1952B894FC3001FD86B /* AccentColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorTableViewController.swift; sourceTree = "<group>"; };
 		32E3A1972B8C0865001FD86B /* PrivacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyTableViewController.swift; sourceTree = "<group>"; };
+		32F9CE342D8DD13700C6E904 /* id */ = {isa = PBXFileReference; lastKnownFileType = text; name = id; path = id.lproj/exercises.txt; sourceTree = "<group>"; };
+		32F9CE352D8DD30200C6E904 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text; name = hi; path = hi.lproj/exercises.txt; sourceTree = "<group>"; };
+		32F9CE362D8DD63100C6E904 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/exercises.txt"; sourceTree = "<group>"; };
+		32F9CE372D8DDE4300C6E904 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text; name = ko; path = ko.lproj/exercises.txt; sourceTree = "<group>"; };
+		32F9CE382D8DE08F00C6E904 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text; name = ja; path = ja.lproj/exercises.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -661,6 +666,11 @@
 				"pt-BR",
 				fr,
 				it,
+				id,
+				hi,
+				"zh-Hans",
+				ko,
+				ja,
 			);
 			mainGroup = 32A2936E2B42073B00122166;
 			productRefGroup = 32A293782B42073B00122166 /* Products */;
@@ -879,6 +889,11 @@
 				32339C772D8D21E5006B2FA0 /* pt-BR */,
 				32339C782D8D25BB006B2FA0 /* fr */,
 				32339C792D8D282A006B2FA0 /* it */,
+				32F9CE342D8DD13700C6E904 /* id */,
+				32F9CE352D8DD30200C6E904 /* hi */,
+				32F9CE362D8DD63100C6E904 /* zh-Hans */,
+				32F9CE372D8DDE4300C6E904 /* ko */,
+				32F9CE382D8DE08F00C6E904 /* ja */,
 			);
 			name = exercises.txt;
 			sourceTree = "<group>";

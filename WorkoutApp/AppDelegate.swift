@@ -81,7 +81,9 @@ green
 Haptic Feedback
 Help & Support
 indigo
+kg
 Latest: %@ %@
+lbs
 Light
 Log
 Metric (kg)
