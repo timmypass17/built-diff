@@ -141,5 +141,5 @@ var keyWords: String {
 
 
 
-//Translate the following list of strings for an iOS application into {LANGUAGE}. Provide the result with the english word followed by a "-" and then the {LANGUAGE} equivalent.
+//Translate the following list of strings for an iOS gym application into {LANGUAGE}. Provide the result with the english word followed by a "-" and then the {LANGUAGE} equivalent. 
 

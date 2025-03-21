@@ -104,6 +104,24 @@
             }
           }
         },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Allenamenti"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Allenamenti"
+                }
+              }
+            }
+          }
+        },
         "pt-BR" : {
           "variations" : {
             "plural" : {
@@ -180,6 +198,12 @@
             "value" : "%lldx%d %@ à %@  "
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldx%d %@ a %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -228,6 +252,12 @@
             "value" : "Couleur d’accent"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colore di Accento"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -260,6 +290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter un exercice"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi Esercizio"
           }
         },
         "pt-BR" : {
@@ -296,6 +332,12 @@
             "value" : "Ajouter une série"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi Serie"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -328,6 +370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alphabétique (A-Z)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alfabetico (A-Z)"
           }
         },
         "pt-BR" : {
@@ -364,6 +412,12 @@
             "value" : "Apparence"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aspetto"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -398,6 +452,12 @@
             "value" : "Êtes-vous sûr de vouloir supprimer %@"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sei sicuro di voler eliminare %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -430,6 +490,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatique"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatico"
           }
         },
         "pt-BR" : {
@@ -472,6 +538,12 @@
             "value" : "Meilleur : %@ %@"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Migliore: %@ %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -504,6 +576,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "bleu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "blu"
           }
         },
         "pt-BR" : {
@@ -540,6 +618,12 @@
             "value" : "marron"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "marrone"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -572,6 +656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rapport de bug"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Segnalazione Bug"
           }
         },
         "pt-BR" : {
@@ -608,6 +698,12 @@
             "value" : "Annuler"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annulla"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -640,6 +736,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contactez-nous"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contattaci"
           }
         },
         "pt-BR" : {
@@ -676,6 +778,12 @@
             "value" : "Créer un entraînement"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea Allenamento"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -708,6 +816,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Personnalisé"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizzato"
           }
         },
         "pt-BR" : {
@@ -744,6 +858,12 @@
             "value" : "cyan"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ciano"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -776,6 +896,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sombre"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scuro"
           }
         },
         "pt-BR" : {
@@ -812,6 +938,12 @@
             "value" : "Confidentialité des données"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy dei Dati"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -844,6 +976,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data"
           }
         },
         "pt-BR" : {
@@ -881,6 +1019,12 @@
             "value" : "Supprimer le journal ?"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina Registro?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -913,6 +1057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supprimer le modèle ?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina Modello?"
           }
         },
         "pt-BR" : {
@@ -949,6 +1099,12 @@
             "value" : "Supprimer l’entraînement"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina Allenamento"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -983,6 +1139,12 @@
             "value" : "Modifier l’entraînement"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifica Allenamento"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1015,6 +1177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exercices"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esercizi"
           }
         },
         "pt-BR" : {
@@ -1052,6 +1220,12 @@
             "value" : "Terminer"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completa"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1084,6 +1258,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Général"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generale"
           }
         },
         "pt-BR" : {
@@ -1120,6 +1300,12 @@
             "value" : "vert"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "verde"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1152,6 +1338,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour haptique"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback Aptico"
           }
         },
         "pt-BR" : {
@@ -1188,6 +1380,12 @@
             "value" : "Aide et support"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aiuto e Supporto"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1220,6 +1418,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "indigo"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "indaco"
           }
         },
         "pt-BR" : {
@@ -1256,6 +1460,12 @@
             "value" : "Dernier : %@ %@"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ultimo: %@ %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1288,6 +1498,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clair"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiaro"
           }
         },
         "pt-BR" : {
@@ -1324,6 +1540,12 @@
             "value" : "Journal"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registro"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1356,6 +1578,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Métrique (kg)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metrico (kg)"
           }
         },
         "pt-BR" : {
@@ -1392,6 +1620,12 @@
             "value" : "menthe"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "menta"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1426,6 +1660,12 @@
             "value" : "Aucun compte e-mail trouvé"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun account email trovato"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1456,6 +1696,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -1495,6 +1741,12 @@
             "value" : "orange"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "arancione"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1529,6 +1781,12 @@
             "value" : "rose"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rosa"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1561,6 +1819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Position"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posizione"
           }
         },
         "pt-BR" : {
@@ -1598,6 +1862,12 @@
             "value" : "PRÉCÉDENT"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PRECEDENTE"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1630,6 +1900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Confidentialité"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy"
           }
         },
         "pt-BR" : {
@@ -1666,6 +1942,12 @@
             "value" : "Politique de confidentialité"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informativa sulla Privacy"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1698,6 +1980,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Progression"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progresso"
           }
         },
         "pt-BR" : {
@@ -1734,6 +2022,12 @@
             "value" : "violet"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "viola"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1766,6 +2060,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jour de poussée"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giorno di Spinta"
           }
         },
         "pt-BR" : {
@@ -1802,6 +2102,12 @@
             "value" : "Mis à jour récemment"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiornato di recente"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1836,6 +2142,12 @@
             "value" : "rouge"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rosso"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1868,6 +2180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retirer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovi"
           }
         },
         "pt-BR" : {
@@ -1905,6 +2223,12 @@
             "value" : "RÉPS"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "REP"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1938,6 +2262,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher des exercices"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerca Esercizi"
           }
         },
         "pt-BR" : {
@@ -1975,6 +2305,12 @@
             "value" : "SÉRIE"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SERIE"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2007,6 +2343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Paramètres"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impostazioni"
           }
         },
         "pt-BR" : {
@@ -2043,6 +2385,12 @@
             "value" : "Afficher le minuteur"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra Timer"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2075,6 +2423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trier par"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordina per"
           }
         },
         "pt-BR" : {
@@ -2111,6 +2465,12 @@
             "value" : "sarcelle"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "verde petrolio"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2143,6 +2503,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thème"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
           }
         },
         "pt-BR" : {
@@ -2179,6 +2545,12 @@
             "value" : "Aucun compte e-mail n’est associé à cet appareil. Si vous avez des questions, n’hésitez pas à nous contacter à %@"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è presente alcun account email associato a questo dispositivo. Se hai domande, contattaci a %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2211,6 +2583,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Temps"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempo"
           }
         },
         "pt-BR" : {
@@ -2247,6 +2625,12 @@
             "value" : "Titre"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titolo"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2279,6 +2663,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mis à jour : %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiornato: %@"
           }
         },
         "pt-BR" : {
@@ -2315,6 +2705,12 @@
             "value" : "US/Impérial (lbs)"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US/Imperiale (lbs)"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2347,6 +2743,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Poids"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peso"
           }
         },
         "pt-BR" : {
@@ -2383,6 +2785,12 @@
             "value" : "Unité de poids"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unità di Peso"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2415,6 +2823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unités de poids"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unità di Peso"
           }
         },
         "pt-BR" : {
@@ -2451,6 +2865,12 @@
             "value" : "blanc"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bianco"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2483,6 +2903,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entraînement"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allenamento"
           }
         },
         "pt-BR" : {
@@ -2519,6 +2945,12 @@
             "value" : "jaune"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "giallo"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2552,6 +2984,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vos données d’entraînement sont stockées localement sur votre appareil, garantissant une confidentialité totale. Personne d’autre ne peut accéder ou visualiser vos données, assurant la confidentialité de vos informations personnelles de fitness."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I dati del tuo allenamento sono memorizzati localmente sul tuo dispositivo, garantendo completa privacy. Nessun altro può accedere o visualizzare i tuoi dati, assicurando la riservatezza delle tue informazioni di fitness."
           }
         },
         "pt-BR" : {
