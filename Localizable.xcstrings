@@ -86,6 +86,24 @@
             }
           }
         },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld entraînements  "
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld entraînements  "
+                }
+              }
+            }
+          }
+        },
         "pt-BR" : {
           "variations" : {
             "plural" : {
@@ -156,6 +174,12 @@
             "value" : "%1$lldx%2$d %3$@ en %4$@"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldx%d %@ à %@  "
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -198,6 +222,12 @@
             "value" : "Color de acento"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couleur d’accent"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -224,6 +254,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Añadir ejercicio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter un exercice"
           }
         },
         "pt-BR" : {
@@ -254,6 +290,12 @@
             "value" : "Añadir serie"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter une série"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -280,6 +322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alfabético (A-Z)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alphabétique (A-Z)"
           }
         },
         "pt-BR" : {
@@ -310,6 +358,12 @@
             "value" : "Apariencia"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apparence"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -338,6 +392,12 @@
             "value" : "¿Estás seguro de que deseas eliminar \"%@\"?"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Êtes-vous sûr de vouloir supprimer %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -364,6 +424,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automático"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatique"
           }
         },
         "pt-BR" : {
@@ -400,6 +466,12 @@
             "value" : "Mejor: %1$@ %2$@"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meilleur : %@ %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -426,6 +498,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "azul"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bleu"
           }
         },
         "pt-BR" : {
@@ -456,6 +534,12 @@
             "value" : "marrón"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "marron"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -482,6 +566,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Informe de error"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rapport de bug"
           }
         },
         "pt-BR" : {
@@ -512,6 +602,12 @@
             "value" : "Cancelar"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -538,6 +634,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contáctanos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contactez-nous"
           }
         },
         "pt-BR" : {
@@ -568,6 +670,12 @@
             "value" : "Crear Entrenamiento"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer un entraînement"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -594,6 +702,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Personalizado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personnalisé"
           }
         },
         "pt-BR" : {
@@ -624,6 +738,12 @@
             "value" : "cian"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cyan"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -650,6 +770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oscuro"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sombre"
           }
         },
         "pt-BR" : {
@@ -680,6 +806,12 @@
             "value" : "Privacidad de datos"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confidentialité des données"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -706,6 +838,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fecha"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
           }
         },
         "pt-BR" : {
@@ -737,6 +875,12 @@
             "value" : "¿Eliminar registro?"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer le journal ?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -763,6 +907,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¿Eliminar plantilla?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer le modèle ?"
           }
         },
         "pt-BR" : {
@@ -793,6 +943,12 @@
             "value" : "Eliminar Entrenamiento"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer l’entraînement"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -821,6 +977,12 @@
             "value" : "Editar Entrenamiento"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier l’entraînement"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -847,6 +1009,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ejercicios"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exercices"
           }
         },
         "pt-BR" : {
@@ -878,6 +1046,12 @@
             "value" : "Terminar"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminer"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -904,6 +1078,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "General"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Général"
           }
         },
         "pt-BR" : {
@@ -934,6 +1114,12 @@
             "value" : "verde"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "vert"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -960,6 +1146,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retroalimentación háptica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retour haptique"
           }
         },
         "pt-BR" : {
@@ -990,6 +1182,12 @@
             "value" : "Ayuda y soporte"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aide et support"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1016,6 +1214,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "índigo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "indigo"
           }
         },
         "pt-BR" : {
@@ -1046,6 +1250,12 @@
             "value" : "Último: %1$@ %2$@"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dernier : %@ %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1072,6 +1282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claro"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clair"
           }
         },
         "pt-BR" : {
@@ -1102,6 +1318,12 @@
             "value" : "Registro"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Journal"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1128,6 +1350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Métrico (kg)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Métrique (kg)"
           }
         },
         "pt-BR" : {
@@ -1158,6 +1386,12 @@
             "value" : "menta"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "menthe"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1186,6 +1420,12 @@
             "value" : "No se encontró una cuenta de correo electrónico"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun compte e-mail trouvé"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1210,6 +1450,12 @@
           }
         },
         "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -1243,6 +1489,12 @@
             "value" : "naranja"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "orange"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1271,6 +1523,12 @@
             "value" : "rosa"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rose"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1297,6 +1555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Posición"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Position"
           }
         },
         "pt-BR" : {
@@ -1328,6 +1592,12 @@
             "value" : "ANTERIOR"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PRÉCÉDENT"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1354,6 +1624,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Privacidad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confidentialité"
           }
         },
         "pt-BR" : {
@@ -1384,6 +1660,12 @@
             "value" : "Política de privacidad"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Politique de confidentialité"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1410,6 +1692,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Progreso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progression"
           }
         },
         "pt-BR" : {
@@ -1440,6 +1728,12 @@
             "value" : "morado"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "violet"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1466,6 +1760,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Día de empuje"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jour de poussée"
           }
         },
         "pt-BR" : {
@@ -1496,6 +1796,12 @@
             "value" : "Actualizado recientemente"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mis à jour récemment"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1524,6 +1830,12 @@
             "value" : "rojo"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rouge"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1550,6 +1862,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eliminar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer"
           }
         },
         "pt-BR" : {
@@ -1581,6 +1899,12 @@
             "value" : "REPS"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RÉPS"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1608,6 +1932,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buscar ejercicios"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher des exercices"
           }
         },
         "pt-BR" : {
@@ -1639,6 +1969,12 @@
             "value" : "SERIE"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SÉRIE"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1665,6 +2001,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajustes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres"
           }
         },
         "pt-BR" : {
@@ -1695,6 +2037,12 @@
             "value" : "Mostrar temporizador"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher le minuteur"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1721,6 +2069,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ordenar por"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier par"
           }
         },
         "pt-BR" : {
@@ -1751,6 +2105,12 @@
             "value" : "verde azulado"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sarcelle"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1777,6 +2137,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thème"
           }
         },
         "pt-BR" : {
@@ -1807,6 +2173,12 @@
             "value" : "No hay ninguna cuenta de correo electrónico asociada a este dispositivo. Si tienes alguna pregunta, no dudes en contactarnos en %@"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun compte e-mail n’est associé à cet appareil. Si vous avez des questions, n’hésitez pas à nous contacter à %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1833,6 +2205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiempo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temps"
           }
         },
         "pt-BR" : {
@@ -1863,6 +2241,12 @@
             "value" : "Título"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titre"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1889,6 +2273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Actualizado: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mis à jour : %@"
           }
         },
         "pt-BR" : {
@@ -1919,6 +2309,12 @@
             "value" : "US/Imperial (lbs)"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US/Impérial (lbs)"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1945,6 +2341,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Peso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poids"
           }
         },
         "pt-BR" : {
@@ -1975,6 +2377,12 @@
             "value" : "Unidad de peso"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unité de poids"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2001,6 +2409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unidades de peso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unités de poids"
           }
         },
         "pt-BR" : {
@@ -2031,6 +2445,12 @@
             "value" : "blanco"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "blanc"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2057,6 +2477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entrenamiento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entraînement"
           }
         },
         "pt-BR" : {
@@ -2087,6 +2513,12 @@
             "value" : "amarillo"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "jaune"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2114,6 +2546,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tus datos de entrenamiento se almacenan localmente en tu dispositivo, garantizando total privacidad. Nadie más puede acceder ni ver tus datos, asegurando la confidencialidad de tu información de fitness personal."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos données d’entraînement sont stockées localement sur votre appareil, garantissant une confidentialité totale. Personne d’autre ne peut accéder ou visualiser vos données, assurant la confidentialité de vos informations personnelles de fitness."
           }
         },
         "pt-BR" : {
