@@ -50,7 +50,6 @@ class WorkoutDao: WorkoutDaoProtocol {
             workout.addToExercises(exercise)
         }
         
-        print("timmy")
         workout.printPrettyString()
         return workout
     }
@@ -68,8 +67,12 @@ class WorkoutDao: WorkoutDaoProtocol {
         return templates
     }
     
-    func fetchLogs() async throws -> [Workout] {
+    func fetchLogs(from startDate: Date? = nil, to endDate: Date? = nil) async throws -> [Workout] {
         let request: NSFetchRequest<Workout> = Workout.fetchRequest()
+        if let startDate, let endDate {
+            let predicate = NSPredicate(format: "createdAt_ >= %@ AND createdAt_ < %@", startDate as NSDate, endDate as NSDate)
+            request.predicate = predicate
+        }
         let sortDescriptor = NSSortDescriptor(key: "createdAt_", ascending: false)
         request.sortDescriptors = [sortDescriptor]
         
@@ -178,6 +181,7 @@ class WorkoutDao: WorkoutDaoProtocol {
     }
     
     func loadExercises(from fileName: String) -> [String] {
+        // Does load correct exercise.txt based on user's localization
         guard let url = Bundle.main.url(forResource: fileName, withExtension: "txt"),
               let content = try? String(contentsOf: url) else { return [] }
         
