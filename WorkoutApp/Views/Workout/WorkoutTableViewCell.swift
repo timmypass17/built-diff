@@ -48,7 +48,7 @@ class WorkoutTableViewCell: UITableViewCell {
 //        descriptionLabel.text = template.templateExercises
 //            .map { translation[$0.name] ?? $0.name }
 //            .joined(separator: ", ")
-//        
+        
         descriptionLabel.text = template.templateExercises.map { $0.name }.joined(separator: ", ")
     }
     
