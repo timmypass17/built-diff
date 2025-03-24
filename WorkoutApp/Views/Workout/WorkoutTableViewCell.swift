@@ -25,12 +25,37 @@ class WorkoutTableViewCell: UITableViewCell {
     }
     
     func update(template: Template) {
-        titleLabel.text = template.title  // "\(template.title) \(template.index)"
-        let firstLetter =  template.title.first?.lowercased() ?? "a"
+        // TODO: Remove
+        let gymTermTranslations: [String: String] = [
+            "Pull Day": "プルデイ",
+            "Push Day": "プッシュデイ",
+            "Leg Day": "レッグデイ"
+        ]
+
+        titleLabel.text = gymTermTranslations[template.title] ?? template.title
+//        titleLabel.text = template.title  // "\(template.title) \(template.index)"
+        
         var config = UIImage.SymbolConfiguration(pointSize: 35)
         config = config.applying(UIImage.SymbolConfiguration(paletteColors: [.white, Settings.shared.selectedAccentColor]))
-        iconImageView.image = UIImage(systemName: "\(firstLetter).circle.fill", withConfiguration: config)
-        descriptionLabel.text = template.templateExercises.map { $0.name }.joined(separator: ", ")
+
+        // Check the user's language
+        let userLanguage = Locale.preferredLanguages.first ?? "en"
+        
+        let iconName: String
+        if userLanguage.starts(with: "en") {
+            iconName = "\(template.title.first?.lowercased() ?? "a").circle.fill"
+        } else {
+            iconName = "figure.strengthtraining.traditional.circle.fill"
+        }
+
+        iconImageView.image = UIImage(systemName: iconName, withConfiguration: config)
+        
+        // TODO: Remove
+        descriptionLabel.text = template.templateExercises
+            .map { translation[$0.name] ?? $0.name } // Replace if translation exists
+            .joined(separator: ", ")
+        
+//        descriptionLabel.text = template.templateExercises.map { $0.name }.joined(separator: ", ")
     }
     
     private func setupView() {
