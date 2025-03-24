@@ -58,7 +58,7 @@ struct FilterSegmentedView: View {
     var body: some View {
         Picker("Time", selection: $selectedFilter) {
             ForEach(SelectedFilter.allCases) { time in
-                Text(time.rawValue.capitalized)
+                Text(time.description)
             }
         }
         .pickerStyle(.segmented)
@@ -81,7 +81,7 @@ struct ProgressHeaderView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Personal Record".uppercased())
+            Text("Personal Record".localized.localizedUppercase)
                 .foregroundColor(.secondary)
                 .font(.subheadline)
             
@@ -104,18 +104,15 @@ struct ProgressListView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var filteredData: [ExerciseSet]
-    var footerSecondaryText: String {
-        filteredData.count == 1 ? "Workout" : "Workouts"
-    }
 
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("History".uppercased())
+                Text("history".localized)
                 
                 Spacer()
                 
-                Text("\(filteredData.count) \(footerSecondaryText)")
+                Text("%lld Workouts".localized(filteredData.count))
             }
             .foregroundColor(.secondary)
             .font(.caption)
@@ -153,8 +150,10 @@ struct ProgressDetailViewCell: View {
                     Text("\(exercise.weightString) \(weightUnit.shortDescription)")
                         .font(.headline)
                     
-                    //"60lbs 3x5 Sep 20, 2023"
-                    Text("\(filteredData[i].exercise!.getExerciseSets().count)x\(filteredData[i].reps) \(filteredData[i].exercise!.name) at \(formatDateMonthDayYear(filteredData[i].exercise!.workout!.createdAt_!))")
+                    // TODO: localized
+                     Text("\(filteredData[i].exercise!.getExerciseSets().count)x\(filteredData[i].reps) \(filteredData[i].exercise!.name) at \(formatDateMonthDayYear(filteredData[i].exercise!.workout!.createdAt_!))")
+//                    "60lbs 3x5 Sep 20, 2023"
+//                    Text("\(filteredData[i].exercise!.getExerciseSets().count)x\(filteredData[i].reps) \(translation[filteredData[i].exercise!.name] ?? "") at \(formatDateMonthDayYear(filteredData[i].exercise!.workout!.createdAt_!))")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .lineLimit(1)
@@ -225,12 +224,27 @@ struct ProgressChartView: View {
 
 
 enum SelectedFilter: String, CaseIterable, Identifiable {
-    case all = "all"
+    case all
     case week
     case month
-    case sixMonth = "6M"
+    case sixMonth
     case year
     var id: Self { self }
+    
+    var description: String {
+        switch self {
+        case .all:
+            return "all".localized.localizedCapitalized
+        case .week:
+            return "week".localized.localizedCapitalized
+        case .month:
+            return "month".localized.localizedCapitalized
+        case .sixMonth:
+            return "6m".localized.localizedUppercase
+        case .year:
+            return "year".localized.localizedCapitalized
+        }
+    }
 }
 
 func formatDateMonthDayYear(_ date: Date) -> String {

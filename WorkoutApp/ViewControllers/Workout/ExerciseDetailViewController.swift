@@ -53,12 +53,12 @@ class ExerciseDetailViewController: UIViewController {
         
         let setsLabel = UILabel(frame: CGRect(x: 95, y: pickerView.frame.midY - 15, width: 75, height: 30)) // (height / 2) = 15
         setsLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-        setsLabel.text = "sets"
+        setsLabel.text = "sets".localized
         pickerView.addSubview(setsLabel)
         
         let repsLabel = UILabel(frame: CGRect(x: 252, y: pickerView.frame.midY - 15, width: 75, height: 30))
         repsLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-        repsLabel.text = "reps"
+        repsLabel.text = "reps".localized
         pickerView.addSubview(repsLabel)
     }
     

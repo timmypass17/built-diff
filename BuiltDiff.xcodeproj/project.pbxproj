@@ -341,7 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				321F97042B740B5E00AB15B7 /* ProgressViewCell.swift */,
-				324C37412B76EC7F0098B5E6 /* ProgressDetailView.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -396,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				32BF976C2D1CC7070004FA47 /* ProgressViewController.swift */,
+				324C37412B76EC7F0098B5E6 /* ProgressDetailView.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";

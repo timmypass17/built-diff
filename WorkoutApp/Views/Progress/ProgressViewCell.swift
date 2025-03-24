@@ -25,7 +25,9 @@ struct ProgressViewCell: View {
                 HStack {
                     Image(systemName: "dumbbell.fill")
                         .foregroundColor(.accentColor)
+                    // TODO: local
                     Text(recentData.name)
+//                    Text(translation[recentData.name] ?? "")
                 }
                 .font(.system(.headline, weight: .bold))
                 
@@ -84,7 +86,6 @@ struct ExerciseTitleView: View {
 }
 
 struct HighestWeightView: View {
-    // special mark for UserDefaults
     @AppStorage("weightUnit") var weightUnit: WeightType = Settings.shared.weightUnit
     var sets: [ExerciseSet]
     
@@ -135,6 +136,7 @@ struct HighestWeightView: View {
     }
 }
 
+// TODO: Not used. remove?
 struct ExerciseChartView: View {
     var weights: [Double]
     

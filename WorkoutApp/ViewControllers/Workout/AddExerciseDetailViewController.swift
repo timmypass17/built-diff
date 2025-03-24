@@ -19,7 +19,7 @@ class AddExerciseDetailViewController: ExerciseDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", primaryAction: didTapAddButton())
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add".localized, primaryAction: didTapAddButton())
     }
     
     override func viewWillDisappear(_ animated: Bool) {

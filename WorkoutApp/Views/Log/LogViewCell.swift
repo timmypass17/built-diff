@@ -104,6 +104,7 @@ class LogViewCell: UITableViewCell {
         dateFormatter.dateFormat = "EEE"
         weekdayLabel.text = dateFormatter.string(from: createdAt)
         dayLabel.text = "\(Calendar.current.component(.day, from: createdAt))"
+        // TODO: Remove
         workoutLabel.text = workout.title
         exercisesLabel.text = workout.getExercises()
             .compactMap { exercise in
@@ -118,6 +119,44 @@ class LogViewCell: UITableViewCell {
                 return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exercise.name) - \(weightString) \(Settings.shared.weightUnit.shortDescription)"
             }
             .joined(separator: "\n")
+
+//        workoutLabel.text = translation[workout.title] ?? workout.title
+//        exercisesLabel.text = workout.getExercises()
+//            .compactMap { exercise in
+//                guard let bestSet = exercise.bestSet else { return "" }
+//                let weightString: String
+//                if Settings.shared.weightUnit == .lbs {
+//                    weightString = bestSet.weight.lbsString
+//                } else {
+//                    weightString = bestSet.weight.kgString
+//                }
+//                
+//                let exerciseName = translation[exercise.name] ?? exercise.name
+//                return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exerciseName) - \(weightString) \(Settings.shared.weightUnit.shortDescription)"
+//            }
+//            .joined(separator: "\n")
+
     }
 }
 
+let translation: [String: String] = [
+    "Pull Day": "プルデイ",
+    "Push Day": "プッシュデイ",
+    "Leg Day": "レッグデイ",
+    "Bench Press": "ベンチプレス",
+    "Squat": "スクワット",
+    "Deadlift": "デッドリフト",
+    "Dumbbell Curl": "ダンベルカール",
+    "Bent Over Row": "ベントオーバーロウ",
+    "Dumbbell Shoulder Press": "ダンベルショルダープレス",
+    "Incline Bench Press": "インクラインベンチプレス",
+    "Lat Pulldown": "ラットプルダウ",
+    "Dumbbell Lateral Raise": "ダンベルレータルレイズ",
+    "Romanian Deadlift": "ルーマニアンデッドリフト",
+    "Tricep Pushdown": "トライセプスプッシュダウン",
+    "Hammer Curl": "ハンマーカール",
+    "Seated Cable Row": "シーテッドケーブルロウ",
+    "Machine Calf Raise": "マシンカーフレイズ",
+    "Dumbbell Lunge": "ダンベルランジ",
+    "Tricep Extension": "トライセプスエクステンション"
+]

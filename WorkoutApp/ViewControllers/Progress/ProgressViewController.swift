@@ -174,7 +174,9 @@ extension ProgressViewController: UITableViewDelegate {
             let allExerciseData = ExerciseData(name: data.name, exerciseSets: allSets, bestLift: data.bestLift, lastUpdated: data.lastUpdated, latestLift: data.latestLift)
             let progressDetailView = ProgressDetailView(data: allExerciseData)
             let hostingController = UIHostingController(rootView: progressDetailView)
+            // TODO: localize
             hostingController.navigationItem.title = data.name
+//            hostingController.navigationItem.title = translation[data.name]
             navigationController?.pushViewController(hostingController, animated: true)
         }
     }
