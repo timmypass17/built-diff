@@ -170,6 +170,7 @@ class ExerciseHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // TODO: Remove not used?
     @objc func editButtonTapped() {
         let alert = UIAlertController(title: "Rename Exercise", message: "Enter new exercise below", preferredStyle: .alert)
         

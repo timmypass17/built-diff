@@ -33,7 +33,7 @@ class LogDetailViewController: WorkoutDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButton = UIBarButtonItem(title: "Save", primaryAction: didTapSaveButton())
+        let saveButton = UIBarButtonItem(title: "Save".localized, primaryAction: didTapSaveButton())
         let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), primaryAction: didTapCalendarButton())
         navigationItem.rightBarButtonItems = [saveButton, calendarButton]
     }
