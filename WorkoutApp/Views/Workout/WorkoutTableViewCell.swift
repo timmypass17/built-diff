@@ -32,8 +32,8 @@ class WorkoutTableViewCell: UITableViewCell {
             "Leg Day": "レッグデイ"
         ]
 
-        titleLabel.text = gymTermTranslations[template.title] ?? template.title
-//        titleLabel.text = template.title  // "\(template.title) \(template.index)"
+//        titleLabel.text = gymTermTranslations[template.title] ?? template.title
+        titleLabel.text = template.title  // "\(template.title) \(template.index)"
         
         var config = UIImage.SymbolConfiguration(pointSize: 35)
         config = config.applying(UIImage.SymbolConfiguration(paletteColors: [.white, Settings.shared.selectedAccentColor]))
@@ -51,11 +51,11 @@ class WorkoutTableViewCell: UITableViewCell {
         iconImageView.image = UIImage(systemName: iconName, withConfiguration: config)
         
         // TODO: Remove
-        descriptionLabel.text = template.templateExercises
-            .map { translation[$0.name] ?? $0.name } // Replace if translation exists
-            .joined(separator: ", ")
+//        descriptionLabel.text = template.templateExercises
+//            .map { translation[$0.name] ?? $0.name } // Replace if translation exists
+//            .joined(separator: ", ")
         
-//        descriptionLabel.text = template.templateExercises.map { $0.name }.joined(separator: ", ")
+        descriptionLabel.text = template.templateExercises.map { $0.name }.joined(separator: ", ")
     }
     
     private func setupView() {

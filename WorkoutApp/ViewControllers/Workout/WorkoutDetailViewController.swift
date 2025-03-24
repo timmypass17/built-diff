@@ -34,8 +34,8 @@ class WorkoutDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: Local
-//        navigationItem.title = workout.title
-        navigationItem.title = translation[workout.title]
+        navigationItem.title = workout.title
+//        navigationItem.title = translation[workout.title]
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.dataSource = self
         tableView.delegate = self
@@ -449,8 +449,8 @@ extension WorkoutDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let exercises = workout.getExercises()
         // TODO: local
-//        let header = ExerciseHeaderView(title: exercises[section].name, section: section)
-        let header = ExerciseHeaderView(title: translation[exercises[section].name] ?? "", section: section)
+        let header = ExerciseHeaderView(title: exercises[section].name, section: section)
+//        let header = ExerciseHeaderView(title: translation[exercises[section].name] ?? "", section: section)
         
         header.delegate = self
         header.editButton.isHidden = true

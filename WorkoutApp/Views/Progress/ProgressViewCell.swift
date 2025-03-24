@@ -26,8 +26,8 @@ struct ProgressViewCell: View {
                     Image(systemName: "dumbbell.fill")
                         .foregroundColor(.accentColor)
                     // TODO: local
-//                    Text(recentData.name)
-                    Text(translation[recentData.name] ?? "")
+                    Text(recentData.name)
+//                    Text(translation[recentData.name] ?? "")
                 }
                 .font(.system(.headline, weight: .bold))
                 

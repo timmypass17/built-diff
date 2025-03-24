@@ -105,38 +105,37 @@ class LogViewCell: UITableViewCell {
         weekdayLabel.text = dateFormatter.string(from: createdAt)
         dayLabel.text = "\(Calendar.current.component(.day, from: createdAt))"
         // TODO: Remove
-//        workoutLabel.text = workout.title
-//        exercisesLabel.text = workout.getExercises()
-//            .compactMap { exercise in
-//                guard let bestSet = exercise.bestSet else { return nil }
-//                let weightString: String
-//                if Settings.shared.weightUnit == .lbs {
-//                    weightString = bestSet.weight.lbsString
-//                } else {
-//                    weightString = bestSet.weight.kgString
-//                }                
-//                
-//                let exerciseName = 
-//                return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exercise.name) - \(weightString) \(Settings.shared.weightUnit.shortDescription)"
-//            }
-//            .joined(separator: "\n")
-
+        workoutLabel.text = workout.title
         exercisesLabel.text = workout.getExercises()
             .compactMap { exercise in
-                guard let bestSet = exercise.bestSet else { return "" }
+                guard let bestSet = exercise.bestSet else { return nil }
                 let weightString: String
                 if Settings.shared.weightUnit == .lbs {
                     weightString = bestSet.weight.lbsString
                 } else {
                     weightString = bestSet.weight.kgString
-                }
+                }                
                 
-                let exerciseName = translation[exercise.name] ?? exercise.name
-                return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exerciseName) - \(weightString) \(Settings.shared.weightUnit.shortDescription)"
+                return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exercise.name) - \(weightString) \(Settings.shared.weightUnit.shortDescription)"
             }
             .joined(separator: "\n")
 
-        workoutLabel.text = translation[workout.title] ?? workout.title
+//        workoutLabel.text = translation[workout.title] ?? workout.title
+//        exercisesLabel.text = workout.getExercises()
+//            .compactMap { exercise in
+//                guard let bestSet = exercise.bestSet else { return "" }
+//                let weightString: String
+//                if Settings.shared.weightUnit == .lbs {
+//                    weightString = bestSet.weight.lbsString
+//                } else {
+//                    weightString = bestSet.weight.kgString
+//                }
+//                
+//                let exerciseName = translation[exercise.name] ?? exercise.name
+//                return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exerciseName) - \(weightString) \(Settings.shared.weightUnit.shortDescription)"
+//            }
+//            .joined(separator: "\n")
+
     }
 }
 
