@@ -40,6 +40,7 @@
 		3258997A2B88503D00C78FED /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325899792B88503D00C78FED /* ThemeTableViewController.swift */; };
 		325FC5D52B747E8C0023C02D /* EmptyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325FC5D42B747E8C0023C02D /* EmptyLabel.swift */; };
 		3264C9112D754E2D001A87E8 /* BuiltDiffWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3264C8EE2D754E29001A87E8 /* BuiltDiffWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3270A68E2D93347B00C5B387 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 32339BBC2D8B810F006B2FA0 /* Localizable.xcstrings */; };
 		327181EA2D2B08F200DDA1F3 /* ExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327181E92D2B08F200DDA1F3 /* ExerciseData.swift */; };
 		327181EC2D2B1C4900DDA1F3 /* CreateTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327181EB2D2B1C4900DDA1F3 /* CreateTemplateViewController.swift */; };
 		327181EE2D2C484900DDA1F3 /* EditTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327181ED2D2C484900DDA1F3 /* EditTemplateViewController.swift */; };
@@ -691,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3270A68E2D93347B00C5B387 /* Localizable.xcstrings in Resources */,
 				32339BC52D8C8B48006B2FA0 /* exercises.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1204,7 +1206,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1238,7 +1240,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
