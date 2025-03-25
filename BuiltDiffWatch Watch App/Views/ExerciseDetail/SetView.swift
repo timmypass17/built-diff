@@ -50,7 +50,7 @@ struct SetView: View {
                 }
                 
                 VStack {
-                    Text("Reps".uppercased())
+                    Text("reps".localized.localizedUppercase)
                         .fontWeight(.semibold)
                     
                     Picker("Select reps", selection: $set.reps) {

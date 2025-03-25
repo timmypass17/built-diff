@@ -30,7 +30,7 @@ struct WorkoutsView: View {
                             WorkoutCellView(
                                 iconName: "\(template.title.first?.lowercased() ?? "a").circle.fill",
                                 title: template.title,
-                                description: "\(template.templateExercises.count) exercises",
+                                exerciseCount: template.templateExercises.count,
                                 color: appState.color
                             )
                         }
