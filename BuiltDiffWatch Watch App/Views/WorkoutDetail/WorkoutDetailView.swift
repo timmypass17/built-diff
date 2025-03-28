@@ -33,7 +33,9 @@ struct WorkoutDetailView: View {
             }
 
         }
+        // TODO: Local
         .navigationTitle(workoutDetailViewModel.workout.title)
+//        .navigationTitle(translation[workoutDetailViewModel.workout.title] ?? "")
         .navigationBarBackButtonHidden(true)
         .navigationDestination(for: ExerciseWrapper.self) { exercise in
             ExerciseDetailView(exercise: exercise)

@@ -76,7 +76,7 @@ class WeightTableViewController: UITableViewController {
         let appContext: [String: Any] = [
             PayloadKey.timeStamp: timeString,
             PayloadKey.colorData: colorData,
-            PayloadKey.weightType: Settings.shared.weightUnit.shortDescription
+            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
         ]
         
         updateAppContext(appContext)

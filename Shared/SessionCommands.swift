@@ -39,6 +39,7 @@ extension SessionCommands {
             commandStatus.phrase = .failed
             commandStatus.errorMessage = error.localizedDescription
         }
+
         postNotificationOnMainQueueAsync(name: .dataDidFlow, object: commandStatus)
     }
 

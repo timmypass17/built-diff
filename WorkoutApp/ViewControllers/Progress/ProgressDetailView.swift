@@ -154,9 +154,9 @@ struct ProgressDetailViewCell: View {
                      Text("\(filteredData[i].exercise!.getExerciseSets().count)x\(filteredData[i].reps) \(filteredData[i].exercise!.name) at \(formatDateMonthDayYear(filteredData[i].exercise!.workout!.createdAt_!))")
 //                    "60lbs 3x5 Sep 20, 2023"
 //                    Text("\(filteredData[i].exercise!.getExerciseSets().count)x\(filteredData[i].reps) \(translation[filteredData[i].exercise!.name] ?? "") at \(formatDateMonthDayYear(filteredData[i].exercise!.workout!.createdAt_!))")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
+//                        .font(.subheadline)
+//                        .foregroundColor(.secondary)
+//                        .lineLimit(1)
                 }
                 
                 Spacer()

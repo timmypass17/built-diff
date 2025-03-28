@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct WorkoutCellView: View {
-    let iconName: String
+    var iconName: String
     let title: String
     let exerciseCount: Int
     let color: Color
+    
+    
+    init(iconName: String, title: String, exerciseCount: Int, color: Color) {
+        let userLanguage = Locale.preferredLanguages.first ?? "en"
+        if userLanguage.starts(with: "en") {
+            self.iconName = iconName
+        } else {
+            self.iconName = "figure.strengthtraining.traditional.circle.fill"
+        }
+        self.title = title
+        self.exerciseCount = exerciseCount
+        self.color = color
+    }
     
     var body: some View {
         HStack(spacing: 12) {
@@ -22,11 +35,17 @@ struct WorkoutCellView: View {
                 .foregroundStyle(.white, color)
             
             VStack(alignment: .leading) {
+                // TODO: Local
+//                Text(translation[title] ?? title)
+//                    .fontWeight(.semibold)
+//                    .lineLimit(1)
                 Text(title)
                     .fontWeight(.semibold)
+                    .lineLimit(1)
                 Text("%lld Exercises".localized(exerciseCount))
                     .foregroundStyle(.secondary)
                     .font(.caption)
+                    .lineLimit(1)
             }
         }
     }

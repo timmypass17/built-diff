@@ -104,7 +104,7 @@ class LogViewCell: UITableViewCell {
         dateFormatter.dateFormat = "EEE"
         weekdayLabel.text = dateFormatter.string(from: createdAt)
         dayLabel.text = "\(Calendar.current.component(.day, from: createdAt))"
-        // TODO: Remove
+        // TODO: local
         workoutLabel.text = workout.title
         exercisesLabel.text = workout.getExercises()
             .compactMap { exercise in
@@ -138,25 +138,3 @@ class LogViewCell: UITableViewCell {
 
     }
 }
-
-let translation: [String: String] = [
-    "Pull Day": "プルデイ",
-    "Push Day": "プッシュデイ",
-    "Leg Day": "レッグデイ",
-    "Bench Press": "ベンチプレス",
-    "Squat": "スクワット",
-    "Deadlift": "デッドリフト",
-    "Dumbbell Curl": "ダンベルカール",
-    "Bent Over Row": "ベントオーバーロウ",
-    "Dumbbell Shoulder Press": "ダンベルショルダープレス",
-    "Incline Bench Press": "インクラインベンチプレス",
-    "Lat Pulldown": "ラットプルダウ",
-    "Dumbbell Lateral Raise": "ダンベルレータルレイズ",
-    "Romanian Deadlift": "ルーマニアンデッドリフト",
-    "Tricep Pushdown": "トライセプスプッシュダウン",
-    "Hammer Curl": "ハンマーカール",
-    "Seated Cable Row": "シーテッドケーブルロウ",
-    "Machine Calf Raise": "マシンカーフレイズ",
-    "Dumbbell Lunge": "ダンベルランジ",
-    "Tricep Extension": "トライセプスエクステンション"
-]

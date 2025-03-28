@@ -16,12 +16,18 @@ struct ExerciseCellView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            // TODO: Local
+//            Text(translation[exercise.name] ?? exercise.name)
+//                .fontWeight(.semibold)
+//                .lineLimit(1)
             Text(exercise.name)
                 .fontWeight(.semibold)
+                .lineLimit(1)
             
             Text("\(exercise.sets.count { $0.isComplete })/\(exercise.sets.count) sets")
                 .foregroundStyle(.secondary)
                 .font(.caption)
+                .lineLimit(1)
             
             if didFinishExercise {
                 SegmentedProgressView(sets: exercise.sets)

@@ -18,6 +18,12 @@ struct BuiltDiffWatch_Watch_AppApp: App {
                 WorkoutsView(workoutsViewModel: WorkoutsViewModel())
                     .environment(\.managedObjectContext, CoreDataStack.shared.mainContext)
                     .environment(appState)
+                    .onAppear() {
+                        appState.updateWithInitialState()
+                    }
+                    .onReceive(NotificationCenter.default.dataDidFlowPublisher) { notification in
+                        appState.dataDidFlow(notification)
+                    }
             }
         }
     }

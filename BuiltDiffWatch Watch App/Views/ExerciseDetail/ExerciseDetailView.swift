@@ -27,7 +27,9 @@ struct ExerciseDetailView: View {
                 .tag(index)
             }
         }
+        // TODO: Local
         .navigationTitle(exercise.name)
+//        .navigationTitle(translation[exercise.name] ?? "")
     }
 }
 

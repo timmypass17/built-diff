@@ -81,9 +81,9 @@ class AccentColorTableViewController: UITableViewController {
         let appContext: [String: Any] = [
             PayloadKey.timeStamp: timeString,
             PayloadKey.colorData: colorData,
-            PayloadKey.weightType: Settings.shared.weightUnit.shortDescription
+            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
         ]
-        
+                
         updateAppContext(appContext)
     }
     
@@ -97,16 +97,16 @@ class AccentColorTableViewController: UITableViewController {
         
 //        defer { noteLabel.isHidden = logView.text.isEmpty ? false: true }
 //        
-//        // If an error occurs, show the error message and return.
-//        //
-//        if let errorMessage = commandStatus.errorMessage {
-//            log("! \(commandStatus.command.rawValue)...\(errorMessage)")
-//            return
-//        }
+        // If an error occurs, show the error message and return.
+        if let errorMessage = commandStatus.errorMessage {
+            print("! \(commandStatus.command.rawValue)...\(errorMessage)")
+            return
+        }
         
         guard let userInfo = commandStatus.userInfo else { return }
         // TODO: If watch updated, update iOS app here
         print("#\(commandStatus.command.rawValue)...\n\(commandStatus.phrase.rawValue) at \(userInfo.timeStamp)\nColor: \(userInfo.color)\nWeight Type: \(userInfo.weightType.fullDescription)")
+        
     }
 }
 
@@ -196,7 +196,7 @@ extension AccentColorTableViewController: CustomColorTableViewCellDelegate {
         let appContext: [String: Any] = [
             PayloadKey.timeStamp: timeString,
             PayloadKey.colorData: colorData,
-            PayloadKey.weightType: Settings.shared.weightUnit.shortDescription
+            PayloadKey.weightType: Settings.shared.weightUnit.rawValue
         ]
         
         updateAppContext(appContext)

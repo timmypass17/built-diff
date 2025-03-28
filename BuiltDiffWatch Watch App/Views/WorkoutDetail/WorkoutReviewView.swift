@@ -15,6 +15,7 @@ struct WorkoutReviewView: View {
     var body: some View {
         List {
             ForEach(workoutReviewViewModel.workout.exercises) { exercise in
+                // TOOD: local
                 Section(exercise.name) {
                     ForEach(Array(exercise.sets.enumerated()), id: \.offset) { index, set in
                         WorkoutConfirmationCellView(index: index, set: set)
@@ -22,7 +23,9 @@ struct WorkoutReviewView: View {
                 }
             }
         }
+        // TODO: Local
         .navigationTitle(workoutReviewViewModel.workout.title)
+//        .navigationTitle(translation[workoutReviewViewModel.workout.title] ?? "")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

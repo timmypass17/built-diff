@@ -16,14 +16,15 @@ import Combine
     var navigationPath = NavigationPath()
     let command: Command = .updateAppContext
     
-    init() {
-        updateWithInitialState()
-        NotificationCenter.default.addObserver(self, selector: #selector(dataDidFlow), name: .dataDidFlow, object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .dataDidFlow, object: nil)
-    }
+    // This doesn't work. WCSession may not yet be fully activated. Use onAppear()
+//    init() {
+//        updateWithInitialState()
+//        NotificationCenter.default.addObserver(self, selector: #selector(dataDidFlow), name: .dataDidFlow, object: nil)
+//    }
+//    
+//    deinit {
+//        NotificationCenter.default.removeObserver(self, name: .dataDidFlow, object: nil)
+//    }
     
     /**
      Update the user interface with the command status.
@@ -38,7 +39,7 @@ import Combine
     /**
      Update the view with the initial session state.
      */
-    private func updateWithInitialState() {
+    func updateWithInitialState() {
         if command == .updateAppContext {
             let mostRecentAppContext: [String: Any] = WCSession.default.receivedApplicationContext
             
