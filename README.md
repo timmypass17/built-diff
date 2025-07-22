@@ -1,11 +1,11 @@
 # BuiltDiff
-An iOS workout tracker to track lifting sets and reps.
+An iOS/watchOS workout tracker to track lifting sets and reps.
 
 <a href="https://apps.apple.com/us/app/builtdiff/id6478643263?platform=iphone">
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" width="200 style="padding-bottom: 20px;"/>
 </a>
 
-## App Screenshots
+## iOS Screenshots
 <div style="display: flex; overflow-x: auto; margin-top: 20px;">
     <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ed/48/d5/ed48d5e6-14fa-5db7-9d29-06b2bdf73c00/home.png/400x800bb.png" alt="Home" width="200" style="margin-right: 10px;">
     <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/6d/3c/71/6d3c711e-ea37-3a6c-3ed8-0b47650984c6/workout.png/400x800bb.png" alt="Workout" width="200" style="margin-right: 10px;">
