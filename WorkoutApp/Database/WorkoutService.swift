@@ -18,7 +18,7 @@ class WorkoutService {
     }
     
     func createTemplate(childContext: NSManagedObjectContext) -> Template {
-        workoutDao.createTemplate(childContext: childContext)
+        workoutDao.createTemplate(context: childContext)
     }
     
     func createWorkout(template: Template, childContext: NSManagedObjectContext) -> Workout {
@@ -65,19 +65,8 @@ class WorkoutService {
         }
     }
     
-    // had to remove inout, so just make copy and modify that copy
-    // itself cant use inout, but within it can use inout?
-    func deleteTemplate(_ templates: [Template], at indexPath: IndexPath) async -> [Template] {
-        do {
-            var updatedTemplates = templates
-            let templateToRemove = updatedTemplates.remove(at: indexPath.row)
-            try await workoutDao.deleteTemplate(templateToRemove)
-            try await workoutDao.updateTemplatesPositions(updatedTemplates)
-            return updatedTemplates
-        } catch {
-            print("error deleting template: \(error)")
-            return templates
-        }
+    func deleteTemplate(_ template: Template) {
+        workoutDao.deleteTemplate(template)
     }
     
     func deleteLog(_ logs: [Date: [Workout]], at indexPath: IndexPath) async -> [Date: [Workout]] {
@@ -118,3 +107,12 @@ class WorkoutService {
 
 // Core data testing:
 // The solution is to create a Core Data stack subclass that uses an in-memory store rather than the current SQLite store. Because an in-memory store isn’t persisted to disk, when the test finishes executing, the in-memory store releases its data.
+
+// Q: Why DAO?
+// A: DAO (Data Access Object is responsible for data access logic (e.g.g CRUD operations in your database (Core Data)).
+//    Service class doesn't need to know "how" data is stored/fetched, just knows what operations it can perform
+//    - this seperation allows us to swap DAO implementations (e.g. switch Core Data to Firebase) without changing service layer
+//    - allows us to test dao independently
+// DAO: Responsible solely for data access logic — how to read, write, update, delete data from your database (in this case, Core Data).
+// Service: Responsible for business logic — rules, workflows, combining multiple DAO calls, coordinating actions, preparing data for UI or other layers.
+// So your WorkoutService calls the DAO for raw data operations, and potentially adds business logic on top. This makes your code more modular, maintainable, and testable.

@@ -13,7 +13,10 @@ import CoreData
 extension Template {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Template> {
-        return NSFetchRequest<Template>(entityName: "Template")
+        let fetchRequest = NSFetchRequest<Template>(entityName: "Template")
+        let sortDescriptor = NSSortDescriptor(key: "index", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        return fetchRequest
     }
 
     @NSManaged public var index: Int16

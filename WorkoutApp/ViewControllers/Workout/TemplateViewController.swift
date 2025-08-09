@@ -24,9 +24,9 @@ class TemplateViewController: UIViewController {
     let childContext: NSManagedObjectContext
     let workoutService: WorkoutService
 
-    init(template: Template, childContext: NSManagedObjectContext, workoutService: WorkoutService) {
+    init(template: Template, workoutService: WorkoutService) {
         self.template = template
-        self.childContext = childContext
+        self.childContext = template.managedObjectContext!
         self.workoutService = workoutService
         super.init(nibName: nil, bundle: nil)
     }
@@ -66,7 +66,7 @@ class TemplateViewController: UIViewController {
     }
     
     func updateSaveButton() {
-        navigationItem.rightBarButtonItems?[0].isEnabled = !template.title.isEmpty
+        navigationItem.rightBarButtonItems?[0].isEnabled = !template.title.isEmpty && template.templateExercises.count > 0
     }
     
     func didTapCancelButton() -> UIAction {
@@ -165,19 +165,15 @@ extension TemplateViewController: UITableViewDelegate {
             template.removeFromTemplateExercises_(exerciseToRemove) // note: Does not delete exercise, still persisted
             childContext.delete(exerciseToRemove)                   // Exercise is marked for deletion
             
-            do {
-                try childContext.save() // Exercise is now deleted
-            } catch {
-                print("Error saving reordered items: \(error)")
-            }
-            
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            // Reorder index
+            
+            
+            updateSaveButton()
         }
     }
     
-    // Holy fuck, have to use set cause cloudkit doesn't have any "ordering" so everything is stored as an unordered
-    // set but with an "index" field so i have to make sure items are still in sorted order after modifying them
-    // TODO: Make sure everything works properly, still bug when deleting log sometimes? Try using cloudkit
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         guard destinationIndexPath.section != 0 else { return }
         
@@ -271,6 +267,8 @@ extension TemplateViewController: AddExerciseDetailViewControllerDelegate {
         template.addToTemplateExercises_(sampleExercise)
         
         tableView.insertRows(at: [IndexPath(row: template.templateExercises.count - 1, section: Section.exercises.rawValue)], with: .automatic)
+        
+        updateSaveButton()
     }
     
     func addExerciseDetailViewControllerDelegate(_ viewController: AddExerciseDetailViewController, didDismiss: Bool) {

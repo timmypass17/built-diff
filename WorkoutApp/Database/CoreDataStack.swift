@@ -55,6 +55,12 @@ class CoreDataStack {
         // Changes made in a child context are not saved directly to the persistent store. Instead, they're "pushed" up to the parent context using save(), and the parent context also needs to save for changes to be persisted in the store.
     }
     
+    func childContext(parentContext: NSManagedObjectContext? = CoreDataStack.shared.mainContext) -> NSManagedObjectContext {
+        let childContext = NSManagedObjectContext(.mainQueue)
+        childContext.parent = parentContext
+        return childContext
+    }
+    
     // Background Context: The background context is a private queue context, but it’s not a child of the main context.
     // Use a background context for heavier operations that need to be committed directly to the persistent store, such as importing data or performing batch operations.
     func newBackgroundContext() -> NSManagedObjectContext {

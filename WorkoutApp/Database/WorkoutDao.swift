@@ -20,8 +20,8 @@ class WorkoutDao: WorkoutDaoProtocol {
         self.backgroundContext = backgroundContext
     }
     
-    func createTemplate(childContext: NSManagedObjectContext) -> Template {
-        let newTemplate = Template(context: childContext)
+    func createTemplate(context: NSManagedObjectContext) -> Template {
+        let newTemplate = Template(context: context)
         newTemplate.title = ""
         return newTemplate
     }
@@ -148,14 +148,25 @@ class WorkoutDao: WorkoutDaoProtocol {
         return bestLift
     }
     
-    // existingObject vs object
-    func deleteTemplate(_ template: Template) async throws {
-        try await backgroundContext.perform {
-            // Fetch the object in the background context
-            let objectInContext = try self.backgroundContext.existingObject(with: template.objectID)
-            self.backgroundContext.delete(objectInContext)
+    func deleteTemplate(_ template: Template) {
+        CoreDataStack.shared.mainContext.delete(template)
+        CoreDataStack.shared.saveContext()
+        updateTemplateIndexes()
+    }
+    
+    private func updateTemplateIndexes() {
+        let fetchRequest: NSFetchRequest<Template> = Template.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
+        
+        do {
+            let templates = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
+            for (index, template) in templates.enumerated() {
+                template.index = Int16(index)
+            }
             
-            try self.backgroundContext.save()
+            CoreDataStack.shared.saveContext()
+        } catch {
+            print("Failed to fetch templates during delete: \(error)")
         }
     }
     
