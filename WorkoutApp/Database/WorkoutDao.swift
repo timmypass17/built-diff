@@ -170,6 +170,33 @@ class WorkoutDao: WorkoutDaoProtocol {
         }
     }
     
+    func deleteTemplateExercise(_ templateExercise: TemplateExercise) {
+        guard let childContext = templateExercise.managedObjectContext,
+              let template = templateExercise.template
+        else { return }
+        
+        childContext.delete(templateExercise)
+        
+        updateTemplateExercisesIndexes(for: template)
+    }
+    
+    private func updateTemplateExercisesIndexes(for template: Template) {
+        guard let childContext = template.managedObjectContext else { return }
+        let fetchRequest: NSFetchRequest<TemplateExercise> = TemplateExercise.fetchRequest(for: template)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
+        
+        do {
+            let exercises = try childContext.fetch(fetchRequest)
+            for (index, exercise) in exercises.enumerated() {
+                exercise.index = Int16(index)
+            }
+            
+            try childContext.save()
+        } catch {
+            print("Failed to fetch templates during delete: \(error)")
+        }
+    }
+    
     func deleteLog(_ log: Workout) async throws {
         try await backgroundContext.perform {
             let objectInContext = try self.backgroundContext.existingObject(with: log.objectID)
@@ -199,6 +226,27 @@ class WorkoutDao: WorkoutDaoProtocol {
         return content.components(separatedBy: "\n").filter { !$0.isEmpty }
     }
     
+    func moveTemplate(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard sourceIndexPath != destinationIndexPath else { return }
+        
+        let fetchRequest: NSFetchRequest<Template> = Template.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
+        
+        do {
+            var templates = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
+            
+            let templateToMove = templates.remove(at: sourceIndexPath.row)
+            templates.insert(templateToMove, at: destinationIndexPath.row)
+            
+            for (index, template) in templates.enumerated() {
+                template.index = Int16(index)
+            }
+            
+            CoreDataStack.shared.saveContext()
+        } catch {
+            print("Failed to reorder templates: \(error)")
+        }
+    }
 }
 
 extension Double {

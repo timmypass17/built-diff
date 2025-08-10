@@ -6,14 +6,9 @@
 //
 
 import UIKit
-
-protocol CreateTemplateViewControllerDelegate: AnyObject {
-    func createTemplateViewController(_ viewController: CreateTemplateViewController, didCreateTemplate template: Template)
-}
+import CoreData
 
 class CreateTemplateViewController: TemplateViewController {
-
-    weak var delegate: CreateTemplateViewControllerDelegate?
 
     init(workoutService: WorkoutService) {
         let childContext = CoreDataStack.shared.childContext()
@@ -35,8 +30,28 @@ class CreateTemplateViewController: TemplateViewController {
     func didTapCreateButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self else { return }
-            delegate?.createTemplateViewController(self, didCreateTemplate: template)
-            self.dismiss(animated: true)
+            
+            do {
+                let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Template")
+                fetchRequest.resultType = .dictionaryResultType
+                fetchRequest.propertiesToFetch = ["index"]
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: false)]
+                fetchRequest.fetchLimit = 1
+                
+                if let result = try? childContext.fetch(fetchRequest),
+                   let maxIndex = result.first?["index"] as? Int {
+                    template.index = Int16(maxIndex + 1)
+                } else {
+                    template.index = 0
+                }
+                
+                try childContext.save()
+                
+                CoreDataStack.shared.saveContext()
+                self.dismiss(animated: true)
+            } catch {
+                print("Error creating template: \(error)")
+            }
         }
     }
 

@@ -21,5 +21,6 @@ protocol WorkoutDaoProtocol {
     func updateTemplatesPositions(_ templates: [Template]) async throws
     func loadExercises(from fileName: String) -> [String]
     
-//    func deleteTemplate(_ templates: [Template], at indexPath: IndexPath) -> [Template]
+    func deleteTemplateExercise(_ templateExercise: TemplateExercise)
+    func moveTemplate(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
 }

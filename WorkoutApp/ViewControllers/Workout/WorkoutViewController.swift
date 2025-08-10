@@ -107,7 +107,7 @@ class WorkoutViewController: UIViewController {
         return UIAction { [weak self] _ in
             guard let self else { return }
             let createWorkoutViewController = CreateTemplateViewController(workoutService: workoutService)
-            createWorkoutViewController.delegate = self
+//            createWorkoutViewController.delegate = self
             let vc = UINavigationController(rootViewController: createWorkoutViewController)
             self.present(vc, animated: true)
         }
@@ -222,41 +222,16 @@ extension WorkoutViewController: UITableViewDragDelegate {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard sourceIndexPath != destinationIndexPath,
-              var templates = fetchedResultsController.fetchedObjects
-        else { return  }
+        guard sourceIndexPath != destinationIndexPath else { return  }
         
         // https://developer.apple.com/documentation/coredata/nsfetchedresultscontrollerdelegate#1661452
         // why ignore update by nsfetchedresultcontroller? the table view is already in the appropriate state because of the user’s action.
         changeIsUserDriven = true
         defer { changeIsUserDriven = false }
         
-        let removedObject = templates.remove(at: sourceIndexPath.row)
-        templates.insert(removedObject, at: destinationIndexPath.row)
-        
-        for (index, template) in templates.enumerated() {
-            template.index = Int16(index)
-        }
-        
-        CoreDataStack.shared.saveContext()
-        // controller delegates called here (ignored by changeIsUserDriven)
+        workoutService.moveTemplate(from: sourceIndexPath, to: destinationIndexPath)
     }
     
-}
-
-extension WorkoutViewController: CreateTemplateViewControllerDelegate {
-    func createTemplateViewController(_ viewController: CreateTemplateViewController, didCreateTemplate template: Template) {
-        template.index = Int16(fetchedResultsController.fetchedObjects?.count ?? 0)
-        
-        // Important: Make sure u finish modifying child object before saving or else additional changes wont be persisted to core data when saving main context
-        do {
-            try viewController.childContext.save()
-        } catch {
-            print("Error creating template: \(error)")
-        }
-        
-        CoreDataStack.shared.saveContext()
-    }
 }
 
 extension WorkoutViewController: EditTemplateViewControllerDelegate {

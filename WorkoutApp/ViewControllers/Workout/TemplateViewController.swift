@@ -23,6 +23,8 @@ class TemplateViewController: UIViewController {
     var template: Template
     let childContext: NSManagedObjectContext
     let workoutService: WorkoutService
+    
+    var fetchedResultsController: NSFetchedResultsController<TemplateExercise>! // source of truth
 
     init(template: Template, workoutService: WorkoutService) {
         self.template = template
@@ -58,6 +60,23 @@ class TemplateViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
+        fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: TemplateExercise.fetchRequest(for: template),
+            managedObjectContext: childContext,
+            sectionNameKeyPath: nil,    // to define sections
+            cacheName: nil)
+
+        fetchedResultsController.delegate = self
+        
+        // Perform a fetch.
+        do {
+            try fetchedResultsController?.performFetch()
+        } catch {
+            // Handle error appropriately. It's useful to use
+            // `fatalError(_:file:line:)` during development.
+            fatalError("Failed to perform fetch: \(error.localizedDescription)")
+        }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -89,7 +108,8 @@ extension TemplateViewController: UITableViewDataSource {
             return 1
         case .exercises:
             let button = 1
-            return template.templateExercises.count + button
+            let count = fetchedResultsController?.fetchedObjects?.count ?? 0
+            return count + button
         }
     }
     
@@ -102,14 +122,17 @@ extension TemplateViewController: UITableViewDataSource {
             cell.update(title: template.title)
             return cell
         case .exercises:
-            let isAddButtonRow = indexPath.row == template.templateExercises.count
+//            let isAddButtonRow = indexPath.row == template.templateExercises.count
+            let count = fetchedResultsController?.fetchedObjects?.count ?? 0
+            let isAddButtonRow = indexPath.row == count
             if isAddButtonRow {
                 let cell = tableView.dequeueReusableCell(withIdentifier: AddTemplateExerciseTableViewCell.reuseIdentifier, for: indexPath) as! AddTemplateExerciseTableViewCell
                 return cell
             }
             
             let cell = tableView.dequeueReusableCell(withIdentifier: TemplateExerciseTableViewCell.reuseIdentifier, for: indexPath) as! TemplateExerciseTableViewCell
-            let templateExercise = template.templateExercises[indexPath.row]
+            let offsetIndexPath = IndexPath(row: indexPath.row, section: 0) // we insert row at [1, 0] but exercises has only 1 section, so offset back to [0, 0]
+            let templateExercise = fetchedResultsController.object(at: offsetIndexPath)
             cell.accessoryType = .disclosureIndicator
             cell.update(templateExercise: templateExercise)
             return cell
@@ -161,15 +184,9 @@ extension TemplateViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let exerciseToRemove = template.templateExercises[indexPath.row]
-            template.removeFromTemplateExercises_(exerciseToRemove) // note: Does not delete exercise, still persisted
-            childContext.delete(exerciseToRemove)                   // Exercise is marked for deletion
-            
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            // Reorder index
-            
-            
+            let offsetIndexPath = IndexPath(row: indexPath.row, section: 0)
+            let exerciseToDelete = fetchedResultsController.object(at: offsetIndexPath)
+            workoutService.deleteTemplateExercise(exerciseToDelete)
             updateSaveButton()
         }
     }
@@ -258,16 +275,15 @@ extension TemplateViewController: UITableViewDelegate {
 
 extension TemplateViewController: AddExerciseDetailViewControllerDelegate {
     func addExerciseDetailViewControllerDelegate(_ viewController: AddExerciseDetailViewController, didAddExercise exercise: String, sets: Int, reps: Int) {
+        guard let exercises = fetchedResultsController.fetchedObjects else { return }
         let sampleExercise = TemplateExercise(context: childContext)
         sampleExercise.name = exercise
         sampleExercise.sets = Int16(sets)
         sampleExercise.reps = Int16(reps)
-        sampleExercise.index = Int16(template.templateExercises.count)
+        sampleExercise.index = Int16(exercises.count)
         sampleExercise.template = template
         template.addToTemplateExercises_(sampleExercise)
-        
-        tableView.insertRows(at: [IndexPath(row: template.templateExercises.count - 1, section: Section.exercises.rawValue)], with: .automatic)
-        
+                
         updateSaveButton()
     }
     
@@ -299,5 +315,45 @@ extension TemplateViewController: TemplateTitleTableViewCellDelegate {
     func templateTitleTableViewCell(_ cell: TemplateTitleTableViewCell, titleTextFieldDidChange title: String) {
         template.title = title
         updateSaveButton()
+    }
+}
+
+extension TemplateViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+
+        switch type {
+        case .insert:
+            guard let newIndexPath else { return }
+            tableView.insertRows(at: [IndexPath(row: newIndexPath.row, section: Section.exercises.rawValue)], with: .fade)
+
+        case .delete:
+            guard let indexPath else { return }
+            tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: Section.exercises.rawValue)], with: .fade)
+
+        case .update:
+            guard let indexPath else { return }
+            tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: Section.exercises.rawValue)], with: .automatic)
+
+        case .move:
+            guard let indexPath, let newIndexPath else { return }
+            tableView.moveRow(
+                at: IndexPath(row: indexPath.row, section: Section.exercises.rawValue),
+                to: IndexPath(row: newIndexPath.row, section: Section.exercises.rawValue)
+            )
+        @unknown default:
+            break
+        }
     }
 }

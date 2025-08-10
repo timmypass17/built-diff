@@ -18,11 +18,6 @@ class EditTemplateViewController: TemplateViewController {
     override init(template: Template, workoutService: WorkoutService) {
         super.init(template: template, workoutService: workoutService)
     }
-//    init(template: Template, workoutService: WorkoutService) {
-//        let childContext = CoreDataStack.shared.newChildContext()
-//        let objectInNewContext = childContext.object(with: template.objectID) as! Template
-//        super.init(template: objectInNewContext, workoutService: workoutService)
-//    }
     
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

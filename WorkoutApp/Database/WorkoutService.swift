@@ -69,6 +69,10 @@ class WorkoutService {
         workoutDao.deleteTemplate(template)
     }
     
+    func deleteTemplateExercise(_ templateExercise: TemplateExercise) {
+        workoutDao.deleteTemplateExercise(templateExercise)
+    }
+    
     func deleteLog(_ logs: [Date: [Workout]], at indexPath: IndexPath) async -> [Date: [Workout]] {
         do {
             var updatedLogs = logs
@@ -82,25 +86,30 @@ class WorkoutService {
             return logs
         }
     }
-    
-    func reorderTemplates(_ templates: [Template], moveWorkoutAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) async -> [Template] {
-        guard sourceIndexPath != destinationIndexPath else { return templates }
-        var updatedTemplates = templates
-        let workoutToMove = updatedTemplates.remove(at: sourceIndexPath.row)
-        updatedTemplates.insert(workoutToMove, at: destinationIndexPath.row)
-            
-        do {
-            try await workoutDao.updateTemplatesPositions(updatedTemplates)
-
-            return updatedTemplates
-        } catch {
-            print("Error reordering templates: \(error)")
-            return templates
-        }
-    }
+//    
+//    func reorderTemplates(_ templates: [Template], moveWorkoutAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) async -> [Template] {
+//        guard sourceIndexPath != destinationIndexPath else { return templates }
+//        var updatedTemplates = templates
+//        let workoutToMove = updatedTemplates.remove(at: sourceIndexPath.row)
+//        updatedTemplates.insert(workoutToMove, at: destinationIndexPath.row)
+//            
+//        do {
+//            try await workoutDao.updateTemplatesPositions(updatedTemplates)
+//
+//            return updatedTemplates
+//        } catch {
+//            print("Error reordering templates: \(error)")
+//            return templates
+//        }
+//    }
     
     func loadExercises(from fileName: String) -> [String] {
         return workoutDao.loadExercises(from: fileName)
+    }
+    
+    
+    func moveTemplate(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        workoutDao.moveTemplate(from: sourceIndexPath, to: destinationIndexPath)
     }
     
 }
