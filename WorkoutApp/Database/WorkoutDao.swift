@@ -247,6 +247,29 @@ class WorkoutDao: WorkoutDaoProtocol {
             print("Failed to reorder templates: \(error)")
         }
     }
+    
+    func moveTemplateExercise(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath, template: Template) {
+        guard sourceIndexPath != destinationIndexPath,
+              let context = template.managedObjectContext
+        else { return }
+        
+        let fetchRequest: NSFetchRequest<TemplateExercise> = TemplateExercise.fetchRequest(for: template)
+        
+        do {
+            var templates = try context.fetch(fetchRequest)
+            
+            let templateToMove = templates.remove(at: sourceIndexPath.row)
+            templates.insert(templateToMove, at: destinationIndexPath.row)
+            
+            for (index, template) in templates.enumerated() {
+                template.index = Int16(index)
+            }
+            
+            try context.save()
+        } catch {
+            print("Failed to reorder templates: \(error)")
+        }
+    }
 }
 
 extension Double {

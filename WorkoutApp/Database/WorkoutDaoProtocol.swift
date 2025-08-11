@@ -23,4 +23,5 @@ protocol WorkoutDaoProtocol {
     
     func deleteTemplateExercise(_ templateExercise: TemplateExercise)
     func moveTemplate(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    func moveTemplateExercise(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath, template: Template)
 }

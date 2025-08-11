@@ -25,6 +25,7 @@ class TemplateViewController: UIViewController {
     let workoutService: WorkoutService
     
     var fetchedResultsController: NSFetchedResultsController<TemplateExercise>! // source of truth
+    var changeIsUserDriven = false
 
     init(template: Template, workoutService: WorkoutService) {
         self.template = template
@@ -45,12 +46,14 @@ class TemplateViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.dragDelegate = self
+        tableView.dragInteractionEnabled = true
         tableView.register(TemplateTitleTableViewCell.self, forCellReuseIdentifier: TemplateTitleTableViewCell.reuseIdentifier)
         tableView.register(TemplateExerciseTableViewCell.self, forCellReuseIdentifier: TemplateExerciseTableViewCell.reuseIdentifier)
         tableView.register(AddTemplateExerciseTableViewCell.self, forCellReuseIdentifier: AddTemplateExerciseTableViewCell.reuseIdentifier)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: didTapCancelButton())
-        navigationItem.rightBarButtonItems = [editButtonItem]
+//        navigationItem.rightBarButtonItems = [editButtonItem]
 
         view.addSubview(tableView)
 
@@ -79,17 +82,18 @@ class TemplateViewController: UIViewController {
         }
     }
     
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        tableView.setEditing(editing, animated: animated)
-    }
-    
     func updateSaveButton() {
         navigationItem.rightBarButtonItems?[0].isEnabled = !template.title.isEmpty && template.templateExercises.count > 0
     }
     
     func didTapCancelButton() -> UIAction {
         return UIAction { _ in
+            // saving child context pushes changes to main context so in memory data actually changes but not saved to disk, only saved in memory
+            // when main context is save, then changes are fully saved to disk
+            // - use rollback to undo commits
+            // This will undo all unsaved changes in the main context and revert it to the last committed state (i.e., before the child context’s changes were saved into it).
+            CoreDataStack.shared.mainContext.rollback()
+
             self.dismiss(animated: true)
         }
     }
@@ -122,7 +126,6 @@ extension TemplateViewController: UITableViewDataSource {
             cell.update(title: template.title)
             return cell
         case .exercises:
-//            let isAddButtonRow = indexPath.row == template.templateExercises.count
             let count = fetchedResultsController?.fetchedObjects?.count ?? 0
             let isAddButtonRow = indexPath.row == count
             if isAddButtonRow {
@@ -148,6 +151,8 @@ extension TemplateViewController: UITableViewDataSource {
             return "Exercises".localized
         }
     }
+
+
 }
 
 extension TemplateViewController: UITableViewDelegate {
@@ -191,75 +196,6 @@ extension TemplateViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard destinationIndexPath.section != 0 else { return }
-        
-        // TODO: Cloudkit
-        let exerciseToMove = template.templateExercises[sourceIndexPath.row]
-        // [A, B, C, D, E] B -> D
-        // [A, B, C, _, D, E] move everything after destin to right
-        // [A, _, C, B, D, E]   move B to destination
-        // [A, C, B, D, E]      reorganize
-        
-        // move forward
-        if sourceIndexPath.row < destinationIndexPath.row {
-            print("Original")
-            template.templateExercises.forEach { print($0.name, $0.index)}
-            print()
-            print("Shift to right")
-            for i in (destinationIndexPath.row + 1..<template.templateExercises.count).reversed() {
-                print(i)
-                template.templateExercises[i].index = Int16(i + 1)
-            }
-            print()
-            exerciseToMove.index = Int16(destinationIndexPath.row + 1)
-            print("After Insert-")
-            template.templateExercises.forEach { print($0.name, $0.index)}
-        } else {
-            //  B <- D
-            // [A, B, C, D, E]
-            // [A, _, B, C, D, E] move everything after source to right
-            // [A, D, B, C, _, E] update D's index to destination
-            // [A, D, B, C, E] reforganize
-            
-            
-            print("Original")
-            template.templateExercises.forEach { print($0.name, $0.index)}
-            print()
-            print("Shift to right")
-            for i in (destinationIndexPath.row..<template.templateExercises.count).reversed() {
-                print(i)
-                template.templateExercises[i].index = Int16(i + 1)
-            }
-            print()
-            print("After shift")
-            template.templateExercises.forEach { print($0.name, $0.index)}
-            print()
-            exerciseToMove.index = Int16(destinationIndexPath.row)
-            print("After Insert-")
-            template.templateExercises.forEach { print($0.name, $0.index)}
-        }
-        
-        print()
-        for (index, exercise) in template.templateExercises.enumerated() {
-            exercise.index = Int16(index)
-        }
-        print("Reorganize")
-        print()
-        
-        template.templateExercises.forEach { print($0.name, $0.index)}
-
-        
-        // Save the context
-        do {
-            try childContext.save()
-        } catch {
-            print("Error saving reordered items: \(error)")
-        }
-        
-        tableView.reloadData()
-    }
-    
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         // Restricts cell's reorder destination (i.e. repositioning exercise under "Add Exercise" button)
         let isAddExerciseButtonRow = template.templateExercises.count
@@ -272,6 +208,26 @@ extension TemplateViewController: UITableViewDelegate {
     }
 }
 
+
+extension TemplateViewController: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let dragItem = UIDragItem(itemProvider: NSItemProvider())
+        let offsetIndexPath = IndexPath(row: indexPath.row, section: 0)
+        let exercise = fetchedResultsController.object(at: offsetIndexPath)
+        dragItem.localObject = exercise
+        print("timmy drag \(exercise.name)")
+        return [dragItem]
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard destinationIndexPath.section != 0 else { return }
+        changeIsUserDriven = true
+        defer { changeIsUserDriven = false }
+        
+        workoutService.moveTemplateExercise(from: sourceIndexPath, to: destinationIndexPath, template: template)
+    }
+    
+}
 
 extension TemplateViewController: AddExerciseDetailViewControllerDelegate {
     func addExerciseDetailViewControllerDelegate(_ viewController: AddExerciseDetailViewController, didAddExercise exercise: String, sets: Int, reps: Int) {
@@ -333,21 +289,27 @@ extension TemplateViewController: NSFetchedResultsControllerDelegate {
                     for type: NSFetchedResultsChangeType,
                     newIndexPath: IndexPath?) {
 
+        guard changeIsUserDriven == false else { return }
+
         switch type {
         case .insert:
             guard let newIndexPath else { return }
+            print("timmy insert: \(IndexPath(row: newIndexPath.row, section: Section.exercises.rawValue))")
             tableView.insertRows(at: [IndexPath(row: newIndexPath.row, section: Section.exercises.rawValue)], with: .fade)
 
         case .delete:
             guard let indexPath else { return }
+            print("timmy delete: \(IndexPath(row: indexPath.row, section: Section.exercises.rawValue))")
             tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: Section.exercises.rawValue)], with: .fade)
 
         case .update:
             guard let indexPath else { return }
+            print("timmy update: \(IndexPath(row: indexPath.row, section: Section.exercises.rawValue))")
             tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: Section.exercises.rawValue)], with: .automatic)
 
         case .move:
             guard let indexPath, let newIndexPath else { return }
+            print("timmy move: \(IndexPath(row: indexPath.row, section: Section.exercises.rawValue)) to \(IndexPath(row: newIndexPath.row, section: Section.exercises.rawValue))")
             tableView.moveRow(
                 at: IndexPath(row: indexPath.row, section: Section.exercises.rawValue),
                 to: IndexPath(row: newIndexPath.row, section: Section.exercises.rawValue)

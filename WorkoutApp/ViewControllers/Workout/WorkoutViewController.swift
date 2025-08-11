@@ -28,7 +28,10 @@ class WorkoutViewController: UIViewController {
         return view
     }()
     
-    private var addButton: UIBarButtonItem!
+    private lazy var addButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), primaryAction: didTapAddButton())
+        return button
+    }()
     
 //    private let context = CoreDataStack.shared.mainContext
     private let workoutService: WorkoutService
@@ -86,7 +89,6 @@ class WorkoutViewController: UIViewController {
         
         // Perform a fetch.
         do {
-            // actually fetches from cloudkit, when delete and reinstall app
             try fetchedResultsController?.performFetch()
             contentUnavailableView.isHidden = !(fetchedResultsController.fetchedObjects?.isEmpty ?? true)
         } catch {
@@ -133,9 +135,7 @@ class WorkoutViewController: UIViewController {
     func didTapEditWorkoutButton(_ template: Template) -> UIAction {
         return UIAction(title: "Edit Workout".localized, image: UIImage(systemName: "square.and.pencil")) { _ in
             do {
-                let childContext = CoreDataStack.shared.childContext()
-                let templateInChild = try childContext.existingObject(with: template.objectID) as! Template
-                let editTemplateViewController = EditTemplateViewController(template: templateInChild, workoutService: self.workoutService)
+                let editTemplateViewController = try EditTemplateViewController(templateID: template.objectID, workoutService: self.workoutService)
                 editTemplateViewController.delegate = self
                 let vc = UINavigationController(rootViewController: editTemplateViewController)
                 self.present(vc, animated: true)
@@ -239,7 +239,6 @@ extension WorkoutViewController: EditTemplateViewControllerDelegate {
         
         for (index, templateExercise) in template.templateExercises.enumerated() {
             templateExercise.index = Int16(index)
-            print("\(templateExercise.name) \(templateExercise.index)")
         }
         
         do {

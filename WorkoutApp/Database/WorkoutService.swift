@@ -112,6 +112,10 @@ class WorkoutService {
         workoutDao.moveTemplate(from: sourceIndexPath, to: destinationIndexPath)
     }
     
+    func moveTemplateExercise(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath, template: Template) {
+        workoutDao.moveTemplateExercise(from: sourceIndexPath, to: destinationIndexPath, template: template)
+    }
+    
 }
 
 // Core data testing:

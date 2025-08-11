@@ -6,17 +6,28 @@
 //
 
 import UIKit
+import CoreData
 
 protocol EditTemplateViewControllerDelegate: AnyObject {
     func editTemplateViewController(_ viewController: EditTemplateViewController, didUpdateTemplate template: Template)
+}
+
+enum CoreDataError: Error {
+    case objectNotFound
+    case wrongType
 }
 
 class EditTemplateViewController: TemplateViewController {
 
     weak var delegate: EditTemplateViewControllerDelegate?
 
-    override init(template: Template, workoutService: WorkoutService) {
-        super.init(template: template, workoutService: workoutService)
+    init(templateID: NSManagedObjectID, workoutService: WorkoutService) throws {
+        let childContext = CoreDataStack.shared.childContext()
+        guard let childTemplate = try childContext.existingObject(with: templateID) as? Template else {
+            throw CoreDataError.wrongType
+        }
+        print(childTemplate)
+        super.init(template: childTemplate, workoutService: workoutService)
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -26,7 +37,8 @@ class EditTemplateViewController: TemplateViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Edit Workout".localized
-        navigationItem.rightBarButtonItems?.insert(UIBarButtonItem(systemItem: .save, primaryAction: didTapSaveButton()), at: 0)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(systemItem: .save, primaryAction: didTapSaveButton())]
+//        navigationItem.rightBarButtonItems?.insert(UIBarButtonItem(systemItem: .save, primaryAction: didTapSaveButton()), at: 0)
         updateSaveButton()
     }
     
