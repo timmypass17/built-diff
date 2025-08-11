@@ -142,7 +142,7 @@ class WorkoutDetailTableViewCell: UITableViewCell {
         repsTextField.text = exerciseSet.reps >= 0 ? exerciseSet.reps.description : ""
         
         // Use previous set (or template) for placeholders
-        if let previousSet = exerciseSet.previousSet {
+        if let previousSet = exerciseSet.previousSet {  // TODO: previous set uses main context, might be fucking my stuff
             let previousWeightString = weightUnit == .lbs ? previousSet.weight.lbsString : previousSet.weight.kgString
             previousLabel.text = previousWeightString
             weightTextField.placeholder = previousWeightString
@@ -152,6 +152,29 @@ class WorkoutDetailTableViewCell: UITableViewCell {
             weightTextField.placeholder = weightUnit == .lbs ? "45" : "20"
             repsTextField.placeholder = templateExercise?.reps.description ?? ""    // should never be empty
         }
+        
+    }
+    
+    func update(exerciseSet: ExerciseSet, previousWeight: Double?, repsPlaceholder: String) {
+        updateSetButton(exerciseSet: exerciseSet)
+        
+        let weightUnit = Settings.shared.weightUnit
+        let weightString = weightUnit == .lbs ? exerciseSet.weight.lbsString : exerciseSet.weight.kgString
+        weightTextField.text = exerciseSet.weight >= 0 ? weightString : ""
+        repsTextField.text = exerciseSet.reps >= 0 ? exerciseSet.reps.description : ""
+        
+        // Use previous set (or template) for placeholders
+        if let previousWeight {
+            let previousWeightString = weightUnit == .lbs ? previousWeight.lbsString : previousWeight.kgString
+            previousLabel.text = previousWeightString
+            weightTextField.placeholder = previousWeightString
+            repsTextField.placeholder = repsPlaceholder
+        } else {
+            previousLabel.text = "-"
+            weightTextField.placeholder = weightUnit == .lbs ? "45" : "20"  // user never inputted weight
+            repsTextField.placeholder = repsPlaceholder // reps always has a value
+        }
+        
     }
     
     func updateSetButton(exerciseSet: ExerciseSet) {

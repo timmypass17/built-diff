@@ -12,13 +12,21 @@ protocol StartWorkoutViewControllerDelegate: AnyObject {
 }
 
 class StartWorkoutViewController: WorkoutDetailViewController {
+    
+    lazy var finishButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: "Finish".localized, primaryAction: didTapFinishButton())
+    }()
 
     weak var progressDelegate: StartWorkoutViewControllerDelegate?  // progress handles
 
-    init(template: Template, workoutService: WorkoutService) {
-        super.init(workoutService: workoutService)
-        workout = workoutService.createWorkout(template: template, childContext: childContext)
-        self.template = template
+    init(template: Template, workoutService: WorkoutService) throws {
+        let childContext = CoreDataStack.shared.childContext()
+        let workout = try workoutService.createWorkout(template: template, context: childContext)
+        super.init(workout: workout, workoutService: workoutService)
+//        self.template = template
+        for exercise in template.templateExercises {
+            self.repsPlaceholder[exercise.name] = Array(repeating: exercise.reps, count: Int(exercise.sets))
+        }
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -28,12 +36,13 @@ class StartWorkoutViewController: WorkoutDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Finish".localized, primaryAction: didTapFinishButton())]
+        navigationItem.rightBarButtonItems = [finishButton]
         
         if Settings.shared.showTimer {
             let timeElapsedButton = TimeElapsedBarButton()
             navigationItem.rightBarButtonItems?.append(timeElapsedButton)
         }
+        
     }
 
     func didTapFinishButton() -> UIAction {
@@ -61,18 +70,14 @@ class StartWorkoutViewController: WorkoutDetailViewController {
     func didTapConfirmButton() {
         for exercise in workout.getExercises() {
             for set in exercise.getExerciseSets() {
-                if set.weight < 0 {
-                    set.weight = 0
-                }
-                if set.reps < 0 {
-                    set.reps = 0
-                }
+                set.weight = max(set.weight, 0)
+                set.reps = max(set.reps, 0)
                 set.isComplete = true
             }
         }
         
         do {
-            try childContext.save()
+            try workout.managedObjectContext!.save()
         } catch {
             print("Error saving reordered items: \(error)")
         }

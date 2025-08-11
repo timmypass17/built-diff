@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 
 protocol WorkoutDaoProtocol {
-    func createTemplate(context: NSManagedObjectContext) -> Template
-    func createWorkout(template: Template, childContext: NSManagedObjectContext) -> Workout
+    func createTemplate(context: NSManagedObjectContext) throws -> Template
+    func createWorkout(template: Template, context: NSManagedObjectContext) throws -> Workout
     func fetchTemplates() async throws -> [Template]
     func fetchLogs(from startDate: Date?, to endDate: Date?) async throws -> [Workout]
     func fetchExerciseNames() async throws -> [String]
@@ -24,4 +24,5 @@ protocol WorkoutDaoProtocol {
     func deleteTemplateExercise(_ templateExercise: TemplateExercise)
     func moveTemplate(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
     func moveTemplateExercise(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath, template: Template)
+//    func setNextIndex(for template: Template, in context: NSManagedObjectContext) throws
 }

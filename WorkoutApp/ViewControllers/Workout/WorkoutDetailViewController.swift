@@ -17,23 +17,26 @@ class WorkoutDetailViewController: UIViewController {
         return tableView
     }()
             
-    var workout: Workout!
-    var template: Template? // for inital placeholder values
-    let childContext = CoreDataStack.shared.newChildContext()
+    var workout: Workout
+    let childContext: NSManagedObjectContext
+    var previousWorkoutInputs: [String: [(weight: Double, reps: Int16)]]
+    var repsPlaceholder: [String: [Int16]] = [:]
     let workoutService: WorkoutService
     
-    init(workoutService: WorkoutService) {
+    init(workout: Workout, workoutService: WorkoutService) {
+        self.workout = workout
         self.workoutService = workoutService
+        self.childContext = workout.managedObjectContext!
+        self.previousWorkoutInputs = workoutService.getLatestExerciseInfoDict(exercises: workout.getExercises().map { $0.name })
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: Local
         navigationItem.title = workout.title
 //        navigationItem.title = translation[workout.title]
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -110,7 +113,24 @@ extension WorkoutDetailViewController: UITableViewDataSource {
             let exerciseSet = sets[indexPath.row]
             cell.delegate = self
             
-            cell.update(exerciseSet: exerciseSet, templateExercise: template?.templateExercises[indexPath.section])
+            // Get previous weight
+            let previousInputs = previousWorkoutInputs[exercise.name] ?? []
+            var previousWeight: Double? = previousInputs.last?.weight
+            
+            if indexPath.row < previousInputs.count {
+                // Previous weight exists
+                previousWeight = previousInputs[indexPath.row].weight
+            }
+            
+            let previousReps = repsPlaceholder[exercise.name] ?? []
+            var repsPlaceholder: Int16 = previousReps.last ?? 0
+            
+            if indexPath.row < previousReps.count {
+                // Previous weight exists
+                repsPlaceholder = previousReps[indexPath.row]
+            }
+            
+            cell.update(exerciseSet: exerciseSet, previousWeight: previousWeight, repsPlaceholder: "\(repsPlaceholder)")
             return cell
         }
     }
@@ -121,7 +141,7 @@ extension WorkoutDetailViewController: AddSetTableViewCellDelegate {
         guard let indexPath = tableView.indexPath(for: sender) else { return }
         
         let exercise = workout.getExercise(at: indexPath.section)
-        let set = ExerciseSet(context: childContext)
+        let set = ExerciseSet(context: workout.managedObjectContext!)
         set.index = Int16(workout.getExercise(at: indexPath.section).getExerciseSets().count)
         set.isComplete = false
         set.weight = -1

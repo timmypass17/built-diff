@@ -108,10 +108,13 @@ class WorkoutViewController: UIViewController {
     private func didTapAddButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self else { return }
-            let createWorkoutViewController = CreateTemplateViewController(workoutService: workoutService)
-//            createWorkoutViewController.delegate = self
-            let vc = UINavigationController(rootViewController: createWorkoutViewController)
-            self.present(vc, animated: true)
+            do {
+                let createWorkoutViewController = try CreateTemplateViewController(workoutService: workoutService)
+                let vc = UINavigationController(rootViewController: createWorkoutViewController)
+                self.present(vc, animated: true)
+            } catch {
+                print("Error initalizing CreateTemplateViewController: \(error)")
+            }
         }
     }
     
@@ -178,13 +181,17 @@ extension WorkoutViewController: UITableViewDataSource {
 
 extension WorkoutViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let template = fetchedResultsController.object(at: indexPath)
-        let startWorkoutViewController = StartWorkoutViewController(template: template, workoutService: workoutService)
-
-        let progressTableViewController = (tabBarController?.viewControllers?[2] as? UINavigationController)?.viewControllers[0] as! ProgressViewController
-        startWorkoutViewController.progressDelegate = progressTableViewController
-
-        navigationController?.pushViewController(startWorkoutViewController, animated: true)
+        do {
+            let template = fetchedResultsController.object(at: indexPath)
+            let startWorkoutViewController = try StartWorkoutViewController(template: template, workoutService: workoutService)
+            
+            let progressTableViewController = (tabBarController?.viewControllers?[2] as? UINavigationController)?.viewControllers[0] as! ProgressViewController
+            startWorkoutViewController.progressDelegate = progressTableViewController
+            
+            navigationController?.pushViewController(startWorkoutViewController, animated: true)
+        } catch {
+            print("Error initializing StartWorkoutViewController: \(error)")
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -248,6 +255,9 @@ extension WorkoutViewController: EditTemplateViewControllerDelegate {
         }
         
         CoreDataStack.shared.saveContext()
+        
+        // We may updated exercises, relationships changes doesn't get seen by FRC
+        tableView.reloadRows(at: [IndexPath(row: Int(template.index), section: 0)], with: .automatic)
     }
 }
 

@@ -19,6 +19,11 @@ enum CoreDataError: Error {
 
 class EditTemplateViewController: TemplateViewController {
 
+    lazy var saveButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(systemItem: .save, primaryAction: didTapSaveButton())
+        return button
+    }()
+    
     weak var delegate: EditTemplateViewControllerDelegate?
 
     init(templateID: NSManagedObjectID, workoutService: WorkoutService) throws {
@@ -37,8 +42,7 @@ class EditTemplateViewController: TemplateViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Edit Workout".localized
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(systemItem: .save, primaryAction: didTapSaveButton())]
-//        navigationItem.rightBarButtonItems?.insert(UIBarButtonItem(systemItem: .save, primaryAction: didTapSaveButton()), at: 0)
+        navigationItem.rightBarButtonItems = [saveButton]
         updateSaveButton()
     }
     

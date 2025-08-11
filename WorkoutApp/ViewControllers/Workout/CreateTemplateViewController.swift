@@ -10,9 +10,15 @@ import CoreData
 
 class CreateTemplateViewController: TemplateViewController {
 
-    init(workoutService: WorkoutService) {
+    lazy var createButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(systemItem: .save, primaryAction: didTapCreateButton())
+        return button
+    }()
+    
+    init(workoutService: WorkoutService) throws {
         let childContext = CoreDataStack.shared.childContext()
-        let newTemplate = workoutService.createTemplate(childContext: childContext)
+        let newTemplate = try workoutService.createTemplate(childContext: childContext)
+        print(newTemplate)
         super.init(template: newTemplate, workoutService: workoutService)
     }
     
@@ -23,7 +29,7 @@ class CreateTemplateViewController: TemplateViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Create Workout".localized
-        navigationItem.rightBarButtonItems?.insert(UIBarButtonItem(systemItem: .save, primaryAction: didTapCreateButton()), at: 0)
+        navigationItem.rightBarButtonItems = [createButton]
         updateSaveButton()
     }
     
@@ -32,21 +38,7 @@ class CreateTemplateViewController: TemplateViewController {
             guard let self else { return }
             
             do {
-                let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Template")
-                fetchRequest.resultType = .dictionaryResultType
-                fetchRequest.propertiesToFetch = ["index"]
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: false)]
-                fetchRequest.fetchLimit = 1
-                
-                if let result = try? childContext.fetch(fetchRequest),
-                   let maxIndex = result.first?["index"] as? Int {
-                    template.index = Int16(maxIndex + 1)
-                } else {
-                    template.index = 0
-                }
-                
                 try childContext.save()
-                
                 CoreDataStack.shared.saveContext()
                 self.dismiss(animated: true)
             } catch {
@@ -55,4 +47,5 @@ class CreateTemplateViewController: TemplateViewController {
         }
     }
 
+    
 }

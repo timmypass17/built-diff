@@ -17,12 +17,12 @@ class WorkoutService {
         self.workoutDao = workoutDao
     }
     
-    func createTemplate(childContext: NSManagedObjectContext) -> Template {
-        workoutDao.createTemplate(context: childContext)
+    func createTemplate(childContext: NSManagedObjectContext) throws -> Template {
+        return try workoutDao.createTemplate(context: childContext)
     }
     
-    func createWorkout(template: Template, childContext: NSManagedObjectContext) -> Workout {
-        workoutDao.createWorkout(template: template, childContext: childContext)
+    func createWorkout(template: Template, context: NSManagedObjectContext) throws -> Workout {
+        return try workoutDao.createWorkout(template: template, context: context)
     }
     
     func fetchTemplates() async -> [Template] {
@@ -114,6 +114,40 @@ class WorkoutService {
     
     func moveTemplateExercise(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath, template: Template) {
         workoutDao.moveTemplateExercise(from: sourceIndexPath, to: destinationIndexPath, template: template)
+    }
+    
+    func getLatestExerciseInfoDict(exercises: [String]) -> [String: [(Double, Int16)]] {  // exercises: [(lbs, reps)]
+        var exerciseDict: [String: [(Double, Int16)]] = [:]
+        for exerciseName in exercises {
+            var inputs: [(Double, Int16)] = []
+            let exercise = getLatestExercise(exerciseName: exerciseName)
+            // Extract inputs
+            let sets = exercise?.getExerciseSets() ?? []
+            for item in sets {
+                inputs.append((item.weight, item.reps))
+            }
+            exerciseDict[exerciseName] = inputs
+        }
+        return exerciseDict
+    }
+    
+    func getLatestExercise(exerciseName: String) -> Exercise? {
+        let context = CoreDataStack.shared.mainContext
+        let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
+        let predicate = NSPredicate(format: "name_ == %@", exerciseName)
+        let sortDescriptor = NSSortDescriptor(key: "workout.createdAt_", ascending: false)
+        request.predicate = predicate
+        request.sortDescriptors = [sortDescriptor]
+        request.fetchLimit = 1
+        
+        do {
+            let exercise: Exercise? = try context.fetch(request).first
+            return exercise
+        } catch {
+            print("Error fetching previous exercise: \(error.localizedDescription)")
+        }
+        
+        return nil
     }
     
 }

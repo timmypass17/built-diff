@@ -16,14 +16,18 @@ class LogDetailViewController: WorkoutDetailViewController {
     weak var delegate: LogDetailViewControllerDelegate?    // log handles
     
     init(log: Workout, workoutService: WorkoutService) {
-        super.init(workoutService: workoutService)
+        super.init(workout: log, workoutService: workoutService)
         // Use the objectID to fetch the object in the child context
         // - Allows you to work with object in child context, and discard any changes if needed or save changes to main context
-        let objectInNewContext = childContext.object(with: log.objectID) as! Workout
+        let objectInNewContext = log.managedObjectContext!.object(with: log.objectID) as! Workout
         self.workout = objectInNewContext
         // note: using child-parent context with transient property doesn't really work well with sectionNameKeyPath: for some reason. it works normally if i just update using main context. need more investigation.
         
-//        self.workout = log
+        for exercise in log.getExercises() {
+            for exerciseSet in exercise.getExerciseSets() {
+                self.repsPlaceholder[exercise.name, default: []].append(exerciseSet.reps)
+            }
+        }
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -55,7 +59,7 @@ class LogDetailViewController: WorkoutDetailViewController {
             }
             
             do {
-                try childContext.save()
+                try workout.managedObjectContext!.save()
             } catch {
                 print("Error saving reordered items: \(error)")
             }

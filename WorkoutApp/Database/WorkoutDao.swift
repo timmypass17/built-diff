@@ -14,31 +14,33 @@ class WorkoutDao: WorkoutDaoProtocol {
     
     private let context: NSManagedObjectContext // reads
     private let backgroundContext: NSManagedObjectContext // writes (long)
-
+    
     init(context: NSManagedObjectContext, backgroundContext: NSManagedObjectContext) {
         self.context = context
         self.backgroundContext = backgroundContext
     }
     
-    func createTemplate(context: NSManagedObjectContext) -> Template {
+    func createTemplate(context: NSManagedObjectContext) throws -> Template {
         let newTemplate = Template(context: context)
-        newTemplate.title = ""
+        newTemplate.title = "Test"
+        newTemplate.index = try getNextTemplateIndex()
+        print(newTemplate)
         return newTemplate
     }
     
-    func createWorkout(template: Template, childContext: NSManagedObjectContext) -> Workout {
-        let workout = Workout(context: childContext)
-        workout.title = template.title
+    func createWorkout(template: Template, context: NSManagedObjectContext) throws -> Workout {
+        let workout = Workout(context: context)
+        workout.title = "Test"
         workout.createdAt_ = .now
-        
+                
         for templateExercise in template.templateExercises {
-            let exercise = Exercise(context: childContext)
+            let exercise = Exercise(context: context)
             exercise.name = templateExercise.name
-            exercise.workout = workout
             exercise.index = templateExercise.index
+            exercise.workout = workout
             
             for i in 0..<templateExercise.sets {
-                let exerciseSet = ExerciseSet(context: childContext)
+                let exerciseSet = ExerciseSet(context: context)
                 exerciseSet.isComplete = false
                 exerciseSet.reps = -1   // negative means user has not inputted any value
                 exerciseSet.weight = -1 // use previous weight (or template)
@@ -50,7 +52,6 @@ class WorkoutDao: WorkoutDaoProtocol {
             workout.addToExercises(exercise)
         }
         
-        workout.printPrettyString()
         return workout
     }
     
@@ -265,9 +266,41 @@ class WorkoutDao: WorkoutDaoProtocol {
                 template.index = Int16(index)
             }
             
-            try context.save()
+            try context.save()  // we use nsfetch
         } catch {
             print("Failed to reorder templates: \(error)")
+        }
+    }
+    
+    private func assignNextIndex(to template: Template, in context: NSManagedObjectContext) throws {
+        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Template")
+        fetchRequest.resultType = .dictionaryResultType
+        fetchRequest.propertiesToFetch = ["index"]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: false)]
+        fetchRequest.fetchLimit = 1
+        
+        let result = try context.fetch(fetchRequest)
+        
+        if let maxIndex = result.first?["index"] as? Int {
+            template.index = Int16(maxIndex + 1)
+        } else {
+            template.index = 0
+        }
+    }
+    
+    private func getNextTemplateIndex() throws -> Int16 {
+        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Template")
+        fetchRequest.resultType = .dictionaryResultType
+        fetchRequest.propertiesToFetch = ["index"]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: false)]
+        fetchRequest.fetchLimit = 1
+        
+        let result = try context.fetch(fetchRequest)
+        
+        if let maxIndex = result.first?["index"] as? Int {
+            return Int16(maxIndex + 1)
+        } else {
+            return 0
         }
     }
 }

@@ -8,10 +8,6 @@
 import UIKit
 import CoreData
 
-//protocol CreateWorkoutViewControllerDelegate: AnyObject {
-//    func createWorkoutViewController(_ viewController: TemplateViewController, didCreateWorkoutTemplate template: Template)
-//}
-
 class TemplateViewController: UIViewController {
     
     private let tableView: UITableView = {
@@ -26,7 +22,7 @@ class TemplateViewController: UIViewController {
     
     var fetchedResultsController: NSFetchedResultsController<TemplateExercise>! // source of truth
     var changeIsUserDriven = false
-
+    
     init(template: Template, workoutService: WorkoutService) {
         self.template = template
         self.childContext = template.managedObjectContext!
@@ -48,6 +44,7 @@ class TemplateViewController: UIViewController {
         tableView.delegate = self
         tableView.dragDelegate = self
         tableView.dragInteractionEnabled = true
+        navigationController?.presentationController?.delegate = self
         tableView.register(TemplateTitleTableViewCell.self, forCellReuseIdentifier: TemplateTitleTableViewCell.reuseIdentifier)
         tableView.register(TemplateExerciseTableViewCell.self, forCellReuseIdentifier: TemplateExerciseTableViewCell.reuseIdentifier)
         tableView.register(AddTemplateExerciseTableViewCell.self, forCellReuseIdentifier: AddTemplateExerciseTableViewCell.reuseIdentifier)
@@ -225,6 +222,7 @@ extension TemplateViewController: UITableViewDragDelegate {
         defer { changeIsUserDriven = false }
         
         workoutService.moveTemplateExercise(from: sourceIndexPath, to: destinationIndexPath, template: template)
+        // TODO: Did update template
     }
     
 }
@@ -317,5 +315,13 @@ extension TemplateViewController: NSFetchedResultsControllerDelegate {
         @unknown default:
             break
         }
+    }
+}
+
+extension TemplateViewController: UIAdaptivePresentationControllerDelegate {
+    
+    // Dismiss modal by swiping (does not trigger by calling dismiss())
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        CoreDataStack.shared.mainContext.rollback()
     }
 }
