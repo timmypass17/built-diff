@@ -103,20 +103,27 @@ class WorkoutDao: WorkoutDaoProtocol {
     }
     
     // note: fetches best set for each workout session. not individual sets
-    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool = true) async throws -> [ExerciseSet] {
+    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool, includeZeros: Bool = true) async throws -> [ExerciseSet] {
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
-        let predicate = NSPredicate(format: "name_ == %@", exerciseName)
-        let sortDescriptor = NSSortDescriptor(key: "workout.createdAt_", ascending: ascending)
-        request.predicate = predicate
-        request.sortDescriptors = [sortDescriptor]
-        
-        if let limit {
-            request.fetchLimit = limit
-        }
+        request.predicate = NSPredicate(format: "name_ == %@", exerciseName)
+        request.sortDescriptors = [NSSortDescriptor(key: "workout.createdAt_", ascending: ascending)]
         
         let exerciseSets = try await context.perform {
             let exercises: [Exercise] = try self.context.fetch(request)
-            return exercises.compactMap { $0.bestSet }
+            
+            var sets = exercises
+                .compactMap { $0.bestSet }
+            
+            if !includeZeros {
+                sets = sets
+                    .filter { $0.weight != 0 }
+            }
+            
+            if let limit {
+                sets = Array(sets.prefix(limit))
+            }
+            
+            return sets
         }
         
         return exerciseSets

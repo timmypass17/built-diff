@@ -49,9 +49,9 @@ class WorkoutService {
         }
     }
     
-    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool = true) async -> [ExerciseSet] {
+    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool, includesZero: Bool) async -> [ExerciseSet] {
         do {
-            return try await workoutDao.fetchExerciseSets(exerciseName: exerciseName, limit: limit, ascending: ascending)
+            return try await workoutDao.fetchExerciseSets(exerciseName: exerciseName, limit: limit, ascending: ascending, includeZeros: includesZero)
         } catch {
             return []
         }

@@ -47,6 +47,7 @@ class WorkoutDetailViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         tableView.dataSource = self
         tableView.delegate = self
+//        tableView.keyboardDismissMode = .interactive
         view.addSubview(tableView)
         
 

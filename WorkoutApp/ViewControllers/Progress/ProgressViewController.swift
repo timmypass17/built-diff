@@ -86,7 +86,7 @@ class ProgressViewController: UIViewController {
             
             let exerciseNames: [String] = await workoutService.fetchExerciseNames()
             for exerciseName in exerciseNames {
-                let exerciseSets: [ExerciseSet] = await workoutService.fetchExerciseSets(exerciseName: exerciseName, limit: 7)
+                let exerciseSets: [ExerciseSet] = await workoutService.fetchExerciseSets(exerciseName: exerciseName, limit: 7, ascending: false, includesZero: false).reversed()
                 let bestLift: Double = await workoutService.fetchPR(exerciseName: exerciseName)
                 
                 exerciseData.append(ExerciseData(name: exerciseName, exerciseSets: exerciseSets, bestLift: bestLift, lastUpdated: .now, latestLift: exerciseSets.last?.weight ?? 0))
@@ -162,7 +162,7 @@ extension ProgressViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Task {
             let data = exerciseData[indexPath.row]
-            let allSets = await workoutService.fetchExerciseSets(exerciseName: data.name, ascending: false)
+            let allSets = await workoutService.fetchExerciseSets(exerciseName: data.name, ascending: false, includesZero: true)
             allSets.forEach { set in
                 if Settings.shared.weightUnit == .lbs {
                     set.weight = set.weight.lbs
