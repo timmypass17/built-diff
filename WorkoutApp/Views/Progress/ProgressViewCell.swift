@@ -19,54 +19,70 @@ struct ProgressViewCell: View {
         }.enumerated())
     }
     
+    var lastUpdatedText: String {
+        let date = recentData.exerciseSets.last?.exercise?.workout?.createdAt ?? .now
+        if Calendar.current.isDateInToday(date) {
+            return "Today"
+        } else if Calendar.current.isDateInYesterday(date) {
+            return "Yesterday"
+        }
+        
+        return (recentData.exerciseSets.last?.exercise?.workout?.createdAt ?? .now).formatted(date: .abbreviated, time: .omitted)
+    }
+    
     var body: some View {
-        HStack(alignment: .center) {
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Image(systemName: "dumbbell.fill")
-                        .foregroundColor(.accentColor)
-                    // TODO: local
-                    Text(recentData.name)
-//                    Text(translation[recentData.name] ?? "")
-                }
-                .font(.system(.headline, weight: .bold))
-                
-                VStack(alignment: .leading) {
-                    
-                    Text("Best: \(Settings.shared.weightUnit == .lbs ? recentData.bestLift.lbsString : recentData.bestLift.kgString) \(Settings.shared.weightUnit.shortDescription)")
-                        .font(.subheadline)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 2)
-                        .background(.regularMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 4))
-                    
-                    HStack(alignment: .firstTextBaseline) {
-                        Text("Latest: \(Settings.shared.weightUnit == .lbs ? recentData.latestLift.lbsString : recentData.latestLift.kgString) \(Settings.shared.weightUnit.shortDescription)")
-                            .foregroundColor(.secondary)
-                            .font(.caption)
+        GeometryReader { geometry in
+            HStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Image(systemName: "dumbbell.fill")
+                            .foregroundColor(.accentColor)
+                        // TODO: local
+                        Text(recentData.name)
+                            .minimumScaleFactor(0.85)
+                            .lineLimit(1)
+                        //                    Text(translation[recentData.name] ?? "")
                     }
+                    .font(.system(.headline, weight: .bold))
                     
-                    Text("Updated: \(Date().formatted(date: .abbreviated, time: .omitted))")
-                        .foregroundColor(.secondary)
-                        .font(.caption2)
-
+                    VStack(alignment: .leading) {
+                        
+                        Text("Best: \(Settings.shared.weightUnit == .lbs ? recentData.bestLift.lbsString : recentData.bestLift.kgString) \(Settings.shared.weightUnit.shortDescription)")
+                            .font(.subheadline)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 2)
+                            .background(.regularMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                        
+                        HStack(alignment: .firstTextBaseline) {
+                            Text("Latest: \(Settings.shared.weightUnit == .lbs ? recentData.latestLift.lbsString : recentData.latestLift.kgString) \(Settings.shared.weightUnit.shortDescription)")
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                        }
+                        
+                        Text("Updated: \(lastUpdatedText)")
+                            .foregroundColor(.secondary)
+                            .font(.caption2)
+                        
+                    }
                 }
+                
+                Spacer(minLength: 20)
+                
+                // TODO: Bug if switching between lbs/kg (and tapping into detail)
+                Chart(chartData, id: \.0) { index, weight in
+                    LineMark(
+                        x: .value("Position", index),
+                        y: .value("Weight", weight)
+                    )
+                    .symbol(Circle().strokeBorder(lineWidth: 2))
+                    .symbolSize(CGSize(width: 6, height: 6))
+                }
+                .chartXAxis(.hidden)
+                .chartYScale(domain: .automatic(includesZero: false))
+                .padding(.vertical, 8)
+                .frame(width: geometry.size.width * 0.5)
             }
-            
-            Spacer(minLength: 20)
-            
-            // TODO: Bug if switching between lbs/kg (and tapping into detail)
-            Chart(chartData, id: \.0) { index, weight in
-                LineMark(
-                    x: .value("Position", index),
-                    y: .value("Weight", weight)
-                )
-                .symbol(Circle().strokeBorder(lineWidth: 2))
-                .symbolSize(CGSize(width: 6, height: 6))
-            }
-            .chartXAxis(.hidden)
-            .chartYScale(domain: .automatic(includesZero: false))
-            .padding(.vertical, 8)
         }
         .frame(height: 90)
     }
