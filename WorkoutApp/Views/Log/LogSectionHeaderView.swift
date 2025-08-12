@@ -15,6 +15,7 @@ class LogSectionHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.textColor = .secondaryLabel
+        label.textAlignment = .left
         return label
     }()
     
@@ -22,6 +23,7 @@ class LogSectionHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.textColor = .secondaryLabel
+        label.textAlignment = .right
         return label
     }()
 

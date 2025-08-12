@@ -14,31 +14,32 @@ class WorkoutDao: WorkoutDaoProtocol {
     
     private let context: NSManagedObjectContext // reads
     private let backgroundContext: NSManagedObjectContext // writes (long)
-
+    
     init(context: NSManagedObjectContext, backgroundContext: NSManagedObjectContext) {
         self.context = context
         self.backgroundContext = backgroundContext
     }
     
-    func createTemplate(childContext: NSManagedObjectContext) -> Template {
-        let newTemplate = Template(context: childContext)
+    func createTemplate(context: NSManagedObjectContext) throws -> Template {
+        let newTemplate = Template(context: context)
         newTemplate.title = ""
+        newTemplate.index = try getNextTemplateIndex()
         return newTemplate
     }
     
-    func createWorkout(template: Template, childContext: NSManagedObjectContext) -> Workout {
-        let workout = Workout(context: childContext)
+    func createWorkout(template: Template, context: NSManagedObjectContext) throws -> Workout {
+        let workout = Workout(context: context)
         workout.title = template.title
         workout.createdAt_ = .now
-        
+                
         for templateExercise in template.templateExercises {
-            let exercise = Exercise(context: childContext)
+            let exercise = Exercise(context: context)
             exercise.name = templateExercise.name
-            exercise.workout = workout
             exercise.index = templateExercise.index
+            exercise.workout = workout
             
             for i in 0..<templateExercise.sets {
-                let exerciseSet = ExerciseSet(context: childContext)
+                let exerciseSet = ExerciseSet(context: context)
                 exerciseSet.isComplete = false
                 exerciseSet.reps = -1   // negative means user has not inputted any value
                 exerciseSet.weight = -1 // use previous weight (or template)
@@ -50,7 +51,6 @@ class WorkoutDao: WorkoutDaoProtocol {
             workout.addToExercises(exercise)
         }
         
-        workout.printPrettyString()
         return workout
     }
     
@@ -103,20 +103,27 @@ class WorkoutDao: WorkoutDaoProtocol {
     }
     
     // note: fetches best set for each workout session. not individual sets
-    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool = true) async throws -> [ExerciseSet] {
+    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool, includeZeros: Bool = true) async throws -> [ExerciseSet] {
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
-        let predicate = NSPredicate(format: "name_ == %@", exerciseName)
-        let sortDescriptor = NSSortDescriptor(key: "workout.createdAt_", ascending: ascending)
-        request.predicate = predicate
-        request.sortDescriptors = [sortDescriptor]
-        
-        if let limit {
-            request.fetchLimit = limit
-        }
+        request.predicate = NSPredicate(format: "name_ == %@", exerciseName)
+        request.sortDescriptors = [NSSortDescriptor(key: "workout.createdAt_", ascending: ascending)]
         
         let exerciseSets = try await context.perform {
             let exercises: [Exercise] = try self.context.fetch(request)
-            return exercises.compactMap { $0.bestSet }
+            
+            var sets = exercises
+                .compactMap { $0.bestSet }
+            
+            if !includeZeros {
+                sets = sets
+                    .filter { $0.weight != 0 }
+            }
+            
+            if let limit {
+                sets = Array(sets.prefix(limit))
+            }
+            
+            return sets
         }
         
         return exerciseSets
@@ -148,14 +155,52 @@ class WorkoutDao: WorkoutDaoProtocol {
         return bestLift
     }
     
-    // existingObject vs object
-    func deleteTemplate(_ template: Template) async throws {
-        try await backgroundContext.perform {
-            // Fetch the object in the background context
-            let objectInContext = try self.backgroundContext.existingObject(with: template.objectID)
-            self.backgroundContext.delete(objectInContext)
+    func deleteTemplate(_ template: Template) {
+        CoreDataStack.shared.mainContext.delete(template)
+        CoreDataStack.shared.saveContext()
+        updateTemplateIndexes()
+    }
+    
+    private func updateTemplateIndexes() {
+        let fetchRequest: NSFetchRequest<Template> = Template.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
+        
+        do {
+            let templates = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
+            for (index, template) in templates.enumerated() {
+                template.index = Int16(index)
+            }
             
-            try self.backgroundContext.save()
+            CoreDataStack.shared.saveContext()
+        } catch {
+            print("Failed to fetch templates during delete: \(error)")
+        }
+    }
+    
+    func deleteTemplateExercise(_ templateExercise: TemplateExercise) {
+        guard let childContext = templateExercise.managedObjectContext,
+              let template = templateExercise.template
+        else { return }
+        
+        childContext.delete(templateExercise)
+        
+        updateTemplateExercisesIndexes(for: template)
+    }
+    
+    private func updateTemplateExercisesIndexes(for template: Template) {
+        guard let childContext = template.managedObjectContext else { return }
+        let fetchRequest: NSFetchRequest<TemplateExercise> = TemplateExercise.fetchRequest(for: template)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
+        
+        do {
+            let exercises = try childContext.fetch(fetchRequest)
+            for (index, exercise) in exercises.enumerated() {
+                exercise.index = Int16(index)
+            }
+            
+            try childContext.save()
+        } catch {
+            print("Failed to fetch templates during delete: \(error)")
         }
     }
     
@@ -188,6 +233,82 @@ class WorkoutDao: WorkoutDaoProtocol {
         return content.components(separatedBy: "\n").filter { !$0.isEmpty }
     }
     
+    func moveTemplate(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard sourceIndexPath != destinationIndexPath else { return }
+        
+        let fetchRequest: NSFetchRequest<Template> = Template.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
+        
+        do {
+            var templates = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
+            
+            let templateToMove = templates.remove(at: sourceIndexPath.row)
+            templates.insert(templateToMove, at: destinationIndexPath.row)
+            
+            for (index, template) in templates.enumerated() {
+                template.index = Int16(index)
+            }
+            
+            CoreDataStack.shared.saveContext()
+        } catch {
+            print("Failed to reorder templates: \(error)")
+        }
+    }
+    
+    func moveTemplateExercise(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath, template: Template) {
+        guard sourceIndexPath != destinationIndexPath,
+              let context = template.managedObjectContext
+        else { return }
+        
+        let fetchRequest: NSFetchRequest<TemplateExercise> = TemplateExercise.fetchRequest(for: template)
+        
+        do {
+            var templates = try context.fetch(fetchRequest)
+            
+            let templateToMove = templates.remove(at: sourceIndexPath.row)
+            templates.insert(templateToMove, at: destinationIndexPath.row)
+            
+            for (index, template) in templates.enumerated() {
+                template.index = Int16(index)
+            }
+            
+            try context.save()  // we use nsfetch
+        } catch {
+            print("Failed to reorder templates: \(error)")
+        }
+    }
+    
+    private func assignNextIndex(to template: Template, in context: NSManagedObjectContext) throws {
+        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Template")
+        fetchRequest.resultType = .dictionaryResultType
+        fetchRequest.propertiesToFetch = ["index"]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: false)]
+        fetchRequest.fetchLimit = 1
+        
+        let result = try context.fetch(fetchRequest)
+        
+        if let maxIndex = result.first?["index"] as? Int {
+            template.index = Int16(maxIndex + 1)
+        } else {
+            template.index = 0
+        }
+    }
+    
+    private func getNextTemplateIndex() throws -> Int16 {
+        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Template")
+        fetchRequest.resultType = .dictionaryResultType
+        fetchRequest.propertiesToFetch = ["index"]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "index", ascending: false)]
+        fetchRequest.fetchLimit = 1
+        
+        let result = try context.fetch(fetchRequest)
+        
+        if let maxIndex = result.first?["index"] as? Int {
+            return Int16(maxIndex + 1)
+        } else {
+            return 0
+        }
+    }
 }
 
 extension Double {

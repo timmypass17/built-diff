@@ -40,34 +40,6 @@ extension ExerciseSet {
         return "\(reps)"
     }
     
-//    var reps: String {
-//        get {
-//            return reps_ ?? "0"
-//        }
-//        set {
-//            reps_ = newValue
-//        }
-//    }
-    
-//    var weight: String {
-//        get {
-//            if Settings.shared.weightUnit == .lbs {
-//                return weight_ ?? "0"
-//            } else {
-//                // Convert lbs to kg
-//                return convertToKg(lbs: weight_ ?? "0")
-//            }
-//        }
-//        set {
-//            if Settings.shared.weightUnit == .lbs {
-//                weight_ = newValue
-//            } else {
-//                // Convert kg to lbs
-//                weight_ = convertToLbs(kg: newValue)
-//            }
-//        }
-//    }
-    
     var previousSet: ExerciseSet? {
         let context = CoreDataStack.shared.mainContext
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()

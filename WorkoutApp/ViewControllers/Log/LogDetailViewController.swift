@@ -13,17 +13,18 @@ protocol LogDetailViewControllerDelegate: AnyObject {
 
 class LogDetailViewController: WorkoutDetailViewController {
 
-    weak var delegate: LogDetailViewControllerDelegate?    // log handles
+    weak var delegate: LogDetailViewControllerDelegate?
     
     init(log: Workout, workoutService: WorkoutService) {
-        super.init(workoutService: workoutService)
-        // Use the objectID to fetch the object in the child context
-        // - Allows you to work with object in child context, and discard any changes if needed or save changes to main context
-        let objectInNewContext = childContext.object(with: log.objectID) as! Workout
-        self.workout = objectInNewContext
-        // note: using child-parent context with transient property doesn't really work well with sectionNameKeyPath: for some reason. it works normally if i just update using main context. need more investigation.
-        
-//        self.workout = log
+        let childContext = CoreDataStack.shared.childContext()
+        let childWorkout = childContext.object(with: log.objectID) as! Workout
+        super.init(workout: childWorkout, workoutService: workoutService)
+
+        for exercise in log.getExercises() {
+            for exerciseSet in exercise.getExerciseSets() {
+                self.repsPlaceholder[exercise.name, default: []].append(exerciseSet.reps)
+            }
+        }
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -36,6 +37,21 @@ class LogDetailViewController: WorkoutDetailViewController {
         let saveButton = UIBarButtonItem(title: "Save".localized, primaryAction: didTapSaveButton())
         let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), primaryAction: didTapCalendarButton())
         navigationItem.rightBarButtonItems = [saveButton, calendarButton]
+    }
+    
+    override func didTapBackButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self else { return }
+            if childContext.hasChanges {
+                showExitAlert(
+                    title: "Unsaved Changes".localized,
+                    message: "Changes you made to this workout session have not been saved. Do you want to leave without saving?".localized,
+                    primaryButtonText: "Discard Changes".localized
+                )
+            } else {
+                navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     func didTapSaveButton() -> UIAction {
@@ -55,7 +71,7 @@ class LogDetailViewController: WorkoutDetailViewController {
             }
             
             do {
-                try childContext.save()
+                try workout.managedObjectContext!.save()
             } catch {
                 print("Error saving reordered items: \(error)")
             }
