@@ -77,7 +77,7 @@ class StartWorkoutViewController: WorkoutDetailViewController {
         }
         
         do {
-            try workout.managedObjectContext!.save()
+            try childContext.save()
         } catch {
             print("Error saving reordered items: \(error)")
         }

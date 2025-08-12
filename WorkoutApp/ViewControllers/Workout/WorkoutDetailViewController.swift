@@ -16,6 +16,10 @@ class WorkoutDetailViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private lazy var backButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(systemName: "chevron.left"), primaryAction: didTapBackButton())
+    }()
             
     var workout: Workout
     let childContext: NSManagedObjectContext
@@ -38,11 +42,13 @@ class WorkoutDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = workout.title
-//        navigationItem.title = translation[workout.title]
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
+        
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -85,6 +91,39 @@ class WorkoutDetailViewController: UIViewController {
     @objc private func keyboardWillHide(_ notification: Notification) {
         tableView.contentInset = .zero
         tableView.scrollIndicatorInsets = .zero
+    }
+    
+    func didTapBackButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self else { return }
+            for exercise in workout.exercisesArray {
+                for exerciseSet in exercise.getExerciseSets() {
+                    let isModified = exerciseSet.weight > 0 || exerciseSet.reps > 0
+                    if isModified {
+                        showExitAlert()
+                        return
+                    }
+                }
+            }
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func showExitAlert() {
+        let alert = UIAlertController(
+            title: "Discard Workout?",
+            message: "Your progress for this workout will be lost. Do you want to end it now?",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: "Discard".localized, style: .destructive) { [weak self] _ in
+            guard let self else { return }
+            self.navigationController?.popViewController(animated: true)
+        })
+        
+        present(alert, animated: true)
     }
 }
 
@@ -391,7 +430,10 @@ extension WorkoutDetailViewController: WorkoutDetailTableViewCellDelegate {
             exerciseSet.reps = Int16(repsText) ?? 0
         }
         
-//        exerciseSet.isComplete = !exerciseSet.weight.isEmpty || !exerciseSet.reps.isEmpty
+        print("timmy reps: \(exerciseSet.reps)")
+//        
+//        exerciseSet.isComplete = exerciseSet.reps >= 0
+//        cell.updateSetButton(exerciseSet: exerciseSet)
     }
 }
 

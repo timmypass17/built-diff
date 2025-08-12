@@ -133,6 +133,7 @@ class WorkoutDetailTableViewCell: UITableViewCell {
         repsTextField.inputAccessoryView = toolbar
     }
     
+    // TODO: Remove
     func update(exerciseSet: ExerciseSet, templateExercise: TemplateExercise? = nil) {
         updateSetButton(exerciseSet: exerciseSet)
         

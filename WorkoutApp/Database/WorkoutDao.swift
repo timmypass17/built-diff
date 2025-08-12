@@ -22,15 +22,14 @@ class WorkoutDao: WorkoutDaoProtocol {
     
     func createTemplate(context: NSManagedObjectContext) throws -> Template {
         let newTemplate = Template(context: context)
-        newTemplate.title = "Test"
+        newTemplate.title = ""
         newTemplate.index = try getNextTemplateIndex()
-        print(newTemplate)
         return newTemplate
     }
     
     func createWorkout(template: Template, context: NSManagedObjectContext) throws -> Workout {
         let workout = Workout(context: context)
-        workout.title = "Test"
+        workout.title = template.title
         workout.createdAt_ = .now
                 
         for templateExercise in template.templateExercises {

@@ -72,7 +72,7 @@ class WorkoutTableViewCell: UITableViewCell {
     }
     
     func update(template: Template) {
-        titleLabel.text = /*template.title*/ "\(template.title) \(template.index)"
+        titleLabel.text = template.title // "\(template.title) \(template.index)"
         descriptionLabel.text = template.templateExercises.map { $0.name }.joined(separator: ", ")
         updateIcon(letter: template.title.first?.lowercased() ?? "a")
     }

@@ -42,6 +42,13 @@ class LogDetailViewController: WorkoutDetailViewController {
         navigationItem.rightBarButtonItems = [saveButton, calendarButton]
     }
     
+    override func didTapBackButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self else { return }
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
     func didTapSaveButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self else { return }
