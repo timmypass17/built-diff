@@ -13,16 +13,13 @@ protocol LogDetailViewControllerDelegate: AnyObject {
 
 class LogDetailViewController: WorkoutDetailViewController {
 
-    weak var delegate: LogDetailViewControllerDelegate?    // log handles
+    weak var delegate: LogDetailViewControllerDelegate?
     
     init(log: Workout, workoutService: WorkoutService) {
-        super.init(workout: log, workoutService: workoutService)
-        // Use the objectID to fetch the object in the child context
-        // - Allows you to work with object in child context, and discard any changes if needed or save changes to main context
-        let objectInNewContext = log.managedObjectContext!.object(with: log.objectID) as! Workout
-        self.workout = objectInNewContext
-        // note: using child-parent context with transient property doesn't really work well with sectionNameKeyPath: for some reason. it works normally if i just update using main context. need more investigation.
-        
+        let childContext = CoreDataStack.shared.childContext()
+        let childWorkout = childContext.object(with: log.objectID) as! Workout
+        super.init(workout: childWorkout, workoutService: workoutService)
+
         for exercise in log.getExercises() {
             for exerciseSet in exercise.getExerciseSets() {
                 self.repsPlaceholder[exercise.name, default: []].append(exerciseSet.reps)
@@ -45,7 +42,15 @@ class LogDetailViewController: WorkoutDetailViewController {
     override func didTapBackButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self else { return }
-            navigationController?.popViewController(animated: true)
+            if childContext.hasChanges {
+                showExitAlert(
+                    title: "Unsaved Changes",
+                    message: "Changes you made to this workout session have not been saved. Do you want to leave without saving?",
+                    primaryButtonText: "Discard Changes"
+                )
+            } else {
+                navigationController?.popViewController(animated: true)
+            }
         }
     }
     

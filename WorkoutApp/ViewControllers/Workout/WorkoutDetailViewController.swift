@@ -97,11 +97,16 @@ class WorkoutDetailViewController: UIViewController {
     func didTapBackButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self else { return }
+            
             for exercise in workout.exercisesArray {
                 for exerciseSet in exercise.getExerciseSets() {
                     let isModified = exerciseSet.weight > 0 || exerciseSet.reps > 0
                     if isModified {
-                        showExitAlert()
+                        showExitAlert(
+                            title: "Discard Workout?",
+                            message: "Your progress for this workout will be lost. Do you want to end it now?",
+                            primaryButtonText: "Discard"
+                        )
                         return
                     }
                 }
@@ -110,16 +115,16 @@ class WorkoutDetailViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
     }
-    
-    func showExitAlert() {
+
+    func showExitAlert(title: String, message: String, primaryButtonText: String) {
         let alert = UIAlertController(
-            title: "Discard Workout?",
-            message: "Your progress for this workout will be lost. Do you want to end it now?",
+            title: title,
+            message: message,
             preferredStyle: .alert
         )
         
         alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
-        alert.addAction(UIAlertAction(title: "Discard".localized, style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: primaryButtonText, style: .destructive) { [weak self] _ in
             guard let self else { return }
             self.navigationController?.popViewController(animated: true)
         })
