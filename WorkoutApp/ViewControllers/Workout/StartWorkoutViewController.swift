@@ -48,9 +48,14 @@ class StartWorkoutViewController: WorkoutDetailViewController {
     func didTapFinishButton() -> UIAction {
         return UIAction { _ in
             if self.workout.isFinished {
-                self.showFinishAlert(title: "Workout Complete!", message: "Are you ready to finish your workout?")
+                self.showFinishAlert(
+                    title: "Workout Complete!".localized,
+                    message: "Are you ready to finish your workout?".localized)
             } else {
-                self.showFinishAlert(title: "Finish Workout?", message: "Some weight or reps fields are still empty. Are you sure you want to finish your workout?")
+                self.showFinishAlert(
+                    title: "Finish Workout?".localized,
+                    message: "Some weight or reps fields are still empty. Are you sure you want to finish your workout?".localized
+                )
             }
         }
     }

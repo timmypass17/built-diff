@@ -44,9 +44,9 @@ class LogDetailViewController: WorkoutDetailViewController {
             guard let self else { return }
             if childContext.hasChanges {
                 showExitAlert(
-                    title: "Unsaved Changes",
-                    message: "Changes you made to this workout session have not been saved. Do you want to leave without saving?",
-                    primaryButtonText: "Discard Changes"
+                    title: "Unsaved Changes".localized,
+                    message: "Changes you made to this workout session have not been saved. Do you want to leave without saving?".localized,
+                    primaryButtonText: "Discard Changes".localized
                 )
             } else {
                 navigationController?.popViewController(animated: true)
