@@ -12,13 +12,21 @@ protocol StartWorkoutViewControllerDelegate: AnyObject {
 }
 
 class StartWorkoutViewController: WorkoutDetailViewController {
+    
+    lazy var finishButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: "Finish".localized, primaryAction: didTapFinishButton())
+    }()
 
     weak var progressDelegate: StartWorkoutViewControllerDelegate?  // progress handles
 
-    init(template: Template, workoutService: WorkoutService) {
-        super.init(workoutService: workoutService)
-        workout = workoutService.createWorkout(template: template, childContext: childContext)
-        self.template = template
+    init(template: Template, workoutService: WorkoutService) throws {
+        let childContext = CoreDataStack.shared.childContext()
+        let workout = try workoutService.createWorkout(template: template, context: childContext)
+        super.init(workout: workout, workoutService: workoutService)
+//        self.template = template
+        for exercise in template.templateExercises {
+            self.repsPlaceholder[exercise.name] = Array(repeating: exercise.reps, count: Int(exercise.sets))
+        }
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -28,20 +36,26 @@ class StartWorkoutViewController: WorkoutDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Finish".localized, primaryAction: didTapFinishButton())]
+        navigationItem.rightBarButtonItems = [finishButton]
         
         if Settings.shared.showTimer {
             let timeElapsedButton = TimeElapsedBarButton()
             navigationItem.rightBarButtonItems?.append(timeElapsedButton)
         }
+        
     }
 
     func didTapFinishButton() -> UIAction {
         return UIAction { _ in
             if self.workout.isFinished {
-                self.showFinishAlert(title: "Workout Complete!", message: "Are you ready to finish your workout?")
+                self.showFinishAlert(
+                    title: "Workout Complete!".localized,
+                    message: "Are you ready to finish your workout?".localized)
             } else {
-                self.showFinishAlert(title: "Finish Workout?", message: "Some weight or reps fields are still empty. Are you sure you want to finish your workout?")
+                self.showFinishAlert(
+                    title: "Finish Workout?".localized,
+                    message: "Some weight or reps fields are still empty. Are you sure you want to finish your workout?".localized
+                )
             }
         }
     }
@@ -61,12 +75,8 @@ class StartWorkoutViewController: WorkoutDetailViewController {
     func didTapConfirmButton() {
         for exercise in workout.getExercises() {
             for set in exercise.getExerciseSets() {
-                if set.weight < 0 {
-                    set.weight = 0
-                }
-                if set.reps < 0 {
-                    set.reps = 0
-                }
+                set.weight = max(set.weight, 0)
+                set.reps = max(set.reps, 0)
                 set.isComplete = true
             }
         }

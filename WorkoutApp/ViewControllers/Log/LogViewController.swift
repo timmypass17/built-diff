@@ -117,6 +117,13 @@ class LogViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateWeekHeaderView),
                                                name: AccentColor.valueChangedNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateWeekHeaderView),
+            name: UIApplication.significantTimeChangeNotification,
+            object: nil
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -152,6 +159,7 @@ class LogViewController: UIViewController {
         CoreDataStack.shared.saveContext()
         progressDelegate?.logViewController(self, didDeleteLog: logToRemove)
     }
+    
 }
 
 extension LogViewController: UITableViewDataSource {

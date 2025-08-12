@@ -198,7 +198,6 @@ extension ExercisesTableViewController: UISearchResultsUpdating {
 
 extension ExercisesTableViewController: AddExerciseDetailViewControllerDelegate {
     func addExerciseDetailViewControllerDelegate(_ viewController: AddExerciseDetailViewController, didAddExercise exercise: String, sets: Int, reps: Int) {
-        print("didAddExercise")
         delegate?.addExerciseDetailViewControllerDelegate(viewController, didAddExercise: exercise, sets: sets, reps: reps)
         presentingViewController?.dismiss(animated: true)
     }

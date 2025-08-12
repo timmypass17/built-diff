@@ -86,7 +86,7 @@ class ProgressViewController: UIViewController {
             
             let exerciseNames: [String] = await workoutService.fetchExerciseNames()
             for exerciseName in exerciseNames {
-                let exerciseSets: [ExerciseSet] = await workoutService.fetchExerciseSets(exerciseName: exerciseName, limit: 7)
+                let exerciseSets: [ExerciseSet] = await workoutService.fetchExerciseSets(exerciseName: exerciseName, limit: 7, ascending: false, includesZero: false).reversed()
                 let bestLift: Double = await workoutService.fetchPR(exerciseName: exerciseName)
                 
                 exerciseData.append(ExerciseData(name: exerciseName, exerciseSets: exerciseSets, bestLift: bestLift, lastUpdated: .now, latestLift: exerciseSets.last?.weight ?? 0))
@@ -108,27 +108,52 @@ class ProgressViewController: UIViewController {
     
     
     func setupSortMenu() {
+        let currentPreference = Settings.shared.sortingPreference
+        
         let menuItems: [UIAction] = [
-            UIAction(title: "Alphabetical (A-Z)".localized, image: UIImage(systemName: "a.square.fill")) { _ in
+            UIAction(
+                title: "Alphabetical (A-Z)".localized,
+                image: UIImage(systemName: "a.square.fill"),
+                state: currentPreference == .alphabetically ? .on : .off
+            ) { _ in
                 self.exerciseData.sort { $0.name < $1.name }
                 self.tableView.reloadData()
                 Settings.shared.sortingPreference = .alphabetically
+                self.setupSortMenu() // refresh menu so checkmark moves
             },
-            UIAction(title: "Weight".localized, image: UIImage(systemName: "scalemass.fill")) { _ in
+            
+            UIAction(
+                title: "Weight".localized,
+                image: UIImage(systemName: "scalemass.fill"),
+                state: currentPreference == .weight ? .on : .off
+            ) { _ in
                 self.exerciseData.sort { $0.bestLift > $1.bestLift }
                 self.tableView.reloadData()
                 Settings.shared.sortingPreference = .weight
+                self.setupSortMenu()
             },
-            UIAction(title: "Recently Updated".localized, image: UIImage(systemName: "clock")) { _ in
+            
+            UIAction(
+                title: "Recently Updated".localized,
+                image: UIImage(systemName: "clock"),
+                state: currentPreference == .recent ? .on : .off
+            ) { _ in
                 self.exerciseData.sort { $0.lastUpdated > $1.lastUpdated }
                 self.tableView.reloadData()
                 Settings.shared.sortingPreference = .recent
-                }
+                self.setupSortMenu()
+            }
         ]
-
-        let sortMenu = UIMenu(title: "Sort By".localized, image: nil, identifier: nil, options: [], children: menuItems)
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease"), menu: sortMenu)
+        
+        let sortMenu = UIMenu(
+            title: "Sort By".localized,
+            children: menuItems
+        )
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal.decrease"),
+            menu: sortMenu
+        )
     }
 }
 
@@ -162,7 +187,7 @@ extension ProgressViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Task {
             let data = exerciseData[indexPath.row]
-            let allSets = await workoutService.fetchExerciseSets(exerciseName: data.name, ascending: false)
+            let allSets = await workoutService.fetchExerciseSets(exerciseName: data.name, ascending: false, includesZero: true)
             allSets.forEach { set in
                 if Settings.shared.weightUnit == .lbs {
                     set.weight = set.weight.lbs

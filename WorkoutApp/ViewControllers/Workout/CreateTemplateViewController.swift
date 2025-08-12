@@ -6,19 +6,20 @@
 //
 
 import UIKit
-
-protocol CreateTemplateViewControllerDelegate: AnyObject {
-    func createTemplateViewController(_ viewController: CreateTemplateViewController, didCreateTemplate template: Template)
-}
+import CoreData
 
 class CreateTemplateViewController: TemplateViewController {
 
-    weak var delegate: CreateTemplateViewControllerDelegate?
-
-    init(workoutService: WorkoutService) {
-        let childContext = CoreDataStack.shared.newChildContext()
-        let newTemplate = workoutService.createTemplate(childContext: childContext)
-        super.init(template: newTemplate, childContext: childContext, workoutService: workoutService)
+    lazy var createButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(systemItem: .save, primaryAction: didTapCreateButton())
+        return button
+    }()
+    
+    init(workoutService: WorkoutService) throws {
+        let childContext = CoreDataStack.shared.childContext()
+        let newTemplate = try workoutService.createTemplate(childContext: childContext)
+        print(newTemplate)
+        super.init(template: newTemplate, workoutService: workoutService)
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -28,16 +29,23 @@ class CreateTemplateViewController: TemplateViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Create Workout".localized
-        navigationItem.rightBarButtonItems?.insert(UIBarButtonItem(systemItem: .save, primaryAction: didTapCreateButton()), at: 0)
+        navigationItem.rightBarButtonItems = [createButton]
         updateSaveButton()
     }
     
     func didTapCreateButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self else { return }
-            delegate?.createTemplateViewController(self, didCreateTemplate: template)
-            self.dismiss(animated: true)
+            
+            do {
+                try childContext.save()
+                CoreDataStack.shared.saveContext()
+                self.dismiss(animated: true)
+            } catch {
+                print("Error creating template: \(error)")
+            }
         }
     }
 
+    
 }

@@ -9,8 +9,6 @@ import UIKit
 import CoreData
 import WatchConnectivity
 
-// TODO: Localize vietnamese, finish localization
-// TODO: Bug if user changes langauges, saved exercises will not update (not worth working on, rare for users to randomly decide to change langauges)
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

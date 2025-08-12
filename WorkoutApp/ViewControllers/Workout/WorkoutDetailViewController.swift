@@ -16,30 +16,40 @@ class WorkoutDetailViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private lazy var backButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(systemName: "chevron.left"), primaryAction: didTapBackButton())
+    }()
             
-    var workout: Workout!
-    var template: Template? // for inital placeholder values
-    let childContext = CoreDataStack.shared.newChildContext()
+    var workout: Workout
+    let childContext: NSManagedObjectContext
+    var previousWorkoutInputs: [String: [(weight: Double, reps: Int16)]]
+    var repsPlaceholder: [String: [Int16]] = [:]
     let workoutService: WorkoutService
     
-    init(workoutService: WorkoutService) {
+    init(workout: Workout, workoutService: WorkoutService) {
+        self.workout = workout
         self.workoutService = workoutService
+        self.childContext = workout.managedObjectContext!
+        self.previousWorkoutInputs = workoutService.getLatestExerciseInfoDict(exercises: workout.getExercises().map { $0.name })
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: Local
         navigationItem.title = workout.title
-//        navigationItem.title = translation[workout.title]
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
         tableView.dataSource = self
         tableView.delegate = self
+//        tableView.keyboardDismissMode = .interactive
         view.addSubview(tableView)
+        
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -83,6 +93,44 @@ class WorkoutDetailViewController: UIViewController {
         tableView.contentInset = .zero
         tableView.scrollIndicatorInsets = .zero
     }
+    
+    func didTapBackButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self else { return }
+            
+            for exercise in workout.exercisesArray {
+                for exerciseSet in exercise.getExerciseSets() {
+                    let isModified = exerciseSet.weight > 0 || exerciseSet.reps > 0
+                    if isModified {
+                        showExitAlert(
+                            title: "Discard Workout?",
+                            message: "Your progress for this workout will be lost. Do you want to end it now?",
+                            primaryButtonText: "Discard"
+                        )
+                        return
+                    }
+                }
+            }
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    func showExitAlert(title: String, message: String, primaryButtonText: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: primaryButtonText, style: .destructive) { [weak self] _ in
+            guard let self else { return }
+            self.navigationController?.popViewController(animated: true)
+        })
+        
+        present(alert, animated: true)
+    }
 }
 
 extension WorkoutDetailViewController: UITableViewDataSource {
@@ -110,7 +158,24 @@ extension WorkoutDetailViewController: UITableViewDataSource {
             let exerciseSet = sets[indexPath.row]
             cell.delegate = self
             
-            cell.update(exerciseSet: exerciseSet, templateExercise: template?.templateExercises[indexPath.section])
+            // Get previous weight
+            let previousInputs = previousWorkoutInputs[exercise.name] ?? []
+            var previousWeight: Double? = previousInputs.last?.weight
+            
+            if indexPath.row < previousInputs.count {
+                // Previous weight exists
+                previousWeight = previousInputs[indexPath.row].weight
+            }
+            
+            let previousReps = repsPlaceholder[exercise.name] ?? []
+            var repsPlaceholder: Int16 = previousReps.last ?? 0
+            
+            if indexPath.row < previousReps.count {
+                // Previous weight exists
+                repsPlaceholder = previousReps[indexPath.row]
+            }
+            
+            cell.update(exerciseSet: exerciseSet, previousWeight: previousWeight, repsPlaceholder: "\(repsPlaceholder)")
             return cell
         }
     }
@@ -121,7 +186,7 @@ extension WorkoutDetailViewController: AddSetTableViewCellDelegate {
         guard let indexPath = tableView.indexPath(for: sender) else { return }
         
         let exercise = workout.getExercise(at: indexPath.section)
-        let set = ExerciseSet(context: childContext)
+        let set = ExerciseSet(context: workout.managedObjectContext!)
         set.index = Int16(workout.getExercise(at: indexPath.section).getExerciseSets().count)
         set.isComplete = false
         set.weight = -1
@@ -371,7 +436,10 @@ extension WorkoutDetailViewController: WorkoutDetailTableViewCellDelegate {
             exerciseSet.reps = Int16(repsText) ?? 0
         }
         
-//        exerciseSet.isComplete = !exerciseSet.weight.isEmpty || !exerciseSet.reps.isEmpty
+        print("timmy reps: \(exerciseSet.reps)")
+//        
+//        exerciseSet.isComplete = exerciseSet.reps >= 0
+//        cell.updateSetButton(exerciseSet: exerciseSet)
     }
 }
 

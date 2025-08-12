@@ -10,6 +10,14 @@ import UIKit
 class LogViewCell: UITableViewCell {
     static let reuseIdentifier = "LogTableViewCell"
     
+    private let leftIndicatorView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 4
+        view.isHidden = true
+        return view
+    }()
+    
     private let weekdayLabel: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .subheadline)
@@ -69,6 +77,16 @@ class LogViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         accessoryType = .disclosureIndicator
+        
+        contentView.addSubview(leftIndicatorView)
+
+        // Setup constraints for leftIndicatorView
+        NSLayoutConstraint.activate([
+            leftIndicatorView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            leftIndicatorView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
+            leftIndicatorView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            leftIndicatorView.widthAnchor.constraint(equalToConstant: 3)
+        ])
 
         dateVStackView.addArrangedSubview(weekdayLabel)
         dateVStackView.addArrangedSubview(dayLabel)
@@ -86,10 +104,10 @@ class LogViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            containerHStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            containerHStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            containerHStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16), // extra to push dateview
-            containerHStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            containerHStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            containerHStackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
+            containerHStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            containerHStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
         ])
                 
     }
@@ -120,21 +138,12 @@ class LogViewCell: UITableViewCell {
             }
             .joined(separator: "\n")
 
-//        workoutLabel.text = translation[workout.title] ?? workout.title
-//        exercisesLabel.text = workout.getExercises()
-//            .compactMap { exercise in
-//                guard let bestSet = exercise.bestSet else { return "" }
-//                let weightString: String
-//                if Settings.shared.weightUnit == .lbs {
-//                    weightString = bestSet.weight.lbsString
-//                } else {
-//                    weightString = bestSet.weight.kgString
-//                }
-//                
-//                let exerciseName = translation[exercise.name] ?? exercise.name
-//                return "\(exercise.getExerciseSets().count)x\(exercise.maxReps ?? 0) \(exerciseName) - \(weightString) \(Settings.shared.weightUnit.shortDescription)"
-//            }
-//            .joined(separator: "\n")
-
+        // Check if workout date is today
+        if Calendar.current.isDateInToday(createdAt) {
+            leftIndicatorView.isHidden = false
+            leftIndicatorView.backgroundColor = Settings.shared.selectedAccentColor
+        } else {
+            leftIndicatorView.isHidden = true
+        }
     }
 }
