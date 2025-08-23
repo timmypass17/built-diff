@@ -54,20 +54,7 @@ class WorkoutDao: WorkoutDaoProtocol {
         return workout
     }
     
-    func fetchTemplates() async throws -> [Template] {
-        let request: NSFetchRequest<Template> = Template.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "index", ascending: true)]
-        
-        let templates = try await context.perform {
-            let results = try self.context.fetch(request)
-            print("Fetched \(results.count) templates")
-            return results
-        }
-        
-        return templates
-    }
-    
-    func fetchLogs(from startDate: Date? = nil, to endDate: Date? = nil) async throws -> [Workout] {
+    func fetchLogs(from startDate: Date? = nil, to endDate: Date? = nil) throws -> [Workout] {
         let request: NSFetchRequest<Workout> = Workout.fetchRequest()
         if let startDate, let endDate {
             let predicate = NSPredicate(format: "createdAt_ >= %@ AND createdAt_ < %@", startDate as NSDate, endDate as NSDate)
@@ -76,60 +63,62 @@ class WorkoutDao: WorkoutDaoProtocol {
         let sortDescriptor = NSSortDescriptor(key: "createdAt_", ascending: false)
         request.sortDescriptors = [sortDescriptor]
         
-        let logs = try await context.perform {
-            let logs = try self.context.fetch(request)
-            print("Fetched \(logs.count) logs")
-            return logs
-        }
-        
+//        let logs = try await context.perform {
+        let logs = try self.context.fetch(request)
+        print("Fetched \(logs.count) logs")
         return logs
+//        }
+//        
+//        return logs
     }
     
-    func fetchExerciseNames() async throws -> [String] {
+    func fetchExerciseNames() throws -> [String] {
         // TODO: fetch from templateExercises instead? much smaller data set
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Exercise")
         request.propertiesToFetch = ["name_"] // Fetch only the 'name_' property
         request.resultType = .dictionaryResultType
         request.returnsDistinctResults = true // Ensure only unique names are returned
         
-        let exerciseNames = try await context.perform {
-            let results = try self.context.fetch(request) as? [[String: Any]]
-            let uniqueNames = results?.compactMap { $0["name_"] as? String } ?? []
-            print("Fetched \(uniqueNames.count) exercises")
-            return uniqueNames.sorted()
-        }
+//        let exerciseNames = try await context.perform {
+//            let results = try self.context.fetch(request) as? [[String: Any]]
+//            let uniqueNames = results?.compactMap { $0["name_"] as? String } ?? []
+//            print("Fetched \(uniqueNames.count) exercises")
+//            return uniqueNames.sorted()
+//        }
+//        
+//        return exerciseNames
         
-        return exerciseNames
+        let results = try self.context.fetch(request) as? [[String: Any]]
+        let uniqueNames = results?.compactMap { $0["name_"] as? String } ?? []
+        print("Fetched \(uniqueNames.count) exercises")
+        return uniqueNames.sorted()
     }
     
     // note: fetches best set for each workout session. not individual sets
-    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool, includeZeros: Bool = true) async throws -> [ExerciseSet] {
+    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool, includeZeros: Bool = true) throws -> [ExerciseSet] {
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
         request.predicate = NSPredicate(format: "name_ == %@", exerciseName)
         request.sortDescriptors = [NSSortDescriptor(key: "workout.createdAt_", ascending: ascending)]
         
-        let exerciseSets = try await context.perform {
-            let exercises: [Exercise] = try self.context.fetch(request)
-            
-            var sets = exercises
-                .compactMap { $0.bestSet }
-            
-            if !includeZeros {
-                sets = sets
-                    .filter { $0.weight != 0 }
-            }
-            
-            if let limit {
-                sets = Array(sets.prefix(limit))
-            }
-            
-            return sets
+        let exercises: [Exercise] = try self.context.fetch(request)
+        
+        var sets = exercises
+            .compactMap { $0.bestSet }
+        
+        if !includeZeros {
+            sets = sets
+                .filter { $0.weight != 0 }
         }
         
-        return exerciseSets
+        if let limit {
+            sets = Array(sets.prefix(limit))
+        }
+        
+        return sets
+        
     }
     
-    func fetchPR(exerciseName: String) async throws -> Double {
+    func fetchPR(exerciseName: String) throws -> Double {
         let request = NSFetchRequest<NSDictionary>(entityName: "ExerciseSet")
         request.predicate = NSPredicate(format: "exercise.name_ == %@", exerciseName)
         request.resultType = .dictionaryResultType
@@ -142,17 +131,14 @@ class WorkoutDao: WorkoutDaoProtocol {
         
         request.propertiesToFetch = [expressionDescription]
         
-        let bestLift = try await context.perform {
-            guard let result = try self.context.fetch(request).first,
-                  let maxWeight = result["maxWeight"] as? Double
-            else {
-                return 0.0
-            }
-            
-            return maxWeight
+        guard let result = try self.context.fetch(request).first,
+              let maxWeight = result["maxWeight"] as? Double
+        else {
+            return 0.0
         }
         
-        return bestLift
+        return maxWeight
+    
     }
     
     func deleteTemplate(_ template: Template) {
@@ -203,28 +189,7 @@ class WorkoutDao: WorkoutDaoProtocol {
             print("Failed to fetch templates during delete: \(error)")
         }
     }
-    
-    func deleteLog(_ log: Workout) async throws {
-        try await backgroundContext.perform {
-            let objectInContext = try self.backgroundContext.existingObject(with: log.objectID)
-            self.backgroundContext.delete(objectInContext)
-            
-            try self.backgroundContext.save()
-        }
-    }
-    
-    func updateTemplatesPositions(_ templates: [Template]) async throws {
-        try await backgroundContext.perform {
-            for i in 0..<templates.count {
-                let objectInContext = try self.backgroundContext.existingObject(with: templates[i].objectID) as! Template
-                objectInContext.index = Int16(i)
-                templates[i].index = Int16(i) // update locally
-            }
-            
-            try self.backgroundContext.save()
-        }
-    }
-    
+
     func loadExercises(from fileName: String) -> [String] {
         // Does load correct exercise.txt based on user's localization
         guard let url = Bundle.main.url(forResource: fileName, withExtension: "txt"),

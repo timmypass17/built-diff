@@ -39,9 +39,9 @@ class WeekHeaderView: UIView {
             container.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor)
         ])
         
-        update()
 //        container.layer.borderColor = UIColor.blue.cgColor
 //        container.layer.borderWidth = 2
+        
     }
     
     required init?(coder: NSCoder) {
@@ -53,16 +53,15 @@ class WeekHeaderView: UIView {
         let weekDays = getWeekDays()
         let startOfWeek: Date = weekDays[0]
         let endOfWeek: Date = weekDays[weekDays.count - 1]
-        Task {
-            let weekLogs: [Workout] = await workoutService?.fetchLogs(from: startOfWeek, to: endOfWeek) ?? []
-            let loggedDates: Set<Date> = Set(weekLogs.map { Calendar.current.startOfDay(for: $0.createdAt) })
+        
+        let weekLogs: [Workout] = workoutService?.fetchLogs(from: startOfWeek, to: endOfWeek) ?? []
+        let loggedDates: Set<Date> = Set(weekLogs.map { Calendar.current.startOfDay(for: $0.createdAt) })
 
-            for (index, dayView) in dayViews.enumerated() {
-                dayView.update(
-                    date: weekDays[index],
-                    isCompleted: loggedDates.contains( weekDays[index])
-                )
-            }
+        for (index, dayView) in dayViews.enumerated() {
+            dayView.update(
+                date: weekDays[index],
+                isCompleted: loggedDates.contains( weekDays[index])
+            )
         }
     }
 

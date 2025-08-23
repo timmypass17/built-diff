@@ -18,7 +18,6 @@ class CreateTemplateViewController: TemplateViewController {
     init(workoutService: WorkoutService) throws {
         let childContext = CoreDataStack.shared.childContext()
         let newTemplate = try workoutService.createTemplate(childContext: childContext)
-        print(newTemplate)
         super.init(template: newTemplate, workoutService: workoutService)
     }
     

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WCSession.default.delegate = sessionDelegator
         WCSession.default.activate()
         
-        printLocalizable()
+//        printLocalizable()
         return true
     }
 
@@ -124,14 +124,14 @@ yellow
 Your workout data is locally stored on your device, ensuring complete privacy. No one else can access or view your data, guaranteeing the confidentiality of your personal fitness data.
 """
 
-func printLocalizable() {
-    if let url = Bundle.main.url(forResource: "Localizable", withExtension: "xcstrings"),
-        let stringsDict = NSDictionary(contentsOf: url) as? [String: Any] {
-        print(stringsDict)
-    } else {
-        print("fail")
-    }
-}
+//func printLocalizable() {
+//    if let url = Bundle.main.url(forResource: "Localizable", withExtension: "xcstrings"),
+//        let stringsDict = NSDictionary(contentsOf: url) as? [String: Any] {
+//        print(stringsDict)
+//    } else {
+//        print("fail")
+//    }
+//}
 
 
 var keyWords: String {
