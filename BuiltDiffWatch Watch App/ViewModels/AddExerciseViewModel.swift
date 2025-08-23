@@ -26,7 +26,7 @@ import Foundation
     init(template: TemplateWrapper) {
         self.template = template
         self.exerciseIndex = template.templateExercises.count
-        self.workoutService = WorkoutService(workoutDao: WorkoutDao(context: CoreDataStack.shared.mainContext, backgroundContext: CoreDataStack.shared.newBackgroundContext()))
+        self.workoutService = WorkoutService(workoutDao: WorkoutDao(context: CoreDataStack.shared.mainContext))
         exercises = workoutService.loadExercises(from: "exercises")
         sections = groupExercisesByFirstLetter(exercises)
     }

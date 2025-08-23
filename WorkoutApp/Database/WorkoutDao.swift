@@ -13,11 +13,9 @@ import CoreData
 class WorkoutDao: WorkoutDaoProtocol {
     
     private let context: NSManagedObjectContext // reads
-    private let backgroundContext: NSManagedObjectContext // writes (long)
     
-    init(context: NSManagedObjectContext, backgroundContext: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext) {
         self.context = context
-        self.backgroundContext = backgroundContext
     }
     
     func createTemplate(context: NSManagedObjectContext) throws -> Template {
