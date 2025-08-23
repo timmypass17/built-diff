@@ -50,6 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         settingsViewController.tabBarItem = UITabBarItem(title: "Settings".localized, image: UIImage(systemName: "gearshape.fill"), tag: 0)
         
         progressViewController.loadViewIfNeeded()
+//        logViewController.loadViewIfNeeded()
 
         tabBarController.viewControllers = [workoutViewController, logViewController, progressViewController, settingsViewController].map { UINavigationController(rootViewController: $0) }
         

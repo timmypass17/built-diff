@@ -112,6 +112,8 @@ class LogViewController: UIViewController {
         
         weekHeaderView = WeekHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
         weekHeaderView?.workoutService = workoutService
+        weekHeaderView?.update()
+        
         tableView.tableHeaderView = weekHeaderView
         
         NotificationCenter.default.addObserver(self,

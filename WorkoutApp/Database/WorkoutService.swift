@@ -25,41 +25,34 @@ class WorkoutService {
         return try workoutDao.createWorkout(template: template, context: context)
     }
     
-    func fetchTemplates() async -> [Template] {
+    func fetchLogs(from startDate: Date? = nil, to endDate: Date? = nil) -> [Workout] {
         do {
-            return try await workoutDao.fetchTemplates()
+            let logs = try workoutDao.fetchLogs(from: startDate, to: endDate)
+            return logs
         } catch {
             return []
         }
     }
     
-    func fetchLogs(from startDate: Date? = nil, to endDate: Date? = nil) async -> [Workout] {
+    func fetchExerciseNames() -> [String] {
         do {
-            return try await workoutDao.fetchLogs(from: startDate, to: endDate)
+            return try workoutDao.fetchExerciseNames()
         } catch {
             return []
         }
     }
     
-    func fetchExerciseNames() async -> [String] {
+    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool, includesZero: Bool) -> [ExerciseSet] {
         do {
-            return try await workoutDao.fetchExerciseNames()
+            return try workoutDao.fetchExerciseSets(exerciseName: exerciseName, limit: limit, ascending: ascending, includeZeros: includesZero)
         } catch {
             return []
         }
     }
     
-    func fetchExerciseSets(exerciseName: String, limit: Int? = nil, ascending: Bool, includesZero: Bool) async -> [ExerciseSet] {
+    func fetchPR(exerciseName: String) -> Double {
         do {
-            return try await workoutDao.fetchExerciseSets(exerciseName: exerciseName, limit: limit, ascending: ascending, includeZeros: includesZero)
-        } catch {
-            return []
-        }
-    }
-    
-    func fetchPR(exerciseName: String) async -> Double {
-        do {
-            return try await workoutDao.fetchPR(exerciseName: exerciseName)
+            return try workoutDao.fetchPR(exerciseName: exerciseName)
         } catch {
             return 0.0
         }
@@ -73,19 +66,6 @@ class WorkoutService {
         workoutDao.deleteTemplateExercise(templateExercise)
     }
     
-    func deleteLog(_ logs: [Date: [Workout]], at indexPath: IndexPath) async -> [Date: [Workout]] {
-        do {
-            var updatedLogs = logs
-            let monthYears = logs.keys.sorted(by: >)
-            let monthYear = monthYears[indexPath.section]
-            let logToRemove = updatedLogs[monthYear, default: []].remove(at: indexPath.row)
-            try await workoutDao.deleteLog(logToRemove)
-            return updatedLogs
-        } catch {
-            print("error deleting template: \(error)")
-            return logs
-        }
-    }
 //    
 //    func reorderTemplates(_ templates: [Template], moveWorkoutAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) async -> [Template] {
 //        guard sourceIndexPath != destinationIndexPath else { return templates }

@@ -81,29 +81,27 @@ class ProgressViewController: UIViewController {
     
     // note: only fetches exerciseCount * 7 at most, cheap
     func updateData() {
-        Task {
-            exerciseData.removeAll()
+        exerciseData.removeAll()
+        
+        let exerciseNames: [String] = workoutService.fetchExerciseNames()
+        for exerciseName in exerciseNames {
+            let exerciseSets: [ExerciseSet] = workoutService.fetchExerciseSets(exerciseName: exerciseName, limit: 7, ascending: false, includesZero: false).reversed()
+            let bestLift: Double = workoutService.fetchPR(exerciseName: exerciseName)
             
-            let exerciseNames: [String] = await workoutService.fetchExerciseNames()
-            for exerciseName in exerciseNames {
-                let exerciseSets: [ExerciseSet] = await workoutService.fetchExerciseSets(exerciseName: exerciseName, limit: 7, ascending: false, includesZero: false).reversed()
-                let bestLift: Double = await workoutService.fetchPR(exerciseName: exerciseName)
-                
-                exerciseData.append(ExerciseData(name: exerciseName, exerciseSets: exerciseSets, bestLift: bestLift, lastUpdated: .now, latestLift: exerciseSets.last?.weight ?? 0))
-            }
-            
-            switch Settings.shared.sortingPreference {
-            case .alphabetically:
-                self.exerciseData.sort { $0.name < $1.name }
-            case .weight:
-                self.exerciseData.sort { $0.bestLift > $1.bestLift }
-            case .recent:
-                self.exerciseData.sort { $0.lastUpdated > $1.lastUpdated }
-            }
-            
-            contentUnavailableView.isHidden = !exerciseData.isEmpty
-            tableView.reloadData()
+            exerciseData.append(ExerciseData(name: exerciseName, exerciseSets: exerciseSets, bestLift: bestLift, lastUpdated: .now, latestLift: exerciseSets.last?.weight ?? 0))
         }
+        
+        switch Settings.shared.sortingPreference {
+        case .alphabetically:
+            self.exerciseData.sort { $0.name < $1.name }
+        case .weight:
+            self.exerciseData.sort { $0.bestLift > $1.bestLift }
+        case .recent:
+            self.exerciseData.sort { $0.lastUpdated > $1.lastUpdated }
+        }
+        
+        contentUnavailableView.isHidden = !exerciseData.isEmpty
+        tableView.reloadData()
     }
     
     
@@ -185,25 +183,23 @@ extension ProgressViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Task {
-            let data = exerciseData[indexPath.row]
-            let allSets = await workoutService.fetchExerciseSets(exerciseName: data.name, ascending: false, includesZero: true)
-            allSets.forEach { set in
-                if Settings.shared.weightUnit == .lbs {
-                    set.weight = set.weight.lbs
-                } else {
-                    set.weight = set.weight.lbsToKg
-                }
+        let data = exerciseData[indexPath.row]
+        let allSets = workoutService.fetchExerciseSets(exerciseName: data.name, ascending: false, includesZero: true)
+        allSets.forEach { set in
+            if Settings.shared.weightUnit == .lbs {
+                set.weight = set.weight.lbs
+            } else {
+                set.weight = set.weight.lbsToKg
             }
-            
-            let allExerciseData = ExerciseData(name: data.name, exerciseSets: allSets, bestLift: data.bestLift, lastUpdated: data.lastUpdated, latestLift: data.latestLift)
-            let progressDetailView = ProgressDetailView(data: allExerciseData)
-            let hostingController = UIHostingController(rootView: progressDetailView)
-            // TODO: localize
-            hostingController.navigationItem.title = data.name
-//            hostingController.navigationItem.title = translation[data.name]
-            navigationController?.pushViewController(hostingController, animated: true)
         }
+        
+        let allExerciseData = ExerciseData(name: data.name, exerciseSets: allSets, bestLift: data.bestLift, lastUpdated: data.lastUpdated, latestLift: data.latestLift)
+        let progressDetailView = ProgressDetailView(data: allExerciseData)
+        let hostingController = UIHostingController(rootView: progressDetailView)
+        // TODO: localize
+        hostingController.navigationItem.title = data.name
+        //            hostingController.navigationItem.title = translation[data.name]
+        navigationController?.pushViewController(hostingController, animated: true)
     }
 }
 
