@@ -9,10 +9,12 @@ import Foundation
 
 extension String {
     // note: using .localized will not automically update Localizable.xcstrings. Using String(localized:) does.
+    // "Timmy".localized -> doesnt update Localizable
+    // String(localized: "Timmy") -> does update
     var localized: String {
         String(localized: String.LocalizationValue(self))
     }
-    
+
     func localized(_ args: CVarArg...) -> String {
         let format = String(localized: String.LocalizationValue(self))
         return String(format: format, arguments: args)

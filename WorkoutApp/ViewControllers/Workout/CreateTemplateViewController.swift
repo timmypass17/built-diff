@@ -27,7 +27,7 @@ class CreateTemplateViewController: TemplateViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Create Workout".localized
+        navigationItem.title = String(localized: "Create Workout")
         navigationItem.rightBarButtonItems = [createButton]
         updateSaveButton()
     }

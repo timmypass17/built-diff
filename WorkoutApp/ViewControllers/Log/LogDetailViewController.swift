@@ -34,7 +34,7 @@ class LogDetailViewController: WorkoutDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButton = UIBarButtonItem(title: "Save".localized, primaryAction: didTapSaveButton())
+        let saveButton = UIBarButtonItem(title: String(localized: "Save"), primaryAction: didTapSaveButton())
         let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), primaryAction: didTapCalendarButton())
         navigationItem.rightBarButtonItems = [saveButton, calendarButton]
     }
@@ -44,9 +44,9 @@ class LogDetailViewController: WorkoutDetailViewController {
             guard let self else { return }
             if childContext.hasChanges {
                 showExitAlert(
-                    title: "Unsaved Changes".localized,
-                    message: "Changes you made to this workout session have not been saved. Do you want to leave without saving?".localized,
-                    primaryButtonText: "Discard Changes".localized
+                    title: String(localized: "Unsaved Changes"),
+                    message: String(localized: "Changes you made to this workout session have not been saved. Do you want to leave without saving?"),
+                    primaryButtonText: String(localized: "Discard Changes")
                 )
             } else {
                 navigationController?.popViewController(animated: true)

@@ -16,7 +16,7 @@ class AddSetTableViewCell: UITableViewCell {
     
     private let addButton: UIButton  = {
         let button = UIButton(configuration: .tinted())
-        button.setTitle("Add Set".localized, for: .normal)
+        button.setTitle(String(localized: "Add Set"), for: .normal)
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

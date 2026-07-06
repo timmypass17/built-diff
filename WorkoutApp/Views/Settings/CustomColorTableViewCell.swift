@@ -16,7 +16,7 @@ class CustomColorTableViewCell: UITableViewCell {
     
     let label: UILabel = {
         let label = UILabel()
-        label.text = "Custom".localized
+        label.text = String(localized: "Custom")
         return label
     }()
     
@@ -24,7 +24,7 @@ class CustomColorTableViewCell: UITableViewCell {
         let colorWell = UIColorWell()
         colorWell.supportsAlpha = true
         colorWell.selectedColor = nil
-        colorWell.title = "Color Well"
+        colorWell.title = String(localized: "Color Well")
         colorWell.isUserInteractionEnabled = true
 
         return colorWell

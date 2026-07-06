@@ -42,7 +42,7 @@ struct WorkoutCellView: View {
                 Text(title)
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                Text("%lld Exercises".localized(exerciseCount))
+                Text("%\(exerciseCount) Exercises")
                     .foregroundStyle(.secondary)
                     .font(.caption)
                     .lineLimit(1)

@@ -18,6 +18,9 @@
       },
       "shouldTranslate" : false
     },
+    "%%%lld Exercises" : {
+
+    },
     "%lld" : {
       "shouldTranslate" : false
     },
@@ -1974,6 +1977,9 @@
         }
       }
     },
+    "Color Well" : {
+
+    },
     "Contact Us" : {
       "localizations" : {
         "de" : {
@@ -3026,6 +3032,9 @@
         }
       }
     },
+    "Done" : {
+
+    },
     "Edit Workout" : {
       "localizations" : {
         "de" : {
@@ -3095,6 +3104,12 @@
           }
         }
       }
+    },
+    "Enter exercise name below" : {
+
+    },
+    "Ex. Bench Press" : {
+
     },
     "Exercises" : {
       "localizations" : {
@@ -9293,5 +9308,5 @@
       }
     }
   },
-  "version" : "1.0"
+  "version" : "1.1"
 }

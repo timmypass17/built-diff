@@ -41,7 +41,7 @@ class EditTemplateViewController: TemplateViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Edit Workout".localized
+        navigationItem.title = String(localized: "Edit Workout")
         navigationItem.rightBarButtonItems = [saveButton]
         updateSaveButton()
     }

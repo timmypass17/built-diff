@@ -37,7 +37,7 @@ struct AddSetsRepsView: View {
                 }
                 
                 VStack {
-                    Text("reps".localized.localizedUppercase)
+                    Text("reps".localizedUppercase)
                         .fontWeight(.semibold)
                     
                     Picker("Select rep count", selection: $exercise.reps) {
