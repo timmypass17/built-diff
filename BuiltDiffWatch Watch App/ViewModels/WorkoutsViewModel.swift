@@ -7,7 +7,6 @@
 
 import Foundation
 import WatchConnectivity
-import SwiftUICore
 
 @Observable class WorkoutsViewModel {
     var isPresentingMoreInfoSheet = false
