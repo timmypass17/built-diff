@@ -12,7 +12,7 @@ class AddTemplateExerciseTableViewCell: UITableViewCell {
 
     var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add Exercise".localized
+        label.text = String(localized: "Add Exercise")
         label.textColor = Settings.shared.selectedAccentColor
         return label
     }()

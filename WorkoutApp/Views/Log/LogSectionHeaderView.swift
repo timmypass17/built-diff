@@ -60,6 +60,6 @@ class LogSectionHeaderView: UITableViewHeaderFooterView {
         let dateMonthString = dateFormatter.string(from: dateMonth)
         
         monthYearLabel.text = dateMonthString.uppercased()
-        workoutCountLabel.text = "%lld Workouts".localized(workoutCount)
+        workoutCountLabel.text = String(localized: "\(workoutCount) Workouts")
     }
 }

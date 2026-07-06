@@ -14,7 +14,7 @@ protocol StartWorkoutViewControllerDelegate: AnyObject {
 class StartWorkoutViewController: WorkoutDetailViewController {
     
     lazy var finishButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: "Finish".localized, primaryAction: didTapFinishButton())
+        return UIBarButtonItem(title: String(localized: "Finish"), primaryAction: didTapFinishButton())
     }()
 
     weak var progressDelegate: StartWorkoutViewControllerDelegate?  // progress handles
@@ -49,12 +49,13 @@ class StartWorkoutViewController: WorkoutDetailViewController {
         return UIAction { _ in
             if self.workout.isFinished {
                 self.showFinishAlert(
-                    title: "Workout Complete!".localized,
-                    message: "Are you ready to finish your workout?".localized)
+                    title: String(localized: "Workout Complete!"),
+                    message: String(localized: "Are you ready to finish your workout?")
+                    )
             } else {
                 self.showFinishAlert(
-                    title: "Finish Workout?".localized,
-                    message: "Some weight or reps fields are still empty. Are you sure you want to finish your workout?".localized
+                    title: String(localized: "Finish Workout?"),
+                    message: String(localized: "Some weight or reps fields are still empty. Are you sure you want to finish your workout?")
                 )
             }
         }

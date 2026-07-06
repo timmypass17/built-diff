@@ -9,35 +9,35 @@ import UIKit
 import CoreData
 
 class TemplateViewController: UIViewController {
-    
+
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+
     var template: Template
     let childContext: NSManagedObjectContext
     let workoutService: WorkoutService
-    
+
     var fetchedResultsController: NSFetchedResultsController<TemplateExercise>! // source of truth
     var changeIsUserDriven = false
-    
+
+    enum Section: Int, CaseIterable {
+        case title, exercises
+    }
+
     init(template: Template, workoutService: WorkoutService) {
         self.template = template
         self.childContext = template.managedObjectContext!
         self.workoutService = workoutService
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    enum Section: Int, CaseIterable {
-        case title, exercises
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -48,9 +48,8 @@ class TemplateViewController: UIViewController {
         tableView.register(TemplateTitleTableViewCell.self, forCellReuseIdentifier: TemplateTitleTableViewCell.reuseIdentifier)
         tableView.register(TemplateExerciseTableViewCell.self, forCellReuseIdentifier: TemplateExerciseTableViewCell.reuseIdentifier)
         tableView.register(AddTemplateExerciseTableViewCell.self, forCellReuseIdentifier: AddTemplateExerciseTableViewCell.reuseIdentifier)
-        
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: didTapCancelButton())
-//        navigationItem.rightBarButtonItems = [editButtonItem]
 
         view.addSubview(tableView)
 
@@ -60,16 +59,16 @@ class TemplateViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        
+
         fetchedResultsController = NSFetchedResultsController(
             fetchRequest: TemplateExercise.fetchRequest(for: template),
             managedObjectContext: childContext,
             sectionNameKeyPath: nil,    // to define sections
-            cacheName: nil)
+            cacheName: nil
+        )
 
         fetchedResultsController.delegate = self
-        
-        // Perform a fetch.
+
         do {
             try fetchedResultsController?.performFetch()
         } catch {
@@ -78,11 +77,11 @@ class TemplateViewController: UIViewController {
             fatalError("Failed to perform fetch: \(error.localizedDescription)")
         }
     }
-    
+
     func updateSaveButton() {
         navigationItem.rightBarButtonItems?[0].isEnabled = !template.title.isEmpty && template.templateExercises.count > 0
     }
-    
+
     func didTapCancelButton() -> UIAction {
         return UIAction { _ in
             // saving child context pushes changes to main context so in memory data actually changes but not saved to disk, only saved in memory
@@ -90,30 +89,29 @@ class TemplateViewController: UIViewController {
             // - use rollback to undo commits
             // This will undo all unsaved changes in the main context and revert it to the last committed state (i.e., before the child context’s changes were saved into it).
             CoreDataStack.shared.mainContext.rollback()
-
             self.dismiss(animated: true)
         }
     }
 }
 
 extension TemplateViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = Section(rawValue: section) else { return 0 }
         switch section {
         case .title:
             return 1
         case .exercises:
-            let button = 1
+            let addExerciseButton = 1
             let count = fetchedResultsController?.fetchedObjects?.count ?? 0
-            return count + button
+            return count + addExerciseButton
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
         switch section {
@@ -129,10 +127,10 @@ extension TemplateViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: AddTemplateExerciseTableViewCell.reuseIdentifier, for: indexPath) as! AddTemplateExerciseTableViewCell
                 return cell
             }
-            
+
             let cell = tableView.dequeueReusableCell(withIdentifier: TemplateExerciseTableViewCell.reuseIdentifier, for: indexPath) as! TemplateExerciseTableViewCell
-            let offsetIndexPath = IndexPath(row: indexPath.row, section: 0) // we insert row at [1, 0] but exercises has only 1 section, so offset back to [0, 0]
-            let templateExercise = fetchedResultsController.object(at: offsetIndexPath)
+            let offsetIndexPath = IndexPath(row: indexPath.row, section: 0)
+            let templateExercise = fetchedResultsController.object(at: offsetIndexPath) // this FRC internally only has 1 section
             cell.accessoryType = .disclosureIndicator
             cell.update(templateExercise: templateExercise)
             return cell
@@ -143,9 +141,9 @@ extension TemplateViewController: UITableViewDataSource {
         guard let section = Section(rawValue: section) else { return nil }
         switch section {
         case .title:
-            return "Title".localized
+            return String(localized: "Title")
         case .exercises:
-            return "Exercises".localized
+            return String(localized: "Exercises")
         }
     }
 

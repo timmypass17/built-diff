@@ -35,7 +35,7 @@ struct WorkoutDetailOptionsView: View {
             Text("This action is permanent and cannot be undone.")
         })
         .alert("Template Deleted", isPresented: $workoutDetailOptionsViewModel.isPresentingDeleteSuccessAlert, actions: {
-            Button("OK".localized, role: .cancel) {
+            Button("OK", role: .cancel) {
                 appState.navigationPath.removeLast(appState.navigationPath.count)
             }
         }, message: {

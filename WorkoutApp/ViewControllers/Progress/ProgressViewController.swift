@@ -44,7 +44,7 @@ class ProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Progress".localized
+        navigationItem.title = String(localized: "Progress")
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.delegate = self
         tableView.dataSource = self
@@ -110,7 +110,7 @@ class ProgressViewController: UIViewController {
         
         let menuItems: [UIAction] = [
             UIAction(
-                title: "Alphabetical (A-Z)".localized,
+                title: String(localized: "Alphabetical (A-Z)"),
                 image: UIImage(systemName: "a.square.fill"),
                 state: currentPreference == .alphabetically ? .on : .off
             ) { _ in
@@ -121,7 +121,7 @@ class ProgressViewController: UIViewController {
             },
             
             UIAction(
-                title: "Weight".localized,
+                title: String(localized: "Weight"),
                 image: UIImage(systemName: "scalemass.fill"),
                 state: currentPreference == .weight ? .on : .off
             ) { _ in
@@ -132,7 +132,7 @@ class ProgressViewController: UIViewController {
             },
             
             UIAction(
-                title: "Recently Updated".localized,
+                title: String(localized: "Recently Updated"),
                 image: UIImage(systemName: "clock"),
                 state: currentPreference == .recent ? .on : .off
             ) { _ in
@@ -144,7 +144,7 @@ class ProgressViewController: UIViewController {
         ]
         
         let sortMenu = UIMenu(
-            title: "Sort By".localized,
+            title: String(localized: "Sort By"),
             children: menuItems
         )
         
@@ -179,7 +179,7 @@ extension ProgressViewController: UITableViewDataSource {
 extension ProgressViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return exerciseData.isEmpty ? nil : "Exercises".localized
+        return exerciseData.isEmpty ? nil : String(localized: "Exercises")
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

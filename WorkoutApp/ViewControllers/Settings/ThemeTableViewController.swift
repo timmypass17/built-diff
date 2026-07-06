@@ -61,13 +61,13 @@ extension UIUserInterfaceStyle: Codable, CaseIterable {
     var description: String {
         switch self {
         case .unspecified:
-            return "Automatic".localized
+            return String(localized: "Automatic")
         case .light:
-            return "Light".localized
+            return String(localized: "Light")
         case .dark:
-            return "Dark".localized
+            return String(localized: "Dark")
         @unknown default:
-            return "Automatic".localized
+            return String(localized: "Automatic")
         }
     }
 }

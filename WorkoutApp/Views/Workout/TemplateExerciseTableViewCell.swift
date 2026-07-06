@@ -48,9 +48,13 @@ class TemplateExerciseTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func update(templateExercise: TemplateExercise) {
-        nameLabel.text = /*templateExercise.name*/ "\(templateExercise.name) \(templateExercise.index)"
+        #if DEBUG
+        nameLabel.text = "\(templateExercise.name) [\(templateExercise.index)]"
+        #else
+        nameLabel.text = templateExercise.name
+        #endif
         frequencyLabel.text = "\(templateExercise.sets) x \(templateExercise.reps) reps"
     }
     

@@ -51,7 +51,7 @@ class WorkoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Workout".localized
+        navigationItem.title = String(localized: "Workout")
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.dataSource = self
         tableView.delegate = self
@@ -120,13 +120,13 @@ class WorkoutViewController: UIViewController {
     
     private func showDeleteAlert(_ template: Template) {
         let alert = UIAlertController(
-            title: "Delete Template?".localized,
-            message: "Are you sure you want to delete \"\(template.title)\"".localized,
+            title: String(localized: "Delete Template?"),
+            message: String(localized: "Are you sure you want to delete \"\(template.title)\""),
             preferredStyle: .alert
         )
         
-        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
-        alert.addAction(UIAlertAction(title: "Remove".localized, style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: String(localized: "Cancel"), style: .cancel))
+        alert.addAction(UIAlertAction(title: String(localized: "Remove"), style: .destructive) { [weak self] _ in
             guard let self else { return }
             workoutService.deleteTemplate(template)
             // don't delete and update at same time, confuses delegate (so i split saveContext() it 2 parts)
@@ -136,7 +136,7 @@ class WorkoutViewController: UIViewController {
     }
     
     func didTapEditWorkoutButton(_ template: Template) -> UIAction {
-        return UIAction(title: "Edit Workout".localized, image: UIImage(systemName: "square.and.pencil")) { _ in
+        return UIAction(title: String(localized: "Edit Workout"), image: UIImage(systemName: "square.and.pencil")) { _ in
             do {
                 let editTemplateViewController = try EditTemplateViewController(templateID: template.objectID, workoutService: self.workoutService)
                 editTemplateViewController.delegate = self
@@ -149,7 +149,7 @@ class WorkoutViewController: UIViewController {
     }
     
     func didTapDeleteWorkoutButton(_ template: Template) -> UIAction {
-        return UIAction(title: "Delete Workout".localized, image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+        return UIAction(title: String(localized: "Delete Workout"), image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
             guard let self else { return }
             showDeleteAlert(template)
         }

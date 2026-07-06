@@ -34,12 +34,12 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "select date".localized
+        title = String(localized: "select date")
         view.backgroundColor = .systemBackground
         datePicker.date = initialDate
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: didTapCancelButton())
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save".localized, primaryAction: didTapSaveButton())
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Save"), primaryAction: didTapSaveButton())
 
         view.addSubview(datePicker)
         NSLayoutConstraint.activate([

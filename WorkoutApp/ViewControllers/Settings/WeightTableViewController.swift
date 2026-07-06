@@ -34,7 +34,7 @@ class WeightTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "WeightTypeCell")
-        navigationItem.title = "Weight Unit".localized
+        navigationItem.title = String(localized: "Weight Unit")
         navigationItem.largeTitleDisplayMode = .never
     }
 

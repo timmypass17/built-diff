@@ -21,7 +21,7 @@ class AccentColorTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ColorCell")
         tableView.register(CustomColorTableViewCell.self, forCellReuseIdentifier: CustomColorTableViewCell.reuseIdentifier)
 
-        navigationItem.title = "Accent Color".localized
+        navigationItem.title = String(localized: "Accent Color")
         navigationItem.largeTitleDisplayMode = .never
         
         NotificationCenter.default.addObserver(
@@ -148,31 +148,31 @@ enum AccentColor: String, CaseIterable, Codable {
     var description: String {
         switch self {
         case .blue:
-            return "blue".localized
+            return String(localized: "blue")
         case .red:
-            return "red".localized
+            return String(localized: "red")
         case .orange:
-            return "orange".localized
+            return String(localized: "orange")
         case .yellow:
-            return "yellow".localized
+            return String(localized: "yellow")
         case .green:
-            return "green".localized
+            return String(localized: "green")
         case .purple:
-            return "purple".localized
+            return String(localized: "purple")
         case .pink:
-            return "pink".localized
+            return String(localized: "pink")
         case .mint:
-            return "mint".localized
+            return String(localized: "mint")
         case .cyan:
-            return "cyan".localized
+            return String(localized: "cyan")
         case .teal:
-            return "teal".localized
+            return String(localized: "teal")
         case .indigo:
-            return "indigo".localized
+            return String(localized: "indigo")
         case .brown:
-            return "brown".localized
+            return String(localized: "brown")
         case .white:
-            return "white".localized
+            return String(localized: "white")
         }
     }
 }

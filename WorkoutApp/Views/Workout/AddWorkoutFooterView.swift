@@ -16,7 +16,7 @@ class AddExerciseFooterView: UIView {
     private let addExerciseButton: UIButton = {
         let button = UIButton(configuration: .tinted())
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.setTitle("Add Exercise".localized, for: .normal)
+        button.setTitle(String(localized: "Add Exercise"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = Settings.shared.selectedAccentColor
         return button

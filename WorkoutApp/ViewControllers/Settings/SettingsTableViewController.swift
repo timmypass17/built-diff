@@ -40,66 +40,66 @@ class SettingsTableViewController: UIViewController {
     
     var sections = [
         Section(
-            title: "General".localized,
+            title: String(localized: "General"),
             data: [
                 Model(
                     image: UIImage(systemName: "dumbbell.fill")!,
-                    text: "Weight Units".localized,
+                    text: String(localized: "Weight Units"),
                     secondary: Settings.shared.weightUnit.fullDescription,
                     backgroundColor: Settings.shared.selectedAccentColor
                 ),
                 Model(
                     image: UIImage(systemName: "alarm.fill")!,
-                    text: "Show Timer".localized,
+                    text: String(localized: "Show Timer"),
                     backgroundColor: Settings.shared.selectedAccentColor,
                     isOn: Settings.shared.showTimer
                 ),
                 Model(
                     image: UIImage(systemName: "iphone.radiowaves.left.and.right")!,
-                    text: "Haptic Feedback".localized,
+                    text: String(localized: "Haptic Feedback"),
                     backgroundColor: Settings.shared.selectedAccentColor,
                     isOn: Settings.shared.enableHaptic
                 ),
             ]
         ),
         Section(
-            title: "Appearance".localized,
+            title: String(localized: "Appearance"),
             data: [
                 Model(
                     image: UIImage(systemName: "moon.stars.fill")!,
-                    text: "Theme".localized,
+                    text: String(localized: "Theme"),
                     secondary: Settings.shared.theme.description,
                     backgroundColor: .systemIndigo
                 ),
                 Model(
                     image: UIImage(systemName: "paintpalette.fill")!,
-                    text: "Accent Color".localized,
-                    secondary: Settings.shared.accentColor?.description.capitalized ?? "Custom".localized,
+                    text: String(localized: "Accent Color"),
+                    secondary: Settings.shared.accentColor?.description.capitalized ?? String(localized: "Custom"),
                     backgroundColor: .systemOrange
                 )
             ]
         ),
         Section(
-            title: "Help & Support".localized,
+            title: String(localized: "Help & Support"),
             data: [
                 Model(
                     image: UIImage(systemName: "mail.fill")!,
-                    text: "Contact Us".localized,
+                    text: String(localized: "Contact Us"),
                     backgroundColor: .systemGreen
                 ),
                 Model(
                     image: UIImage(systemName: "ladybug.fill")!,
-                    text: "Bug Report".localized,
+                    text: String(localized: "Bug Report"),
                     backgroundColor: .systemRed
                 )
             ]
         ),
         Section(
-            title: "Privacy".localized,
+            title: String(localized: "Privacy"),
             data: [
                 Model(
                     image: UIImage(systemName: "hand.raised.fill")!,
-                    text: "Privacy Policy".localized,
+                    text: String(localized: "Privacy Policy"),
                     backgroundColor: .systemGray
                 )
             ]
@@ -120,7 +120,7 @@ class SettingsTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Settings".localized
+        navigationItem.title = String(localized: "Settings")
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.dataSource = self
         tableView.delegate = self
@@ -264,8 +264,8 @@ extension SettingsTableViewController: AccentColorTableViewControllerDelegate {
         for j in 0..<sections[0].data.count {
             sections[0].data[j].backgroundColor = color
         }
-        sections[colorIndexPath.section].data[colorIndexPath.row].secondary = colorName ?? "Custom".localized
-        
+        sections[colorIndexPath.section].data[colorIndexPath.row].secondary = colorName ?? String(localized: "Custom")
+
         tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         tableView.reloadRows(at: [colorIndexPath], with: .automatic)
     }
@@ -281,11 +281,11 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
     
     func showMailErrorAlert() {
         let alert = UIAlertController(
-            title: "No Email Account Found".localized,
-            message: "There is no email account associated to this device. If you have any questions, please feel free to reach out to us at %@".localized(email),
+            title: String(localized: "No Email Account Found"),
+            message: String(localized: "There is no email account associated to this device. If you have any questions, please feel free to reach out to us at \(email)"),
             preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { _ in }))
+        alert.addAction(UIAlertAction(title: String(localized: "OK"), style: .default, handler: { _ in }))
         self.present(alert, animated: true, completion: nil)
     }
 }

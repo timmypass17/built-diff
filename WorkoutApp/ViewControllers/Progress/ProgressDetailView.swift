@@ -81,10 +81,10 @@ struct ProgressHeaderView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Personal Record".localized.localizedUppercase)
+            Text("Personal Record".localizedUppercase)
                 .foregroundColor(.secondary)
                 .font(.subheadline)
-            
+
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(personalRecordWeight)
                     .font(.title)
@@ -108,11 +108,11 @@ struct ProgressListView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("history".localized)
-                
+                Text("history")
+
                 Spacer()
                 
-                Text("%lld Workouts".localized(filteredData.count))
+                Text("\(filteredData.count) Workouts")
             }
             .foregroundColor(.secondary)
             .font(.caption)
@@ -234,15 +234,15 @@ enum SelectedFilter: String, CaseIterable, Identifiable {
     var description: String {
         switch self {
         case .all:
-            return "all".localized.localizedCapitalized
+            return String(localized: "all").localizedCapitalized
         case .week:
-            return "week".localized.localizedCapitalized
+            return String(localized: "week").localizedCapitalized
         case .month:
-            return "month".localized.localizedCapitalized
+            return String(localized: "month").localizedCapitalized
         case .sixMonth:
-            return "6m".localized.localizedUppercase
+            return String(localized: "6m").localizedUppercase
         case .year:
-            return "year".localized.localizedCapitalized
+            return String(localized: "year").localizedCapitalized
         }
     }
 }

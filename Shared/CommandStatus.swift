@@ -82,18 +82,18 @@ enum WeightType: String, CaseIterable, Codable {
     var shortDescription: String {
         switch self {
         case .lbs:
-            return "lbs".localized
+            return String(localized: "lbs")
         case .kg:
-            return "kg".localized
+            return String(localized: "kg")
         }
     }
     
     var fullDescription: String {
         switch self {
         case .lbs:
-            return "US/Imperial (lbs)".localized
+            return String(localized: "US/Imperial (lbs)")
         case .kg:
-            return "Metric (kg)".localized
+            return String(localized: "Metric (kg)")
         }
     }
 }

@@ -123,7 +123,7 @@ class WorkoutDetailViewController: UIViewController {
             preferredStyle: .alert
         )
         
-        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: String(localized: "Cancel"), style: .cancel))
         alert.addAction(UIAlertAction(title: primaryButtonText, style: .destructive) { [weak self] _ in
             guard let self else { return }
             self.navigationController?.popViewController(animated: true)
