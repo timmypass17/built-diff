@@ -21,6 +21,31 @@ extension String {
     }
 }
 
+extension Double {
+
+    // note: every weight is stored as lbs
+
+    var lbs: Double {
+        return self
+    }
+
+    var lbsToKg: Double {
+        return self * 0.45359237
+    }
+
+    var kgToLbs: Double {
+        return self * 2.2046226218
+    }
+
+    var lbsString: String {
+        return formatWeight(lbs)
+    }
+
+    var kgString: String {
+        return formatWeight(lbsToKg)
+    }
+}
+
 // Note: iPhone + watchOS simulator doesn't sync? Have to manually add workouts separately to watch. Changing weight/color syncs though, cloudkit doesn't seme to sync. works on physical
 
 //let translation: [String: String] = [

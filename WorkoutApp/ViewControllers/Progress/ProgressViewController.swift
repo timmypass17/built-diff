@@ -82,15 +82,19 @@ class ProgressViewController: UIViewController {
     // note: only fetches exerciseCount * 7 at most, cheap
     func updateData() {
         exerciseData.removeAll()
-        
-        let exerciseNames: [String] = workoutService.fetchExerciseNames()
-        for exerciseName in exerciseNames {
-            let exerciseSets: [ExerciseSet] = workoutService.fetchExerciseSets(exerciseName: exerciseName, limit: 7, ascending: false, includesZero: false).reversed()
-            let bestLift: Double = workoutService.fetchPR(exerciseName: exerciseName)
-            
-            exerciseData.append(ExerciseData(name: exerciseName, exerciseSets: exerciseSets, bestLift: bestLift, lastUpdated: .now, latestLift: exerciseSets.last?.weight ?? 0))
+
+        do {
+            let exerciseNames: [String] = try workoutService.fetchExerciseNames()
+            for exerciseName in exerciseNames {
+                let exerciseSets: [ExerciseSet] = try workoutService.fetchExerciseSets(exerciseName: exerciseName, limit: 7, ascending: false, includeZeros: false).reversed()
+                let bestLift: Double = try workoutService.fetchPR(exerciseName: exerciseName)
+
+                exerciseData.append(ExerciseData(name: exerciseName, exerciseSets: exerciseSets, bestLift: bestLift, lastUpdated: .now, latestLift: exerciseSets.last?.weight ?? 0))
+            }
+        } catch {
+            print("Fail to fetch exercise names: \(error)")
         }
-        
+
         switch Settings.shared.sortingPreference {
         case .alphabetically:
             self.exerciseData.sort { $0.name < $1.name }
@@ -184,7 +188,14 @@ extension ProgressViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = exerciseData[indexPath.row]
-        let allSets = workoutService.fetchExerciseSets(exerciseName: data.name, ascending: false, includesZero: true)
+        let allSets: [ExerciseSet]
+        do {
+            allSets = try workoutService.fetchExerciseSets(exerciseName: data.name, ascending: false, includeZeros: true)
+        } catch {
+            print("Fail to fetch exercise sets: \(error.localizedDescription)")
+            allSets = []
+        }
+
         allSets.forEach { set in
             if Settings.shared.weightUnit == .lbs {
                 set.weight = set.weight.lbs

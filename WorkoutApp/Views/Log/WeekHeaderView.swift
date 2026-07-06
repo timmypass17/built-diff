@@ -53,15 +53,19 @@ class WeekHeaderView: UIView {
         let weekDays = getWeekDays()
         let startOfWeek: Date = weekDays[0]
         let endOfWeek: Date = weekDays[weekDays.count - 1]
-        
-        let weekLogs: [Workout] = workoutService?.fetchLogs(from: startOfWeek, to: endOfWeek) ?? []
-        let loggedDates: Set<Date> = Set(weekLogs.map { Calendar.current.startOfDay(for: $0.createdAt) })
 
-        for (index, dayView) in dayViews.enumerated() {
-            dayView.update(
-                date: weekDays[index],
-                isCompleted: loggedDates.contains( weekDays[index])
-            )
+        do {
+            let weekLogs: [Workout] = try workoutService?.fetchLogs(from: startOfWeek, to: endOfWeek) ?? []
+            let loggedDates: Set<Date> = Set(weekLogs.map { Calendar.current.startOfDay(for: $0.createdAt) })
+
+            for (index, dayView) in dayViews.enumerated() {
+                dayView.update(
+                    date: weekDays[index],
+                    isCompleted: loggedDates.contains( weekDays[index])
+                )
+            }
+        } catch {
+            print("Fail to fetch logs: \(error.localizedDescription)")
         }
     }
 

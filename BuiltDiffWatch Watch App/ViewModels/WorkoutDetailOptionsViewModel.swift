@@ -13,7 +13,7 @@ import Foundation
     var isPresentingListView = false
     var isPresentingDeleteAlert = false
     var isPresentingDeleteSuccessAlert = false
-    let workoutService = WorkoutDao(context: CoreDataStack.shared.mainContext)
+    let workoutService = WorkoutService(context: CoreDataStack.shared.mainContext)
     
     init(workout: WorkoutWrapper, template: Template) {
         self.workout = workout

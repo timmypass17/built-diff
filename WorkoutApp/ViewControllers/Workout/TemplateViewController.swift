@@ -131,7 +131,6 @@ extension TemplateViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: TemplateExerciseTableViewCell.reuseIdentifier, for: indexPath) as! TemplateExerciseTableViewCell
             let offsetIndexPath = IndexPath(row: indexPath.row, section: 0)
             let templateExercise = fetchedResultsController.object(at: offsetIndexPath) // this FRC internally only has 1 section
-            cell.accessoryType = .disclosureIndicator
             cell.update(templateExercise: templateExercise)
             return cell
         }

@@ -18,20 +18,17 @@ class ExercisesTableViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+
     struct Section {
         let letter: String
         let exercises: [String]
     }
 
     var exercises: [String] = []
-    
     var selectedExercises: [String] = []
-    
     var sections: [Section] = []
-    
     var searchController = UISearchController(searchResultsController: nil)
-    
+
     let workoutService: WorkoutService
     weak var delegate: AddExerciseDetailViewControllerDelegate?
 
@@ -39,11 +36,11 @@ class ExercisesTableViewController: UIViewController {
         self.workoutService = workoutService
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = String(localized: "Exercises")
